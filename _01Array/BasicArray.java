@@ -23,8 +23,10 @@ public class BasicArray {
 			System.out.println(lotto[0]+"/"+lotto[1]+"/"+lotto[2]);
 			System.out.println(lotto[0]+20);
 			System.out.println(lotto[0]+"/"+lotto[1]+"/"+lotto[2]);
-			lotto[3]=lotto[1]+20;	//3번 인덱스가 없음.
+			lotto[3]=lotto[1]+20;	//3번 인덱스가 없음. 인덱스(0~2)
 									//예의발생 ArrayIndexOutOfBoundExeption
+			
+			
 	}
 
 }

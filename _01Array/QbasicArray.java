@@ -33,11 +33,11 @@ public class QbasicArray {
 		
 		//q5
 		lotto[0] = lotto[0];
-		lotto[1] = lotto[0] + lotto[1];
-		lotto[2] = lotto[0] + lotto[1] + lotto[2];
-		lotto[3] = lotto[0] + lotto[1] + lotto[2] + lotto[3];
-		lotto[4] = lotto[0] + lotto[1] + lotto[2] + lotto[3] + lotto[4];
-		lotto[5] = lotto[0] + lotto[1] + lotto[2] + lotto[3] + lotto[4] + lotto[5];
+		lotto[1] += lotto[0];
+		lotto[2] += lotto[1];
+		lotto[3] += lotto[2];
+		lotto[4] += lotto[3];
+		lotto[5] += lotto[4];
 		
 		//q6
 		//System.out.println(lotto[3]); ==> 87 oddnumber

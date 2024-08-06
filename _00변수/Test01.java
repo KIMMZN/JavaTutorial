@@ -13,6 +13,7 @@ public class Test01 {
 		//문자열 변수 선언;
 		String s = "Kimtr";
 		System.out.println(s);
+		
 
 	}
 

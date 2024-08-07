@@ -67,7 +67,7 @@ public class QbasicArray {
 		System.out.println(xA <= xC && xC <= (xB-3) && yA >= yC && yC >= (yB+3));
 				
 		// xA < xC && xC < xB && yA > yC && yC > yB
-		
+		//
 		
 		
 		

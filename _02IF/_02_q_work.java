@@ -97,15 +97,15 @@ public class _02_q_work {
 		//int bb2 = y[0]%2 == 0;
 		
 		if(x[0]%3 == 0 && y[0]%2 ==0) {
-			System.out.println("디짐 1");
+			System.out.println("디짐 0");
 					
 		}
 			if(x[1]%3 == 0 && y[1]%2 ==0) {
-			System.out.println("디짐 2");
+			System.out.println("디짐 1");
 			
 		} 
 			if(x[2]%3 == 0 && y[2]%2 ==0) {
-			System.out.println("디짐 3");
+			System.out.println("디짐 2");
 		}
 		
 		

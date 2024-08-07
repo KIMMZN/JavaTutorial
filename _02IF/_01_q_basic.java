@@ -74,6 +74,26 @@ public class _01_q_basic {
 		}else {
 			System.out.println("도로가 아님");
 		}
+		
+		
+		//up3. shooting
+		
+		//int x1 = 10;
+		//int x2 = 15
+		//int y1 = 20; //사이즈 가로:5, 세로:6
+		//int y2 = 17
+		
+		//int mx = 11;
+		//int my = 5;		//미사일 사이즈 가로:2, 세로:2
+		
+		//x1 mx x1+5;
+		//y1 < my > y1+6
+		
+		
+	
+	
+	
+	
 
 		
 		

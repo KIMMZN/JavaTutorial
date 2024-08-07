@@ -1,6 +1,6 @@
 package _01Array;
 
-public class QbasicArray2copy {
+public class QbasicArray211 {
 
 	public static void main(String[] args) {
 		//q1

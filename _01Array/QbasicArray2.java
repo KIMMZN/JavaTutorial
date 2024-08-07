@@ -69,6 +69,16 @@ public class QbasicArray2 {
 		// xA < xC && xC < xB && yA > yC && yC > yB
 		
 		
+		/* 이름 학번 나이 성적
+		
+		string 이름 
+		int 나이 학번 성적
+		
+		
+		
+		나이: 나이>18 수강신청 x
+		성적: 60 <= 성적 && 성적 > 70 ; 이면 이름 뒤 * 추가 */
+		
 		
 		
 		

@@ -97,19 +97,32 @@ public class _02_q_work2_김시온 {
 		//int bb2 = y[0]%2 == 0;
 		
 		if(x[0]%3 == 0 && y[0]%2 ==0) {
-			System.out.println("디짐 1");
+			System.out.println("디짐 0");
 					
 		}
 			if(x[1]%3 == 0 && y[1]%2 ==0) {
-			System.out.println("디짐 2");
+			System.out.println("디짐 1");
 			
 		} 
 			if(x[2]%3 == 0 && y[2]%2 ==0) {
-			System.out.println("디짐 3");
+			System.out.println("디짐 2");
 		}
 		
 		
 		//x[0]%3 == 0 . y[0]%2 == 0;
+			
+		//up3. shooting
+		
+			//int x1 = 10;
+			//int x2 = 15
+			//int y1 = 20; //사이즈 가로:5, 세로:6
+			//int y2 = 17
+			
+			//int mx = 11;
+			//int my = 5;		//미사일 사이즈 가로:2, 세로:2
+			
+			//x1 mx x1+5;
+			//y1 < my > y1+6
 		
 		
 		

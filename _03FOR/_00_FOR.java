@@ -18,7 +18,7 @@ public class _00_FOR {
 			System.out.println("dd " + a[i%5]);
 		}
 		
-		
+		System.out.println("111 " + 5%5);
 		
 		/*for(int = 0; i<=0; i++) {
 			sysout(a[(i+1)%5])
@@ -96,21 +96,7 @@ public class _00_FOR {
 			  
 			 System.out.println((double)sum/cnta);
 			 
-			 
-			 // 합치기
-			 
-			 
-			 for(int i=0; i<5; i++) {
-				 if(minvalue > a[i]) {
-					 minvalue = a[i];
-					 					 					 
-						 sum += a[i];
-						 cnta++;
-															 
-				 }
-			 }
-			  System.out.println((double)sum/cnta);
-			 
+			
 		
 		
 		

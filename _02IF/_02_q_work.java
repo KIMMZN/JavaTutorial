@@ -81,6 +81,8 @@ public class _02_q_work {
 			System.out.println("3");
 		}
 		
+		
+		
 		//up.q.8
 		int[] x = {6,5,9};
 		int[] y = {4,10,6};

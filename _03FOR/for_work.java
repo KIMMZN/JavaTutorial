@@ -136,8 +136,11 @@ public class for_work {
 		 // (i%100)/10; && i%3 == 0 ;; ++bctn;
 		 //
 		 		 		 
-		 
+		  int aaa = 0;
 		 for(int i=100; i <= 999; i++) {
+			 
+			 aaa = (i%100)/10;
+			 System.out.println(aaa);
 			if((i%100)/10==3) {
 				System.out.println(i);
 			}
@@ -172,20 +175,28 @@ public class for_work {
 		 
 		 //7. 1 2 3 4 5 6 7 8 9 10 = 결과
 		 
-		 int answ = 1+2+3+4+5+6+7+8+9+10;
-		 System.out.print("1+2+3+4+5+6+7+8+9+10 = "+ answ);
+		 //int answ = 1+2+3+4+5+6+7+8+9+10;
+		// System.out.print("1+2+3+4+5+6+7+8+9+10 = "+ answ);
 		 
 		 
-		 int dd = 0;
-		 int resultn = 0;
-		 for (int d= 0; d <= 10; d++) {
+		 String sss = "+";
+		 int resultnn = 0;
+		 for (int i= 1; i <= 10; i++) {
+			 			 			
 			 
-			 System.out.print(d);
-			 resultn += d;
-			 dd = d;
+			 sss = "+";
+			 System.out.print(i);
+			 resultnn += i;
+			 System.out.print(sss);
+			 
+			
+			 
+			 
+			 
+			 
+			 
 		 }
-		 
-		 System.out.println();
+		 System.out.println(resultnn);
 		 
 		
 		

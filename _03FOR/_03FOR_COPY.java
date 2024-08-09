@@ -52,7 +52,7 @@ public class _03FOR_COPY {
 				
 			}else if(i%2 == 0) {
 				even -= i;
-				System.out.println(even);
+				
 			}
 		}System.out.println("홀수 더하기: " + odd +", 찍수빼기 : "+ even);
 		

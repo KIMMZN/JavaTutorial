@@ -1,9 +1,9 @@
 ## KIMMZN / JavaTutoria
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📝 일정표  
-  　　　　Day01 : _00_변수와 자바 기초  
-  　　　　Day02 : _01_array 1차원배열특징과 연습문제  
-  　　　　Day03 : _02IF IF문 기초와 연습문제
-          Day04 : _03FOR FOR문과 문제들
+  　　　　Day00 : _00_변수와 자바 기초  
+  　　　　Day01 : _01_array 1차원배열특징과 연습문제  
+  　　　　Day02 : _02IF IF문 기초와 연습문제  
+      Day03 : _03FOR FOR문과 문제들
 	  
 
    00. Java 기본

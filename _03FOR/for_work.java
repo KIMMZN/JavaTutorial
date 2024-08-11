@@ -131,20 +131,17 @@ public class for_work {
 		 //
 		 	
 		 
-		  int num33 = 0;
-		  int numtenth = 0;
-		 for(int i=100; i <= 999; i++) {
-			 
-			 if (i%3 == 0) {
-				 num33 = i;
-				 numtenth = (i%100)/10;
-				 
-				 
-				 System.out.println(num33 +", "+ numtenth);
-				 
-			 } 
-			 
-		 }
+			// 5. 범인은 100부터 999까지 숫자에 숨어 있다.
+			// 범인은 십의 자리에 있고. 3의 배수이다. 범인 숫자를 모두 출력하시오.
+			int num33 = 0;
+			int bnum = 0;
+			for(int i = 100; i <= 999; i++) {
+				if (i % 3==0) {
+					bnum = (i%100)/10;
+					num33 = i;
+					System.out.println("범인은: " + "3배수: "+num33+ ", 십의자리: " + bnum);
+				}			
+			}
 			 
 			 
 			
@@ -159,14 +156,18 @@ public class for_work {
 		 int nnums = 0;
 		 int addnumt = 0;
 		 for (int i = 0; i<=100; i++) {
-			 
-			 System.out.println(nnums);
+			  
+			 nnums += i;
+			  
 			 if(nnums > 44) {
 				 addnumt = i;
 				 i = 150;
 			 }
 			 
 		 } System.out.println("6번은: "+ addnumt);
+		 
+		 
+		 
 		 
 				 
 		 //7. 1 2 3 4 5 6 7 8 9 10 = 결과
@@ -184,15 +185,13 @@ public class for_work {
 			 System.out.print(i);
 			 resultnn += i;
 			 System.out.print(sss);
-			 
-			
-			 
-			 
-			 
-			 
-			 
+						
+						 
+								 
 		 }
 		 System.out.println(resultnn);
+		 
+		 
 		 
 		
 		

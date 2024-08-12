@@ -14,6 +14,12 @@ public class Work0809 {
 			}
 							
 		}
+		//1)for문을 작성
+		//초기값 100조건 <1000, i++
+		//2)sysout(i);로 확인
+		//3)i가 홀수인지 판단 (%연산 활용);
+		//4)(i%2 !=0) . sysout(i);
+		
 		
 	//2. 1부터 100까지 숫자중에서 홀수의 총합을 구하시오.
 		
@@ -25,6 +31,13 @@ public class Work0809 {
 				
 			}
 		}System.out.println("2.홀수총합: " + oddsum);
+		
+		//1부터 100까지 for문 작성
+		//초기값 1, 조건 i<=100, i++
+		//2.홀수판별 %==1
+		//3. 총합: 총합을 저장할 변수선언 // sum =+ i;
+		
+		
 		
 	//3. 다음과 같이 출력하시오   10  9  8  7  6  5  4  3  2  1
 		// i = 10; i--
@@ -46,12 +59,20 @@ public class Work0809 {
 			
 		}
 		
+		//1) for문 작성한다.
+		//초기값 = 0, 조건 i < 7 ; i++
+		//i를 배열의 index로 본다.;
+		//2) arr[i] $2 == 0 ; 조건
+		//3) sysout(arr[i]); 값
+		// sysout(i) : index
+		
 	//6.배열에서 배열의 값이 홀수 인 곳의 인덱스만 출력하시오.
 		
 		  int[] arr2 = {45,23,25,64,3,24,48};
 		  for (int i = 0; i <= 6; i++ ) {
 			  if(arr2[i]%2 ==1) {
 				  System.out.println("배열의 홀수는: "+ arr2[i]);
+				  System.out.println("6.test 인덱스만" + i);
 			  }
 		  }
 		  
@@ -95,8 +116,16 @@ public class Work0809 {
 		    		anum++;		    		
 		    	}
 		    			    		    			
-		    }System.out.println("a의 개수는: " + anum);
+		    }System.out.println("9번 a의 개수는: " + anum);
 		    
+		    // 결론: 변수는 test
+		    // 변수는 문자열의 값;
+		    // 초기문자열은 " ~~~ "
+		    // 소문자 int char boolean
+		    // 		double, float는 : .을 쓸수 없다.
+		    // 소문자가 아닌 대문자로 시작하는 자료형은 .을 사용할수 있다.
+		    // (예외 : 배열은 .을 사용할수있다.)
+		    // 문자열 부품이 제공하는 기능(:메서드) 으로 문제해결;
 		    
 		// 10.  int[] arr = {45,23,25,64,3,24,48} 
 		//    배열에서 가장 큰 값과 가장 큰 값이 있는 인덱스를 출력하시오.
@@ -114,14 +143,11 @@ public class Work0809 {
 		    	
 		    	if (arr5[i] > maxValue) {
 		    		maxValue = arr5[i];
-		    		maxIndex = i;
-		    		
-		    		
-		    	}
-		    	
-		    	 
+		    		maxIndex = i;		    				    		
+		    	}		    			    	 
 		    } System.out.println("가장 큰값은: " + maxValue);
 		     System.out.println("가장 큰값의 인덱스는: " + maxIndex);
+		     
 		     
 		  //11. 범인 숫자 구하기.. 
 		  //   범인은 100부터 999까지 숫자중에 여러명이다. 
@@ -151,7 +177,7 @@ public class Work0809 {
 		     int[] arr12 = {1,2,3,0,0,0,1,2,3,4,5,2,2,2,2,0,0,0,0,0,3,3};
 		     // 0찍기 // 0의 카운트?
 		     
-		     //개수 구하고 저장 , 초기화 , 저장된 전 게수와 현재 개수 비교 저장, 출력
+		     //개수 구하고 저장 , 초기화 , 
 		     
 		     int ctnnl =0;
 		     int rtnn1 =0;
@@ -168,6 +194,39 @@ public class Work0809 {
 		    	}
 		    	 
 		     }System.out.println(rtnn1);
+		     
+		     //1) for문
+		     //2) 현재번호 : arr[i];
+		     
+		     //
+		     
+		     
+		    /* int[] arr12 = {1,2,3,0,0,0,1,2,3,4,5,2,2,2,2,0,0,0,0,0,3,3};
+		     // 0찍기 // 0의 카운트?
+		     
+		     //개수 구하고 저장 , 초기화 , 
+		     
+		     int ctnnl =0;
+		     int rtnn1 =0;
+		     
+		     
+		     for(int i = 0; i < arr12.length; i++) {
+		    	 System.out.println("현재번호" + arr12[i]);
+		    	 
+		    	if(arr12[i] == 0) {
+		    		ctnnl++;	    		
+		        }
+		    	else {
+		    		ctnnl = 0;
+		    	}	    		    	
+		    	if (ctnnl > rtnn1) {
+		    		rtnn1 = ctnnl;
+		    		
+		    		
+		    		}	
+		    		    		    	 
+		     }System.out.println(rtnn1); */
+		     //
 		     
 		     
 		     
@@ -213,6 +272,32 @@ public class Work0809 {
 		    	 
 		    	 
 		     }System.out.println("13터널의 길이:" +  (longnumr+1) + ", 13가장 긴 터널의 숫자: " + barrynum  );
+		     //
+		    /* int[] arr13 = {1,2,3,0,0,0,1,2,3,4,5,2,2,2,2,0,0,0,0,0,3,3};
+     	     
+			    int bt = arr13[0];
+			    int cnt =1;
+			    int maxLength = 0;
+			    int maxIndex = 0;
+			     for(int i = 0; i < arr13.length; i++) {
+			    	  
+			    	 if(arr13[i] == bt) {
+			    		 cnt++;
+			    		 
+			    	 }else {
+			    		 cnt = 1;
+			    		 bt = arr13[i];
+			    	 }
+			    	 
+			    	 if(maxLength <cnt) {
+			    		 maxLength = cnt;
+			    		 maxIndex = bt;
+			    	 }
+			    	 
+			    	 
+			     }
+			     
+			     System.out.println("mx" + maxLength + " bt " + maxIndex); */
 		     
 		     
 		     
@@ -223,7 +308,7 @@ public class Work0809 {
 		     //charat는 문자,
 		     
 		     
-		     	String ttt ="aabbbcccaaaaddbbbaaaaaffppjjjjjjjjsss";
+		     String ttt ="aabbbcccaaaaddbbbaaaaa";
 
 			       
 			  /*     abbb     count  =0        abbb  count =1
@@ -254,14 +339,36 @@ public class Work0809 {
 		    			charcurrent = ttt.charAt(i);
 		    			countcurrent = 1;
 		    		 }
-		    	} System.out.println("14터널의 길이: " + countresult + "14가장 긴 터널의 길이: "+ charbbchar );
+		    	} System.out.println("14터널의 길이: " + countresult + ", 14가장 긴 터널의 길이: "+ charbbchar );
 		    	
-		     		
-		     //
+		   
+		    	//
+				//15.  String ttt ="aabbbcccaaaaddbbbaaaaa";
+				//   압축하시오. 압축 하는 방법 a2b3c3a4d2b3a5
+				
+			/*	String ttt ="aabbbcccaaaaddbbbaaaaa";
+				int cnt=0; String resultZip=""; char bt = ttt.charAt(0);
+				int maxCnt = 0; int maxNumber=0;
+				
+				for(int i =0; i < ttt.length(); i++) {
+					if(bt == ttt.charAt(i)) {
+						cnt++;
+					} else {
+						resultZip =  resultZip + (char)bt + cnt;
+						bt = ttt.charAt(i);
+						cnt = 1;
+					}
+					if(maxCnt < cnt) { //15번 문제에서는 불필요
+						maxCnt = cnt;
+						maxNumber=bt;
+					}
+				} 
+				resultZip =  resultZip + (char)bt + cnt;
+				
+				System.out.println(resultZip); //15번 문제 확인
+				System.out.println(maxCnt + "/"+(char)bt); // 14번 문제 확인
 		     
-		     
-		     
-		     
+		     */
 		     
 		     
 		     

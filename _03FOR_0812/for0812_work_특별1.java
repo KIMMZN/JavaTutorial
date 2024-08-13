@@ -1,6 +1,6 @@
 package _03FOR_0812;
 
-public class for0812_work_ttb1 {
+public class for0812_work_특별1 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

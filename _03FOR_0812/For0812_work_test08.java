@@ -20,20 +20,34 @@ public class For0812_work_test08 {
 		
 		
 		
+		
 		int number = 0;
 		
+		int it1 = 0;
 		
+		int count = 0;
+		
+		String sInt = "";
+		int sum = 0;
 		for(int i = 0; i < a.length(); i++) {
 			
-			if(a.charAt(i) != '/' ) {
-				
-				System.out.println((int)a.charAt(i));
+			char a11 = a.charAt(i);
+			if(a11 != '/') {
+				sInt += a11;
+				System.out.println(sInt);
+			}
+			else {
+				int nnInt = Integer.valueOf(sInt);
+				System.out.println(nnInt);
+				sum += nnInt;
+				sInt = "";
 			}
 			
 				
 			
 		}
-		System.out.println(number);
+		System.out.println("asdf" + sum);
+		
 		
 		
 		

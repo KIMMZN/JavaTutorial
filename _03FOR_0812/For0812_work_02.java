@@ -19,7 +19,7 @@ public class For0812_work_02 {
 			
 			if(letter[i]%2==0) {				
 				maxNumber = letter[i];
-				System.out.println("test" + letter[i]);				
+				//System.out.println("test" + letter[i]);				
 			} if (maxNumber > maxNumber1) {
 				maxNumber1 = maxNumber;
 			}

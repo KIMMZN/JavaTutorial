@@ -20,14 +20,20 @@ public class _06_Random {
 					for(int i =0; i < 10000; i++) {
 						//System.out.println(i);
 						
-						int nn = r.nextInt(45)+1;
-						array[nn] = array[nn]+1; 
+						int nn = r.nextInt(45)+1; // 
+						array[nn] = array[nn]+1; //   0 = 0 + 1; count..
+						
+						//array[1] = array[1] +1
+						
+						System.out.println("test" + array[3]);
 									
 					}
 					
 					
 					int sum = 0;
 					int maxValue = 0;
+					
+					
 					
 					int nnum = 0;
 					for(int i =0; i < array.length; i++) {

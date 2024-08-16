@@ -18,18 +18,18 @@ public class _04_Random {
 		
 		Random r = new Random();
 		
-		for (int i =0; i < 10; i++) {
+		for (int i =0; i < array.length; i++) {
 			
-			int random = r.nextInt(100);
+			int random = r.nextInt(100); // 랜덤숫자 0 ~ 99 생성; int random 에 저장;
 					
-			if (random%2 ==0) {
-				array[i] = random;
+			if (random%2 ==0) { // random이 짝수라면 ,
+				array[i] = random; // array[i]에 random을 저장. 즉 홀수는 저장 안함;
 			}
 			//System.out.println(array[i]);
 			
 		}
 	
-		for (int i =0; i < 10; i++) {
+		for (int i =0; i < array.length; i++) {
 			System.out.println("index "+i + ": " + array[i]);
 		}
 		

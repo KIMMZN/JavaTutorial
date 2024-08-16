@@ -14,17 +14,17 @@ public class For0812_work_00 {
 	    // i =0;  i > letter.length; i++
 		// letter[i];
 		
-		int trashCan = 0;
+		
 	    
 		for (int i =0; i < letter.length; i++) {
 			
 			
 			if((letter[i]) %2 ==0) {
-				trashCan = letter[i];
+				
  				System.out.println("배열의 짝수는 " + letter[i]);
 			}									
 		}
-		System.out.println(trashCan);
+		
 	
 	
 	

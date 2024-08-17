@@ -16,14 +16,17 @@ public class For0812_work_03_R {
 											int[] letter={8,12,3,13,1,14,3,4};
 											
 											
-											System.out.print("편지의 내용은: ");
+											StringBuilder message = new StringBuilder();
+											//System.out.print("편지의 내용은: ");
 											for (int i = 0; i< letter.length; i++) {
 									
 												//System.out.print(word.charAt(letter[i]));
+												message.append(word.charAt(letter[i]));
 												
-												System.out.print( word.charAt(letter[i]));
+												//System.out.print( word.charAt(letter[i]));
 												
 											}
+											System.out.println("편지의 내용은: " + message);
 				
 	}
 

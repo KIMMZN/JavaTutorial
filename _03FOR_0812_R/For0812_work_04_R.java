@@ -30,21 +30,26 @@ public class For0812_work_04_R {
 												sum++;
 												//System.out.println(sum);
 											} else {
-												 if (sum = )
-													
-												result += (sum - size +1);
-												//System.out.println(result);
-												sum = 0;
-												System.out.println(result);
+												 if (sum >= size) {
+														result += (sum - size +1);
+														//System.out.println(result);
+														sum = 0;
+														//System.out.println(result);													 
+												 }																								
 											}
 											
 										}
+										if (sum >= size) {
+												result += (sum - size +1);
+										}
+										
+										
 										//result += (sum - size +1);
 										//sum = 0;
 
 										
 										
-										System.out.println(result);
+										System.out.println("건물읠 지을수 있는 위치는: " + result + " 개");
 
 	}
 

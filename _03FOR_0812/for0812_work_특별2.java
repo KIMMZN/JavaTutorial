@@ -26,7 +26,7 @@ public class for0812_work_특별2 {
 						
 						if (ab != '/' ) {
 							cuString += ab;
-							//System.out.println("check: " + cuString);
+							System.out.println("check: " + cuString);
 						}
 						else {
 							int inSomnia  = Integer.parseInt(cuString);

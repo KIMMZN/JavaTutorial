@@ -24,7 +24,9 @@ public class _01_2FOR {
 				System.out.print("*");
 			}
 			System.out.println();
-		}
+		} 
+		
+		
 		
 
 	}

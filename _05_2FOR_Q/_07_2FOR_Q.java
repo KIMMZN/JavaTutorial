@@ -25,18 +25,6 @@ public class _07_2FOR_Q {
 		System.out.println("10원짜리 : " +(bill)%100/10 + "개");
 		System.out.println("1원짜리 : " +(bill)%10 + "개");
 		
-		int mm = 0;
-		if (bill/10000 ==0 ) {
-			mm=0;
-		}else {
-			if(bill/10000 > 0) {
-				mm++;
-			}
-		}
-		
-		System.out.println(mm);
-		
-		
 		
 		
 

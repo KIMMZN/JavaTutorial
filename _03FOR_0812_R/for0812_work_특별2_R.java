@@ -36,7 +36,7 @@ public class for0812_work_특별2_R {
 										int intPower = Integer.parseInt(stringo);
 										result += intPower;
 										
-										System.out.println(result);
+										System.out.println("해충의 갯수는: " + result);
 									
 	
 

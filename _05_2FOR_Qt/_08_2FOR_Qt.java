@@ -14,12 +14,12 @@ public class _08_2FOR_Qt {
 					
 					int[] pang={1,0,0,0,2,3,4,4,6,2,2,2,2,5};
 				  //int[] pang={1,0,0,0,2,3,4,4,6,2,2,2,2,5};
-					int ctn = 1;
+					int ctn = 0;
 					
 					for(int i=0; i<pang.length; i++) {
-						ctn =1;
+						ctn =0;
 						
-						for(int j=i+1; j<pang.length; j++) {
+						for(int j=i; j<pang.length; j++) {
 							if(pang[i] == pang[j]) {
 								ctn++;	
 								//System.out.println(ctn);
@@ -32,7 +32,7 @@ public class _08_2FOR_Qt {
 							System.out.println("제거대상 케릭터의 번호: " + pang[i] + ", 갯수: " + ctn + ", 시작 인덱스: " + i );
 							//ctn이 3이상이면 출력하고 그뒤 ctn의 위치를 조절해서 ctn >=4 이상에서 중복되서 카운트하고 출력하는걸 방지함.;
 								//System.out.println("test" + i);
-								i= ctn+i-1;
+								i= ctn+i-1; // good
 								
 							
 						}							

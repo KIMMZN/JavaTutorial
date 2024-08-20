@@ -20,7 +20,10 @@ public class _00_2FOR_Q {
 			System.out.println();
 		}
 		
-
+	/*	i = 1 2 3		//단은 i , j는 dan 곱하기수
+		j = 1 1 1
+			2 2 2
+			3 3 3   */	
 	}
 
 }

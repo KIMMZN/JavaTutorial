@@ -24,14 +24,10 @@ public class _Test3_Random {
 		
 		for(int i = 0; i < word.length; i++) {
 		        
-			int ab = r.nextInt(5);
-			
-		     
-			if (array[ab] != 1) {
-				
+			int ab = r.nextInt(5);		     
+			if (array[ab] != 1) {				
 				System.out.println(word[ab]);
-				array[ab] = 1;
-				
+				array[ab] = 1;				
 			}else {
 				i = i-1; // i--
 			}

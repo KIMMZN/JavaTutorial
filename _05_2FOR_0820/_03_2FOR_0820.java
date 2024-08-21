@@ -10,8 +10,7 @@ public class _03_2FOR_0820 {
 		             5의 팩토리얼은 1*2*3*4*5              */
 		// 전체 팩토리얼의 합을 저장할 변수
 	    int Sum = 0;
-
-	    
+    
 	    for (int i = 1; i <= 10; i++) {        
 	        int factorial = 1;       
 	        for (int j = 1; j <= i; j++) {

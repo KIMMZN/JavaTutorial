@@ -23,31 +23,20 @@ public class _05_2FOR_0820 {
 		for(int i =0; i<carnum.length; i++) {
 			//System.out.println(i);
 			int lnum = (carnum[i]%10);
+			int nowCar = carnum[i];
+			int carPositionIndex = nowCar%10; //nowCar의 뒷번호
+			
+			
 			//System.out.println(lnum);
 			//parking[i] = i;
 			
-			for(int j=0; j<parking.length; j++) {
-				
-				if (parking[lnum] == 0) {
-					parking[lnum] = carnum[lnum];
-					System.out.println(parking[lnum]);
-				}
-				else {
-					 
-				
-					//parking
-				}
-				
 			
-			}
-			
+			System.out.println((2+1)%parking.length);
 			
 			
 			
 		}
 		
-		
-		 
 		
 
 	}

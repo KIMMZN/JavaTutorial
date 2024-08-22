@@ -4,7 +4,7 @@
 // 프로젝트 설명: 단어 맞추기를 기본으로 한 프로젝트. 기존의 단어 맞추기에서 벗어나 가운데 글자를 추론하여 맞히는 것으로 목표를 설정.
 //			  두 가지의 난이도를 설정하였고, 3문제 이상 연속으로 맞혔을 경우 높은 정확도로 인하여 추가 점수를 부여.
 //			  최대 140점.
-package _Mini_Project_1;
+package _MINI_PROJECT;
 
 import java.util.Random;
 import java.util.Scanner;

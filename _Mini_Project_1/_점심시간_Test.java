@@ -10,6 +10,17 @@ public class _점심시간_Test {
 		
 		Scanner in = new Scanner(System.in);
 		Random r = new Random();
+		//color
+		
+		   final String red      = "\u001B[31m" ;
+		   final String green    = "\u001B[32m" ;
+		   final String yellow   = "\u001B[33m" ;
+		   final String blue     = "\u001B[34m" ;
+		   final String purple   = "\u001B[35m" ;
+		   final String cyan     = "\u001B[36m" ;
+		   final String white     = "\u001B[37m" ;
+
+		   final String exit     = "\u001B[0m" ;
 		
 		
 		String[] S = {"쓰레기통", "스타크래프트", "김밥천국", "멍청이", "아메리카노", "휴먼교육센터", "컴퓨터", "고양이","음바페","크레파스"}; //난이도 하 , 기본 배열//
@@ -17,11 +28,11 @@ public class _점심시간_Test {
 		String[] temp = {"쓰레기통", "스타크래프트", "김밥천국", "멍청이", "아메리카노", "휴먼교육센터", "컴퓨터", "고양이","음바페","크레파스"}; //상 선택한뒤 다시 하 선택시 배열s에 다시 저장용.temp//
 		
 		while(true ) {
-		System.out.println("게임 시작합니다.");		
+		System.out.println(blue + "게임" + exit  + "을 시작합니다.");		
 		System.out.println("엔터를 입력하세요.");
 		in.nextLine();
 		
-		System.out.println("난이도를 입력하세요. [하] / [상] ");
+		System.out.println("난이도를 입력하세요." + green + "[하] "+ exit +"/" + red+"[상] "+ exit);
 		String level = in.nextLine();
 		
 		while (true) { //난이도 선택 while 반복문. while (true)는 조건이 참이라 계속 반복함.
@@ -77,11 +88,11 @@ public class _점심시간_Test {
 			String a =in.nextLine();			
 			
 			if (S[rr].equals(a)) {
-				System.out.println("정답 입니다.");
+				System.out.println(blue +"정답" +exit+ " 입니다.");
 				point += 1;
 				ctn++;
 			}else {
-				System.out.println("오답 입니다.");
+				System.out.println(red + "오답" +exit + " 입니다.");
 				point -= 1;
 				ctn=0;
 			}
@@ -96,11 +107,11 @@ public class _점심시간_Test {
 					
 					
 			 }
-			System.out.println("포인트: " + point+", 연속된 정답의 갯수: " + (ctn));
+			System.out.println("포인트: " + point+", Combo: " + (ctn));
 			System.out.println("------------------ ");
 		 
 		}
-		System.out.println("------------------");
+		System.out.println("--------------------------------");
 		System.out.println("총포인트: " + point);
 		
 		if (point < 10) {

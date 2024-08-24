@@ -121,10 +121,10 @@ import java.util.Scanner;
 				/// 목숨을 스트링 ♥로 바꿔서 출력하기 위한 if문			
 				String lifeS = "";
 				
-				if (life >= 2) {
+				if (life == 2) {
 					lifeS = "♥♥";
 					
-				}else if(life < 2) {
+				}else {
 					lifeS = "♥♡";
 				}
 				

@@ -92,7 +92,21 @@ create table cdataa (
 insert into cdataa values ('dkdlel', '도우너', 'M', 123.54, '010-1234-5678');
 insert into cdataa values ('rlfehd', '홍길동', 'F', 777.54, '010-7777-8888');
 
+
+
+
 //select * from cdataa
+
+행 삭제하고 싶을때
+delete from cdataa where lower(id) like '%d%';
+
+cdataa 에서 id 에 알파밧 (d)가 들어간 모든행 삭제하기;
+lower() like , upper() like, 는 대소문자 없이 모두 삭제하는듯.
+
+모든 행 삭제할 경우
+
+delete from cdataa;
+
 
 
  

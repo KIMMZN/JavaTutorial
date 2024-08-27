@@ -29,7 +29,7 @@ db : 자료를 저장하는곳
 +릴레이션은 테이블
 로우 컬럼으로 이루어져 있다
 컬럼은 속성을 지정할수 있고 제약조건을 걸수있다.
-제약조건은 not cull . check, unique
+제약조건은 not null . check, unique
 
 
 (정형데이터)관계형데이터베이스 용어 			 /// 비정형데이터는 빅데이터
@@ -89,7 +89,7 @@ ex) insert into aaa values (1, 'krmtr');
 but// varchar2(2)가 2라서 5글자는 생성불가
 ex) insert into aaa values (1, 'kk');	
 
-select            < -- 로우 확인
+select            
 ex) select * from aaa;
          ㅣ
           n
@@ -136,4 +136,149 @@ SQL> select * from member00;
 ---------- ---------- ---------- - ----------
          1 hong              600 M         10
          2 lee                 900 F           1
+
+----------------------------------------------------
+08-27 (oracle, day 02)
+
+CRUD
+
+C : row insert
+R : ROW SELECT
+u: row update
+d : row delete
+create read update delete
+
+row - crud와 관련이있다.
+column - 속성, 제약조건과 관련이있다,
+
++ 키 : 칼럼에 부여하는 기능
+키의 종류: 기본키, 외래키
+**기본키(primary key): 튜플(row)을 유일하게 식별, 기본키로 index(색인)를 형성하여 저장한다. null 불가하다. ** (유일성, 속도향상,null불가)
+				          ㅡ> 검색속도가 향상
+인덱스를 형성하면 검색속도가 향상.
+
+-------------------------------------------------------
+1번문제) primary key 이용
+member
+이름 주소 전화번호                +id 
+홍길동 서울 1111                    a
+도우너 서울 1111                    b
+홍길동 수원 2222                    c
+---
+
+**튜플을 유일하게 식별할수 있어야만
+갱신 이상 현상과 삭제이상현상을 해결할수 있다.
+
+
+ㅡㅡ> 업데이트할때 갱신이상 현상이 발생할수있다.
+        원인은 ? 튜플을 유일하게 식별할수가 없어서 문제가 생긴다.
+
+ㅡㅡ> delete할때 삭제이상현상이 발생할수 있다.
+         원인은 ? 튜플을 유일하게 식별할수가 없어서 문제가 생긴다.
+
+id를 집어 넣어서 유니크하게 하면 튜플을 유일하게 식별할수 있어서
+문제 해결.
+
+1번문제) 해결
+create table m(
+id varchar(1)       primary key,
+name v(2),
+address v(10),
+phonnum v(13));
+
+----------------------------------------------
+2번) 
+자동차등록
+이름      자동차 넘버    전번
+홍길동    1111            1234
+홍길동    2222            1234
+crud
+
+2) 해결 // 테이블 분리
+자동차등록
+(pk)			    (외래키)
+ id 이름 전번     l           카번호      id
+ a 홍길동 1234  ㅣ             1          a 
+ b 홍      2222  l               2          a
+
+외래키는 pk(기본키)를 참조한다.
+외래키는 카번호가 소유하고있다. (분리된 테이블)
+외래키 : 자식 릴레이션의 외래키는 부모 릴레이션의 특정 컬럼을 참조한다.
+자식이 참조하는 부모 릴레이션은 무조건 유니크(유일성)해야한다.
+기본키는 테이블당 1개씩만 설정할수있다.
+
+칼럼 to 칼럼
+ㅡ        ㅡ
+외래키   참조대상
+
+
+데이터 설계시
+이상현상을 방지하기 위해서 고려 해야될것
+1) 유일성 (기본키)pk
+2)데이터의 중복 최소화 (정규화,외래키사용)
+정규화 : 테이블 분리
+-----------------------------------------------------
+primary key 활용
+
+member table
+id: 8글자, 기본키,
+name: 한글5글자,
+tel: 13글자
+
+create table member (
+id varchar2(8), primary key,
+name varchar2(10),
+tel number(13)) ;
+
+--------------------------------
+primary key 활용에 외래키 활용
+
+car table
+carnum : 4글자
+id : 8글자, 외래키(참조하는정보-member릴레이션의 id컬럼)
+
+create table car (
+carnum number(4),
+id varchar2(8),
+foreign key(id) references member(id));
+
+//
+create table car (
+carnum number(4),
+id varchar2(8),
+constraint fk_member_id foreign key(id) references member (id)); 
+이렇게 만들어도 된다
+
+foreign key(id)
+//fk_meber_id 자식키에 새로운 이름을 지정해서 관리
+//이름이 없는 위의 커리문은 오라클이 알아서 이름을 지정한다.
+
+-- constraint [fk명] foreign ([fk가 될 칼럼명]) reference [fk로 연결할 pk가 위치한 부모테이블] ([pk칼럼명])
+
+----------------------------------------------
+ 8 5 13
+1.o
+2.o
+3.o
+4.o
+5.o
+6.x ------- 외래키 제약조건을 위배
+
+7. o
+8. o
+
+9. o
+10.  x
+11 o
+
+12. x
+13. o
+14. o
+
+외래키는 칼럼 to 칼럼의 관계이다.
+
+
+
+
+
 

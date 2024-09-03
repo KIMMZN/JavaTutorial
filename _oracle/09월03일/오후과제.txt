@@ -86,10 +86,10 @@ from muser
 where salary > (select avg(salary)
 from muser);
 
-10 여직원의 평균급여보다 높은 남자직원은 모두 몇명입니까 **
-select count(*) as 높은남자직원의수
+10 여직원의 평균급여보다 높은 남자직원은 모두 몇명입니까 ** 수정
+select count(*)
 from muser
-where substr(reg_num, 8, 1) = '1' or substr(reg_num, 8, 1) = '3'
+where (substr(reg_num, 8, 1) = '1' or substr(reg_num, 8, 1) = '3')
 and salary > (select avg(salary)
 from muser
 where substr(reg_num,8,1) = 2 or substr(reg_num,8,1) = 4);
@@ -145,18 +145,10 @@ from muser
 where mod(substr(reg_num,8,1),2) =0;
 
 19 나이별 인원수는 몇명입니까**
-select to_char(
-        case substr(reg_num, 1, 1)
-            when '0' then 20  
-            else 19  
-        end)||substr(reg_num,1,2),count(*) as 인원수
-from muser
-group by to_char(
-        case substr(reg_num, 1, 1)
-            when '0' then 20  
-            else 19  
-        end)||substr(reg_num,1,2);
 
+select extract(year from sysdate) - to_number(case substr(reg_num,1,1) when '0'  then '20' else '19' end||substr(reg_num,1,2)) 나이, count(*) 인원수
+from muser
+group by extract(year from sysdate) - to_number(case substr(reg_num,1,1) when '0'  then '20' else '19' end||substr(reg_num,1,2));
 
 
 20 2학년그룹과 4학년 그룹은 모두 몇명입니까

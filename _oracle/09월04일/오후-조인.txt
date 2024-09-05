@@ -50,6 +50,11 @@ left outer join carinfo c
 on u.id = c.id
 where c.id is null;
 
+--left outer join(2) 다음과 같이 (+)기호로 표시할수 있다.
+select u.name 이름, u.addr 주소
+from users u, carinfo c
+where u.id = c.id(+) and c.id is null;
+
 5. 회원별 등록한 자동차 수를 출력하시오.
 select u.name 이름, count(*) 등록한_자동차_수
 from users u,carinfo c
@@ -104,7 +109,7 @@ where a.c_num is null;
 10. 자동차 가격이 1000만원 이상인 자동차의 자동차 번호를 출력하시오.
 select c.c_num 자동차번호
 from companycar c
-where c.c_price>1000;
+where c.c_price>=1000;
 
 11. 배정된 자동차 중에 회사에서 구매한 자동차가 아닌 자동차 번호를 출력하시오.
 select a.c_num 자동차번호
@@ -115,7 +120,22 @@ where c.c_num is null;
 
 
 12. 모든 사람의 정보를 출력하시오. 이름, 배정받은 자동차번호, 자동차이름
-select u.name 이름, c.c_num 자동차번호, c.c_name 자동차이름
-from carinfo a, companycar c, users u
-where a.c_num = c.c_num
-    and a.id = u.id;
+select u.name 이름, nvl(c.c_num,'없음') 배정받은_자동차번호, nvl(cc.c_name,'없음') 자동차이름
+from users u
+left outer join carinfo c
+on u.id=c.id
+left outer join companycar cc
+on c.c_num= cc.c_num;
+
+*고찰*
+테이블은 데이터 중복을 최소화 하기 위해 정규화 되어야 한다.
+정규화는 테이블을 분리하는 의미가 있다.
+그런데, 이 서비스를 이용하는 고객 입장에서는 2개 이상의 테이블이 조인이 되어야 하는 경우가 있다.
+그래서 정규화는 설계자의 입장이고, 조인은 서비스를 제공하는 입장의 기술이다.
+그런데 , 2개 이상의 테이블이 조인되어야 하는 서비스는
+서비스가 이용될때마다 db는 조인 연산을 계속해야 한다. 쿼리도 복잡하다
+간단하게 할 방법은 없을까
+해결 책은 물리적인 테이블은 유지하되, 조인 결과를 합친 논리적인 테이블을 만드는 것이다.
+논리적인 테이블은 물리적인 테이블의 데이터로 만들어져 있다.
+이런 논리적인 테이블을 뷰라고 한다.
+

@@ -1,4 +1,4 @@
-## KIMMZN / JavaTutoria
+## KIMMZN / JavaTutorial
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📝 일정표  
   　　　　Day01 : _00_변수와 자바 기초  
   　　　　Day02 : _01_array 1차원배열특징과 연습문제  

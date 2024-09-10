@@ -15,24 +15,28 @@ public class _01_Q7_0910 {
 			      {2,4,3,1},
 			      {2,4,1,3} };
 		
-
-		 for (int j = 0; j<a[0].length; j++) {			 
-				int count = 1;			 
-			 for (int i =1; i<a.length; i++) {				 
-				 if(a[i][j] == a[i- 1][j]) {
-					 count++;					
-				 }else {					
-					 count = 1;
-				 }
-				 
-				 if (count >= 3) {
-					 System.out.println(a[i][j]);
-				 }
-				 
-			 }			 			 
-			 							
-		  }
-		 
+			for (int j =0; j<a[0].length; j++) {
+					//System.out.println(j);
+				int count = 1;
+				for (int i=0; i<a.length-1; i++) {
+					
+					if(a[i][j] == a[i+1][j]) {
+						count++;
+						if(count >= 3) {
+							//System.out.println(a[i][j]);
+							for(int x=-1; x<=1; x++) {
+								
+								System.out.println(i-x + ", "+ j + " :" + a[i-x][j]);
+								
+							}
+						}
+					}else {
+						count = 1;
+					}
+				}
+				System.out.println();
+				
+			}
 		
 	
 

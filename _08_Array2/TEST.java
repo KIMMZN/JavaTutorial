@@ -22,6 +22,7 @@ public class TEST {
 				// 현재 요소가 이전 두 행의 같은 열의 요소와 모두 같은지 확인
 				if (a[i][j] == a[i - 1][j] && a[i][j] == a[i - 2][j]) {
 					System.out.println(a[i][j]);
+					
 				}
 			}
 		}

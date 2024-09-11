@@ -1,0 +1,31 @@
+
+
+개발환경
+통합개발툴
+IDE tools: 이클립스, vscode, intelliJ, spring
+
+jdk : jre + jdk
+jdk version: 1.8
+ |
+ |
+jre : 소스실행 : ctrl 11 실행 // 실행이란 : cpu에게 작업지시
+jdk : 개발에필요한도구 : import
+     :라이브러리 : scanner, random
+
+
+--0910--
+
+개발환경 구축해보자
+
+ide tool : 이클립스
+jdk : 1.8
+workspace 위치 체크
+workspace : D:\DATA\kim0823\java_src
+
+프로젝트 타입 : javaproject
+이름: javatu2
+
+
+
+
+ 

@@ -18,8 +18,10 @@ public class BasicArray {
 			lotto[1]=30;
 			lotto[0]=20;
 			lotto[2]=40;
+			
 			System.out.println(lotto[0]+"/"+lotto[1]+"/"+lotto[2]);
 			lotto[0]=lotto[1]+lotto[2];
+			
 			System.out.println(lotto[0]+"/"+lotto[1]+"/"+lotto[2]);
 			System.out.println(lotto[0]+20);
 			System.out.println(lotto[0]+"/"+lotto[1]+"/"+lotto[2]);

@@ -13,7 +13,9 @@ public class _00_Q1_0911 {
 		//0 4 = 1
 		//1 3 = 2
 		//2 1 = 3
-		//3 0 = 4				
+		//3 0 = 4	
+		//첫번째 열을 17부터 ++1하게 설정하고
+		//각 컬럼의 규칙을 확인한 후 적용하여 풀었음.
 		num =17;
 		for(int i=0; i<a.length; i++) {
 			
@@ -27,9 +29,6 @@ public class _00_Q1_0911 {
 			
 		}
 		
-		
-		
-		
 		System.out.println();
 		
 		//배열 값 출력부.
@@ -41,11 +40,7 @@ public class _00_Q1_0911 {
 			System.out.println();
 			
 		}
-		
-		
-		
-		
-
+	
 	}
 
 }

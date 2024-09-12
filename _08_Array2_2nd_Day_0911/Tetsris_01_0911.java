@@ -9,26 +9,20 @@ public class Tetsris_01_0911 {
 		         //    0.0 > 0 | 0.1 > 0 | 0.2 > 1
 				//     1.0 > 1 | 1.1 > 1 | 1.2 > 1
 				//     2.0 > 1 | 2.1 > 0 | 2.2 > 0
-				// 0.0 > 0.2
-				// 0.1 > 1.2
-				// 변환된 좌표 생각하고 돌려봄
-				// 돌려보면
-				// 2.2 > 1
-				// 2.1 > 1
-				// 2.0 > 0
-				
-				Scanner in = new Scanner(System.in);
-				
-				int [][] temparr = {{1,1,0},
-							  		{0,1,0},
-							  		{0,1,1} };
+			 	// 오른쪽으로 돌렸을때의 좌표를 확인.
 				
 				// ** 오른쪽으로 돌렸을때 좌표
 				// 2.0 // 1.0//0.0
 				// 2 1 // 1.1//0.1
 				// 2 2//1 2//0 2
+				// 좌표 확인 한뒤 좌표에 맞게 for문으로 돌리기.
+		
+				Scanner in = new Scanner(System.in);
 				
-				
+				int [][] temparr = {{1,1,0},
+							  		{0,1,0},
+							  		{0,1,1} };
+			
 				for(int i=0; i<temparr.length; i++) {
 					
 					//System.out.println(i);
@@ -56,7 +50,7 @@ public class Tetsris_01_0911 {
 								System.out.print(i+" "+j+" "+"|"+temparr[i][j]+"|"+"\t");
 							}
 							System.out.println();
-						}
+					}
 								
 				}else {
 					continue;

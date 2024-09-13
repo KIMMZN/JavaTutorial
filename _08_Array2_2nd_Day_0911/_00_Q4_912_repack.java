@@ -1,6 +1,6 @@
 package _08_Array2_2nd_Day_0911;
 
-public class _00_Q4_0911 {
+public class _00_Q4_912_repack {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -11,38 +11,26 @@ public class _00_Q4_0911 {
 		// 2 3 4 3
 		// 3 4 3 2
 		//음 ./.. i가 0보다 크면 포문
+		//ㅈ
+		//00
 		
 		
 		int[][] a = new int[4][5];
-		int num =1;
-				int row = a.length;
-				int cul = a[0].length;
-				for(int i=0; i<row; i++) {
-					
-					if(i > 0) { // 0.0 넘값 조정
-						for(int p =-1; p<0; p++) {
-							num = a[i-1][1]+1;
-						}
-						
-					}
-					
-					
-					a[i][0] = num;
-					
-					for(int k=1; k <cul; k++) {
-						a[i][k] = a[i][k-1]+k;
-					
-						if(i==1) {
-							
-						}
-					
-					}
-					
-					
-					
-					
-							
-				 }
+		int num =1;		
+		for(int i=0; i<8; i++) {
+			System.out.println(i + "번째 채우기를 합니다.");
+			int newCol=i;
+			for(int j=0; j<=i;j++) { // i값
+				if(j>3) continue;
+				if(newCol < 5) {
+					System.out.println("j<행>"+j+"/열"+newCol);
+					a[j][newCol] = num++;
+				}
+				newCol--;
+			}	
+			//System.out.println();
+		}
+			
 				
 		System.out.println();	
 		//배열 값 출력부.		

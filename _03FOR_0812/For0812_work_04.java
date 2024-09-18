@@ -14,20 +14,20 @@ public class For0812_work_04 {
     	// let i=0; / arr.length ; i++
 		// 배열은 arr.legnth/ string은 a.length();
 		// 배열 arr[i];
-		//  count 3 / size2
-		// count 3 - size 2 (+1) = 2칸
-		// count 3 - size 3 (+1) = 1칸
-		// count 3 - size 1 (+1) = 3칸
-		// count 4 - size 3 (+1) = 2칸; 
-		//if (count >= size) {
-		// result += count - size +1;
+		//  ycount 3 / size2
+		// ycount 3 - size 2 (+1) = 2칸
+		// ycount 3 - size 3 (+1) = 1칸
+		// ycount 3 - size 1 (+1) = 3칸
+		// ycount 4 - size 3 (+1) = 2칸; 
+		//if (ycount >= size) {
+		// result += ycount - size +1;
     	
     	
     	
         int[] arr = {1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1};
         int size = 2;  // 건물의 크기
         
-        int count = 0;  // 가능한 위치의 개수
+        int ycount = 0;  // 가능한 위치의 개수
         int currentLength = 0;  // 현재 연속된 0의 길이
         
         for (int i = 0; i < arr.length; i++) {
@@ -36,7 +36,7 @@ public class For0812_work_04 {
             } 
             else {
                 if (currentLength >= size) {                   
-                    count += (currentLength - size + 1);
+                    ycount += (currentLength - size + 1);
                 }
                 currentLength = 0;  
             }
@@ -44,9 +44,9 @@ public class For0812_work_04 {
         
         
         if (currentLength >= size) {
-            count += (currentLength - size + 1);
+            ycount += (currentLength - size + 1);
         }
         
-        System.out.println("건물을 지을 수 있는 위치의 개수: " + count);
+        System.out.println("건물을 지을 수 있는 위치의 개수: " + ycount);
     }
 }

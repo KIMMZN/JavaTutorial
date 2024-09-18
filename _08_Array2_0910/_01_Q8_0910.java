@@ -20,11 +20,11 @@ public class _01_Q8_0910 {
 	        System.out.println("세로: ");
 			for (int j =0; j<a[0].length; j++) {
 				//System.out.println(j);
-				int count = 1;				
+				int ycount = 1;				
 				for (int i=0; i<a.length-1; i++) {					
 					if(a[i][j] == a[i+1][j]) {
-						count++;
-						if(count >= 3) {
+						ycount++;
+						if(ycount >= 3) {
 							//System.out.println(a[i][j]);
 							for(int x=-1; x<=1; x++) {
 								
@@ -33,7 +33,7 @@ public class _01_Q8_0910 {
 							}
 						}
 					}else {
-						count = 1;
+						ycount = 1;
 					}			
 			     }
 				

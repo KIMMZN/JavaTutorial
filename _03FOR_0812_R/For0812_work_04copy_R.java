@@ -21,22 +21,22 @@ public class For0812_work_04copy_R {
 			//3 - size 3 = 0; +1 = 1; // 1개건설
 			//4 - size 3 = 1; +1 = 2;// 2개건설
 			// if 0이면 ++ 하고, 0이 아니면 0의숫자 - size +1 의값 저장하고, 초기화;
-			int count = 0;
+			int ycount = 0;
 			int result = 0;
 			for(int i = 0; i<arr.length; i++) {
 				
 				if (arr[i] == 0) {
-					count++;
+					ycount++;
 				} else {
-					if(count >= size) {
-						result += (count - size +1);
-						count = 0;
+					if(ycount >= size) {
+						result += (ycount - size +1);
+						ycount = 0;
 					}
 				}	
 			}
-			if(count >= size) {
-				result += (count - size +1);
-				count = 0;
+			if(ycount >= size) {
+				result += (ycount - size +1);
+				ycount = 0;
 			}
 			
 			System.out.println("건물을 지을수있는 위치의 개수: "+ result);

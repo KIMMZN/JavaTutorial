@@ -21,7 +21,7 @@ public class _06_Random {
 						//System.out.println(i);
 						
 						int nn = r.nextInt(45)+1; // 
-						array[nn] = array[nn]+1; //   0 = 0 + 1; count..
+						array[nn] = array[nn]+1; //   0 = 0 + 1; ycount..
 						
 						//array[1] = array[1] +1
 						

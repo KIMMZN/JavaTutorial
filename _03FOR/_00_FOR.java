@@ -60,15 +60,15 @@ public class _00_FOR {
 		 
 		 //2. 평균을 구하시오 단. 50점이상;
 		 
-		 int count = 0;
+		 int ycount = 0;
 		 int cnt2 = 0;
 			for(int i=0; i<5; i++) {
 				if ( a[i] >= 50) {
 					cnt2 += a[i];
-					count++;
+					ycount++;
 				}
 			}
-			 System.out.println(cnt2/count);
+			 System.out.println(cnt2/ycount);
 			 
 		//3. 평균을 구하시오; 단 최저점수는 포함하지 마시오;
 			 int[] a1 = {30, 40, 50, 55, 65};

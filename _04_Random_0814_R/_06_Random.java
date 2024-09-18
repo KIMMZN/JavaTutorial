@@ -29,7 +29,7 @@ public class _06_Random {
 								int lotto = r.nextInt(45)+1; // 1 ~ 45 
 								//System.out.println(lottoa);
 								
-								array[lotto] = array[lotto]+1; // 0 = 0 +1; counting ..//후 maxValue 구하기
+								array[lotto] = array[lotto]+1; // 0 = 0 +1; ycounting ..//후 maxValue 구하기
 								
 																								
 							}

@@ -89,7 +89,7 @@ public class for_work {
 		System.out.println("홀수는 "+ odd + ", 짝수는 "+ even);
 		
 		//3. 1부터 100까지 숫자 중 홀수는 모두 몇개인가?
-		//1 ~ 100;  홀수 count;
+		//1 ~ 100;  홀수 ycount;
 		//홀수 : x % == 1
 		int oddctn = 0;
 		

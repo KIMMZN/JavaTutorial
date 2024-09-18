@@ -73,15 +73,15 @@ public class _00_FOR_copy {
 		 } System.out.println("50점 이상:" + avrn);
 		 //2. 평균을 구하시오 단. 50점이상;
 		 
-		 int count = 0;
+		 int ycount = 0;
 		 int cnt2 = 0;
 			for(int i=0; i<5; i++) {
 				if ( a[i] >= 50) {
 					cnt2 += a[i];
-					count++;
+					ycount++;
 				}
 			}
-			 System.out.println(cnt2/count);
+			 System.out.println(cnt2/ycount);
 			 
 			 //
 			 int divnum = 0;
@@ -126,7 +126,7 @@ public class _00_FOR_copy {
 			 int[] a2 = {30, 40, 50, 55, 65};
 			 
 			 int minval2 = 10000;
-			 int avgcount = 0;
+			 int avgycount = 0;
 			 int avgsum = 0;
 			 
 			 for(int i = 0; i<5; i++) {
@@ -135,9 +135,9 @@ public class _00_FOR_copy {
 					 minval2 = a2[i];
 					 
 				 }
-				 avgcount++;
+				 avgycount++;
 				 avgsum += a[i];
-			 } System.out.println((double)(avgsum-minval2)/(avgcount-1));
+			 } System.out.println((double)(avgsum-minval2)/(avgycount-1));
 			 
 			 
 		

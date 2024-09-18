@@ -311,35 +311,35 @@ public class Work0809 {
 		     String ttt ="aabbbcccaaaaddbbbaaaaa";
 
 			       
-			  /*     abbb     count  =0        abbb  count =1
-			       a a count 1                 a  a   2
-			       b a count 0                 b  a   1
-			       b b count 1                 b  b   2
-			       b b count 2;                b  b   3 */
+			  /*     abbb     ycount  =0        abbb  ycount =1
+			       a a ycount 1                 a  a   2
+			       b a ycount 0                 b  a   1
+			       b b ycount 1                 b  b   2
+			       b b ycount 2;                b  b   3 */
 		    	
 		    	
 		    	
 		    	char charcurrent = ttt.charAt(0);
-		    	int countcurrent = 0;
-		    	int countresult = 0;
+		    	int ycountcurrent = 0;
+		    	int ycountresult = 0;
 		    	char charbbchar = 0;
 		    	
 		    	for (int i = 0; i < ttt.length(); i++) {
 		    
 		    		       
 		    		if(ttt.charAt(i) == charcurrent) {
-		    			countcurrent++;
+		    			ycountcurrent++;
 		    			
-		    			if(countcurrent > countresult) {
-		    				countresult = countcurrent;
+		    			if(ycountcurrent > ycountresult) {
+		    				ycountresult = ycountcurrent;
 		    				charbbchar = ttt.charAt(i); 				
 		    			}
 		    				    			
 		    		}else {
 		    			charcurrent = ttt.charAt(i);
-		    			countcurrent = 1;
+		    			ycountcurrent = 1;
 		    		 }
-		    	} System.out.println("14터널의 길이: " + countresult + ", 14가장 긴 터널의 길이: "+ charbbchar );
+		    	} System.out.println("14터널의 길이: " + ycountresult + ", 14가장 긴 터널의 길이: "+ charbbchar );
 		    	
 		   
 		    	//

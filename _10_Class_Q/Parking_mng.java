@@ -62,7 +62,7 @@ public class Parking_mng {
 			System.out.println("자동차 번호를 입력하세요");
 			String searchin = in.next();			
 			for(int i=0; i < clist.length; i++) {
-				if(clist[i].carnum.equals(searchin)) {
+				if(clist[i] != null && clist[i].carnum.equals(searchin)) {
 					clist[i].info();					
 				break;
 				}else {
@@ -78,13 +78,11 @@ public class Parking_mng {
 			System.out.println("자동차 번호를 입력하세요");
 			String delete = in.next();
 			for(int i=0; i < clist.length; i++) {
-				if(clist[i].carnum.equals(delete)) {
-					clist[i] = new Parking_info();
+				if(clist[i].carnum.equals(delete)) {					
+					clist[i] = null;
 					break;
-					
 				}
 			}
-			
 		}
 		
 		public void allList () {

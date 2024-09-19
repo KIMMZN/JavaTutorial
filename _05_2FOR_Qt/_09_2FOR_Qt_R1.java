@@ -16,15 +16,15 @@ public class _09_2FOR_Qt_R1 {
 						char ch1=ttt.charAt(i);
 						cnt = 0;
 						
-					for(int j =i; j<ttt.length(); j++) {
-						char ch2 = ttt.charAt(j);
-						//System.out.println(ch2);
-						if(ch1 == ch2) {
-							cnt++;								
-						}else {																
-							break;
-						}							
-					}
+						for(int j =i; j<ttt.length(); j++) {
+							char ch2 = ttt.charAt(j);
+							//System.out.println(ch2);
+							if(ch1 == ch2) {
+								cnt++;								
+							}else {																
+								break;
+							}							
+						}
 						if (cntM < cnt) {
 							cntM = cnt;
 							i= i+cnt-1; // 중첩 안되게

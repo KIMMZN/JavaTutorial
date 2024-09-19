@@ -64,9 +64,10 @@ public class Parking_mng {
 			for(int i=0; i < clist.length; i++) {
 				if(clist[i].carnum.equals(searchin)) {
 					clist[i].info();					
-					break;
+				break;
 				}else {
 					System.out.println("없는 차량입니다.");
+					break;
 				}
 			}
 		}
@@ -78,8 +79,7 @@ public class Parking_mng {
 			String delete = in.next();
 			for(int i=0; i < clist.length; i++) {
 				if(clist[i].carnum.equals(delete)) {
-					clist[i].carnum = null;
-					clist[i].owner = null;
+					clist[i] = new Parking_info();
 					break;
 					
 				}
@@ -97,6 +97,4 @@ public class Parking_mng {
 			}
 		}
 		
-		
-
 }

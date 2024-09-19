@@ -13,6 +13,7 @@ public class Parking_mng {
 				System.out.println("2.조회");
 				System.out.println("3.삭제");
 				System.out.println("4.전체보기");
+				System.out.println("5.종료");
 				
 				int selnum = in.nextInt();
 				in.nextLine();
@@ -25,11 +26,14 @@ public class Parking_mng {
 					search();
 				}else if(selnum == 3) {
 					delete();
-				}
-				else if(selnum == 4) {
+				}else if(selnum == 4) {
 					allList(); 
 					//System.out.println("전체보기");
-				}else {
+				}else if (selnum == 5) {
+					System.out.println("종료합니다.");
+					break;
+				}
+				else {
 					break;
 				}
 				
@@ -60,16 +64,19 @@ public class Parking_mng {
 			System.out.println("정보를 조회합니다");
 			//Parking_info searchin = new Parking_info();
 			System.out.println("자동차 번호를 입력하세요");
-			String searchin = in.next();			
+			String searchin = in.next();
+			int found = 0;
 			for(int i=0; i < clist.length; i++) {
 				if(clist[i] != null && clist[i].carnum.equals(searchin)) {
-					clist[i].info();					
+					clist[i].info();
+					found = 1;
 				break;
-				}else {
-					System.out.println("없는 차량입니다.");
-					break;
 				}
 			}
+			if (found == 0) {
+				System.out.println("찾는 정보가 없습니다.");
+			}
+			
 		}
 		
 		public void delete() {
@@ -77,11 +84,16 @@ public class Parking_mng {
 			//Parking_info searchin = new Parking_info();
 			System.out.println("자동차 번호를 입력하세요");
 			String delete = in.next();
+			int found = 0;
 			for(int i=0; i < clist.length; i++) {
 				if(clist[i].carnum.equals(delete)) {					
 					clist[i] = null;
+					found = 1;
 					break;
 				}
+			}
+			if (found == 0) {
+				System.out.println("찾는 정보가 없습니다.");
 			}
 		}
 		

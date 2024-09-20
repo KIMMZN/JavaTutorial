@@ -29,8 +29,6 @@ public class Cat_m {
 		 }else {
 			 break;
 		 }
-		 
-		 
 	 }
 	}
 	public void add() { //메서드 정의

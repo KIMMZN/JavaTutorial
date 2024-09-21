@@ -3,10 +3,8 @@ package _10_Class_Q1;
 public class CarMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("자동차 관리 프로그램 - *1.0*");
-		
-
+		System.out.println("자동차관리프로그램 v1.0");
+		new CarCenter();
 	}
 
 }

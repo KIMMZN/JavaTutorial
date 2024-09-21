@@ -24,6 +24,13 @@ public class Train_info {
 		System.out.println("상태 " + repair);
 	}
 	
+	public void pan () { //전광판
+	
+		System.out.println("기차번호 :" + number + " 기차종류 :" + type + " 도착시간 :" + time );
+		
+		
+	}
+	
 	
 	public void typeNumber() {
 		 if(number == 1111 || number == 3333) {

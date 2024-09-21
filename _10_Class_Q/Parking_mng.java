@@ -66,7 +66,7 @@ public class Parking_mng {
 			System.out.println("정보를 조회합니다");
 			//Parking_info searchin = new Parking_info();
 			System.out.println("자동차 번호를 입력하세요");
-			String searchin = in.next();
+			String searchin = in.nextLine();
 			int found = 0;
 			for(int i=0; i < clist.length; i++) {
 				if(clist[i] != null && clist[i].carnum.equals(searchin)) {

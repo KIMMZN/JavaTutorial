@@ -17,22 +17,22 @@ public class Train_mn {
 			System.out.println("5.수리정보");
 			System.out.println("번호를 선택하시오 >> ");
 			
-			int sellect = in.nextInt();
+			int select = in.nextInt();
 			in.nextLine();
 			
-			if(sellect == 1) {
+			if(select == 1) {
 				registration();
 				//System.out.println("등록");
-			}else if(sellect == 2) {
+			}else if(select == 2) {
 				//System.out.println("전체보기");
 				viewAll();
-			}else if (sellect == 3) {
+			}else if (select == 3) {
 				//System.out.println("수정");
 				edit();
-			}else if (sellect == 4) {
+			}else if (select == 4) {
 				System.out.println("종료");
 				break;
-			}else if (sellect == 5) {
+			}else if (select == 5) {
 				//System.out.println("수리정보");
 				repair();
 			}
@@ -58,12 +58,12 @@ public class Train_mn {
 		}
 		
 		if(found1 == false) {
-			System.out.println("일치하는 정보가 없습니다.");
+			System.out.println("일치하는 정보가 없습니다");
 			return;
 		}
+		//
 		
 		typeNumber(Train);// 기차 번호에 따라 종류 설정 메서드 //Train 객체를 typeNumber 메서드에 전달
-		
 		
 		//System.out.println(Train.type + "  " + Train.number); type과number가 제대로 설정 되는지 확인
 		System.out.println("등록할 기차의 도착시간을 입력하시오");
@@ -81,7 +81,6 @@ public class Train_mn {
 		System.out.println("전체정보를 출력합니다");
 		for(int i =0; i < tList.length; i++) {
 			if(tList[i] != null) {
-				
 				tList[i].info();
 			}
 		}
@@ -90,7 +89,7 @@ public class Train_mn {
 	
 	public void edit() { // 수정 메서드
 		System.out.println("기차의 번호를 입력하시오");
-		Train_info Train = new Train_info();
+		//Train_info Train = new Train_info();
 		int editn = in.nextInt();
 		System.out.println("도착 시간을 입력하시오");
 		int editm = in.nextInt();
@@ -109,8 +108,7 @@ public class Train_mn {
 	}
 	
 	public void repair() { // 수리중 메서드
-		Train_info Train = new Train_info();
-		System.out.println("수리가 필요한 기차정보 확인");
+		//Train_info Train = new Train_info();
 		System.out.println("1.수리할 기차등록 / 2. 수리중인 기차정보 확인");
 		System.out.println("번호를 입력하시오 >> ");
 		int menu = in.nextInt();
@@ -125,7 +123,7 @@ public class Train_mn {
 			}
 			
 			if(found == false) {
-				System.out.println("수리중인 기차가 없습니다.");
+				System.out.println("수리중인 기차가 없습니다");
 			}
 			
 		}else if (menu == 1) { // 1.수리가 필요한 기차 등록

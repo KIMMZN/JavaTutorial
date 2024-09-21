@@ -14,19 +14,19 @@ public class Train_mn {
 			System.out.println("4.종료");	
 			System.out.println("번호를 선택하시오 >> ");
 			
-			int sellect = in.nextInt();
+			int select = in.nextInt();
 			in.nextLine();
 			
-			if(sellect == 1) {
+			if(select == 1) {
 				registration();
 				//System.out.println("등록");
-			}else if(sellect == 2) {
+			}else if(select == 2) {
 				//System.out.println("전체보기");
 				viewAll();
-			}else if (sellect == 3) {
+			}else if (select == 3) {
 				//System.out.println("수정");
 				edit();
-			}else if (sellect == 4) {
+			}else if (select == 4) {
 				System.out.println("종료");
 			}else {
 				break;

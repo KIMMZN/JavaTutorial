@@ -8,7 +8,7 @@ public class Train_mn {
 	
 	Train_mn() {
 		while(true) {
-			Train_info Train = new Train_info();
+			//Train_info Train = new Train_info();
 			pannel(); //전광판 메서드
 			System.out.println("1.등록");
 			System.out.println("2.전체보기");
@@ -37,6 +37,7 @@ public class Train_mn {
 				repair();
 			}
 			else {
+				System.out.println("숫자를 잘못 입력했습니다");
 				break;
 			}
 		}
@@ -48,20 +49,23 @@ public class Train_mn {
 		Train_info Train = new Train_info();
 		Train.number = in.nextInt();
 		
-		boolean found1 = false;
+		boolean found1 = false; //기차번호 맞는지 확인 확인
 		for(int i =0; i<tList.length-1; i++) {
 			if(Train.number == (i+1) * 1111 ) {
 				found1 = true;
 				break;
 			}
 		}
+		
 		if(found1 == false) {
 			System.out.println("일치하는 정보가 없습니다.");
 			return;
 		}
 		
-		Train.typeNumber();// 기차 번호에 따라 종류 설정
+		typeNumber(Train);// 기차 번호에 따라 종류 설정 메서드 //Train 객체를 typeNumber 메서드에 전달
 		
+		
+		//System.out.println(Train.type + "  " + Train.number); type과number가 제대로 설정 되는지 확인
 		System.out.println("등록할 기차의 도착시간을 입력하시오");
 		Train.time = in.nextInt();
 				
@@ -110,22 +114,26 @@ public class Train_mn {
 		System.out.println("1.수리할 기차등록 / 2. 수리중인 기차정보 확인");
 		System.out.println("번호를 입력하시오 >> ");
 		int menu = in.nextInt();
+		in.nextLine();
 		if (menu == 2) { // 2. 수리중인 기차정보 확인
+			boolean found = false;		
 			for(int i =0; i < tList.length; i++) { 
-				if(tList[i].repair != null) {
+				if(tList[i] != null && tList[i].repair != null) {
 					tList[i].infoR();
-					break;
-				}else {
-					System.out.println("수리가 필요한 기차가 없습니다.");
-					break;
+					found = true;
 				}
 			}
 			
+			if(found == false) {
+				System.out.println("수리중인 기차가 없습니다.");
+			}
+			
 		}else if (menu == 1) { // 1.수리가 필요한 기차 등록
+			System.out.println("수리가 필요한 기차의 번호를 입력하시오");
+			menu = in.nextInt();
+			in.nextLine();
 			for(int i =0; i < tList.length; i++) {
 				if(tList[i].repair == null) {
-					System.out.println("수리가 필요한 기차의 번호를 입력하시오");
-					menu = in.nextInt();
 					if(menu == tList[i].number) {
 						tList[i].repair = "수리중";
 						tList[i].infoR();
@@ -141,7 +149,6 @@ public class Train_mn {
 	}
 	
 	public void pannel () { // 전광판 메서드
-		
 		//Train_info Train = new Train_info();			
 		int found = 0;
 		for(int i =0; i<tList.length; i++) { // 전광판
@@ -156,6 +163,19 @@ public class Train_mn {
 		if(found >=1 ) {
 			System.out.println("----------------------------------------");
 		}
-		
 	}
+	
+	public void typeNumber(Train_info Train) { //기차번호에 따라 종류 설정 메서드 //매개변수 Train_info 객체를 매개변수로 받음
+		
+		for(int i =0; i<tList.length-1; i++) {
+			if(Train.number == ((i+1)*1111) && (i+1)%2==1 ) {    // number 1111 3333 이면 type에 무궁화호
+				Train.type = "무궁화호 ";
+				
+			}else if(Train.number == ((i+1)*1111) && (i+1)%2==0) { // 2222 4444 이면 type 에 새마을호
+				Train.type = "새마을호*";
+			}	
+		}
+	}
+	
+	
 }

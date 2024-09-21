@@ -32,18 +32,7 @@ public class Train_info {
 	}
 	
 	
-	public void typeNumber() {
-		 if(number == 1111 || number == 3333) {
-				type = "무궁화호";
-				
-			}else if (number == 2222 || number == 44444 ) {
-				type = "새마을호*";
-			}else {
-				type = "알수업음";
-				
-			}
 	
-	}
 	
 	
 }

@@ -49,7 +49,7 @@ public class Train_mn {
 		Train_info Train = new Train_info();
 		Train.number = in.nextInt();
 		
-		boolean found1 = false; //기차번호 맞는지 확인 확인
+		boolean found1 = false; //기차번호 맞는지 확인
 		for(int i =0; i<tList.length-1; i++) {
 			if(Train.number == (i+1) * 1111 ) {
 				found1 = true;
@@ -60,7 +60,7 @@ public class Train_mn {
 		if(found1 == false) {
 			System.out.println("일치하는 정보가 없습니다");
 			return;
-		}
+		} 
 		//
 		
 		typeNumber(Train);// 기차 번호에 따라 종류 설정 메서드 //Train 객체를 typeNumber 메서드에 전달
@@ -165,14 +165,16 @@ public class Train_mn {
 	
 	public void typeNumber(Train_info Train) { //기차번호에 따라 종류 설정 메서드 //매개변수 Train_info 객체를 매개변수로 받음
 		
+		boolean found1 = false;
 		for(int i =0; i<tList.length-1; i++) {
 			if(Train.number == ((i+1)*1111) && (i+1)%2==1 ) {    // number 1111 3333 이면 type에 무궁화호
 				Train.type = "무궁화호 ";
 				
 			}else if(Train.number == ((i+1)*1111) && (i+1)%2==0) { // 2222 4444 이면 type 에 새마을호
 				Train.type = "새마을호*";
-			}	
+			}
 		}
+		
 	}
 	
 	

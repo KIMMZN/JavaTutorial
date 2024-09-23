@@ -1,0 +1,52 @@
+
+        개발자가 정의한 자료형
+ class 개발자가 정의하려는 대상 
+
+
+**문제해결방법**
+`요구사항 스케치
+`기능분리
+`클래스 정의
+ ex)
+ - 관리자 : 등록, 전체보기 , 수정
+ - 기차한대 : 기차번호와 기차시간
+`의존관계 파악, 관련 변수 설정
+ - 의존하는 객체를 참조하기 위한 방법 > 직접 객체를 만들어서 (주소방식)
+ - 각 클래스의 필요한 변수와 메서드 정의를 함
+**
+
+
+메서드
+1. 메서드의 의미는 기능을 제공한다
+2. 메서드는 정의와 호출을 구분하여 공부한다
+    - 정의는 메서드를 만드는것
+    - 호출은 호출하여 사용하는것
+
+   메서드의 정의란 메서드를 만드는 것이다
+   메서드는 클래스 내부에 포함된다
+
+
+ex))
+
+public void info () { //void 는 return x
+		
+		System.out.println("---기차 정보---");
+		System.out.println(number);
+		System.out.println(time);
+	}
+
+public String getNumber() { 
+		return number;			//호출하면 값을리턴함
+	}
+
+
+//private String number = null; // 은닉화
+
+
+t_center
+t_one = t= ne ()
+str a = t.genum();
+str a = in.nextline()
+t.setnum(a):
+
+str

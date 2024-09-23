@@ -5,16 +5,18 @@ import java.util.Scanner;
 public class Event_m {
 	
 	Scanner in = new Scanner(System.in);
-	Client_one[] cList = new  Client_one[5];
-	Event_one[] eList = new Event_one[5];
+	//Client_one[] cList = new  Client_one[5];
+	Event_one[] eList = new Event_one[5]; //객체 타입의 배열생성
+	int found = 0; //종료 플래그
 	
-	Event_m() {
+	public void Event_m1() {
 	
 		while(true) {
-			
+			System.out.println("---이벤트 관리창---");
 			System.out.println("1.이벤트 등록");
 			System.out.println("2.전체보기");
 			System.out.println("3.돌아가기");
+			System.out.println("4.종료");
 			System.out.println("번호를 입력하시오 >>");
 			
 			int Select1 = in.nextInt();
@@ -31,7 +33,12 @@ public class Event_m {
 			}else if(Select1 == 3) {
 				System.out.println("돌아가기");
 				break;
-			}else {
+			}else if(Select1 == 4) {
+				System.out.println("종료");
+				found = 1;
+				break;
+			}
+			else {
 				System.out.println("잘못됩 입력입니다");
 			}
 		}

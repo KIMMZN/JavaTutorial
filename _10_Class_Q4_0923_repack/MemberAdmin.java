@@ -7,7 +7,7 @@ public class MemberAdmin {
 	// MemberOne 객체의 주소값을 저장할 배열(길이 5)를 생성한 것이다.
 	// 배열도 객체입니다.. mlist는 참조변수이고 MemberOne객체의 주소를
 	// 저장한 배열의 주소를 저장하고 있다. 
-	EventAdmin eventA = null;
+	MainMenu mainMenu = null;
 	
 	MemberOne[] mlist = new MemberOne[5];
 
@@ -30,13 +30,18 @@ public class MemberAdmin {
 			}else if(num==2) {
 				allListUser();
 			}else if(num ==3) {
-				if(eventA == null) {
-					//eventA = eventAdm;
-					eventA.alltoadm();
+				if(mainMenu == null) {
+					mainMenu = new MainMenu();
+					//EventAdmin eventAdmin = mainMenu.jooso1();
+					//eventAdmin.alltoadm();
+					//eventA.eventAdm.alltoadm();
+					
 					//System.out.println("7");
 					//eventA.alltoadm();
 				}
 				//System.out.println("7");
+				EventAdmin eventAdmin = mainMenu.jooso1();
+				eventAdmin.alltoadm();
 			}
 			else if(num ==9) {
 				break; // while문 종료

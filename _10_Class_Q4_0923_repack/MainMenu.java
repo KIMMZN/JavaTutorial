@@ -6,6 +6,7 @@ public class MainMenu {
 	//의존관계 설정 시작
 	EventAdmin eventAdm= null;
 	MemberAdmin memberAdm=null;
+	//EventAdmin joso;
 	    //의존관계 변수만 설정하고 주소를
 	    // 저장하는 방법은 직접 객체를 만들거나
 	    // 주소를 주입 받는 방식이 있으니 
@@ -20,7 +21,7 @@ public class MainMenu {
 		// 별도로 메서드 처리 하겠다.
 		if(eventAdm == null) {
 			eventAdm = new EventAdmin();
-			
+			EventAdmin joso = eventAdm;
 		}
 		if(memberAdm == null) {
 			memberAdm = new MemberAdmin();
@@ -48,8 +49,14 @@ public class MainMenu {
 				break; // while문 종료
 			}
 		}
-		
-		
+	}
+	
+	//public EventAdmin jooso () {
+		//return joso;
+	//} 
+	
+	public EventAdmin jooso1 () { //eventAdm 호출시 eventAdm 주소값리턴
+		return eventAdm;
 	}
 
 

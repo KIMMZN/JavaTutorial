@@ -9,7 +9,7 @@ public class ClientEvent_Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Client_m client = new Client_m(); //객체생성.. 클래스에 생성자가 없으면 자바에서 자동으로 기본 생성자를 만들어준다
+		Client_m client = new Client_m(); //객체생성.. 클래스에 생성자가 없으면 자동으로 기본 생성자를 만들어준다
 		Event_m event = new Event_m();		//객체생성 
 		
 		Scanner in = new Scanner(System.in);
@@ -42,8 +42,12 @@ public class ClientEvent_Main {
 				System.out.println("잘못된 접근입니다");
 			}
 		}
+		
+		
+		
+		
 	}
-
+	
 	
 	
 	

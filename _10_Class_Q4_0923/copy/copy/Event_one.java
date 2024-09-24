@@ -7,7 +7,7 @@ public class Event_one {
 	
 	public void info() {
 		
-		System.out.println("이벤트 제목: " + title + "|| 이벤트내용: " + text);
+		System.out.println("이벤트 제목: " + title + " || 이벤트내용: " + text);
 		
 	}
 	

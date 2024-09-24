@@ -6,6 +6,7 @@ public class Client_m {
 	Scanner in = new Scanner(System.in);
 	Client_one[] cList = new  Client_one[5]; //객체 타입의 배열생성
 	//Event_one[] eList = new Event_one[5];
+	
 	int found = 0; //종료 플래그
 	public void Client_m1 () {
 		
@@ -17,6 +18,7 @@ public class Client_m {
 					System.out.println("4.삭제하기");
 					System.out.println("5.돌아가기");
 					System.out.println("6.종료");
+					System.out.println("7.현재진행중인이벤트");
 					System.out.println("번호를 입력하시오 >>");
 					int Select = in.nextInt();
 					in.nextLine();
@@ -43,6 +45,8 @@ public class Client_m {
 						System.out.println("종료");
 						found= 1;
 						break;
+					}else if(Select == 7) {
+						 
 					}
 					else {
 						System.out.println("잘못된 접근");
@@ -73,31 +77,45 @@ public class Client_m {
 	
 	public void listall() { //정보보기 메서드
 		
+		boolean found = false;
 		for(int i =0; i<cList.length; i++) {
-			if(cList[i] != null) {				
+			if(cList[i] != null) {
+				found = true;
 				cList[i].info();
 			}
+		}
+		if(!found) {
+			System.out.println("정보가 없습니다");
 		}
 	}
 	
 	public void edit() { //수정
 		System.out.println("id를 입력하시오");
 		String idtemp = in.nextLine();
-				
+		
+		boolean found = false;//정보없음판단
+		int tf = 0; //정보일치판단
+		
 		for(int i =0; i<cList.length; i++) {
 			if(cList[i] != null) {
-			String idone = cList[i].getid();
+				found = true;
+				String idone = cList[i].getid();
 				if(idtemp.equals(idone)) {
 					System.out.println("수정할 이름을 입력하시오");
 					String nametemp = in.nextLine();
 					cList[i].setname(nametemp);
-					break;
-				}else {
-					System.out.println("정보 불일치");
+					tf = 1;
 					break;
 				}
 			}	
-			
+		}
+		
+		if(tf == 0) { // 정보 불일치시
+			System.out.println("정보 불일치");
+		}
+		
+		if (!found) { // 정보가 없을시
+			System.out.println("정보가 없습니다");
 		}
 	}
 	
@@ -105,10 +123,11 @@ public class Client_m {
 		System.out.println("삭제할 id를 입력하시오");
 		String idtemp = in.nextLine();
 		
-				
+		boolean found = false;
 		for(int i =0; i<cList.length; i++) {
 			if(cList[i] != null) {
-			String idone = cList[i].getid();
+				found = true;
+				String idone = cList[i].getid();
 				if(idtemp.equals(idone)) {				
 					cList[i] = null;
 					break;
@@ -117,6 +136,9 @@ public class Client_m {
 					break;
 				}
 			}	
+		}
+		if(!found) {
+			System.out.println("정보가 없습니다");
 		}
 	}
 	

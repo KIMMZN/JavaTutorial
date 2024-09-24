@@ -4,7 +4,7 @@ public class Client_one {
 	
 	 String id = null;
 	 String name = null;
-	
+	 
 	public void info () { //void 는 return x
 		System.out.println("회원정보");
 		System.out.println(id);

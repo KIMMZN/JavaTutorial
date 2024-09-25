@@ -1,0 +1,21 @@
+배열 : 고정길이
+        순서가있음
+
+list :  순서가 있음;
+       가변길이
+ArrayList
+선언
+ArrayList<String > b = new ArrayList< >();
+
+String type를 저장할 리스트객체를 생성.
+변수명은 b이다.
+
+
+사용가능 메서드
+size()
+add(value)
+add(index, value)
+get(index)
+remove(index)
+clear()
+set(index, value)        수정 : cars.set(0, "Opel");

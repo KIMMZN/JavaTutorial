@@ -1,0 +1,19 @@
+for(int i =0; i<wlist.size(); i++) {
+			if(wlist.get(i).eWord.contains(temp)) {
+				
+				//System.out.println(wlist.get(i).eWord.substring(wlist.get(i).eWord.indexOf(temp), 
+					//wlist.get(i).eWord.indexOf("/", wlist.get(i).eWord.indexOf(temp)) ));
+				
+				wlist.remove(i);
+				
+				//wlist.get(i).eWord.substring(wlist.get(i).eWord.indexOf(temp), 
+					//	wlist.get(i).eWord.indexOf("/", wlist.get(i).eWord.indexOf(temp)) )
+				
+			}
+			//System.out.println(wlist.get(i).eWord.substring(wlist.get(i).eWord.indexOf(temp), 
+					//wlist.get(i).eWord.indexOf("/", wlist.get(i).eWord.indexOf(temp)) ));
+
+			//	System.out.println(title.substring(
+				//		title.indexOf(w), title.indexOf(
+				//				" ",title.indexOf(w)
+		}

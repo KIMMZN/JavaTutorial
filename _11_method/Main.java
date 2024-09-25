@@ -21,7 +21,19 @@ public class Main {
 		a.contains("8");
 		System.out.println(a.contains("8"));
 		String w = "개나리";
-		String title = "오늘 컨디션 참 개나리야 짜증!";
+		
+		String temp = "apple";
+		String sj = "apple/사과";
+		
+		
+		System.out.println(sj.substring(sj.indexOf(temp), sj.indexOf("/")));
+		
+		
+		String title = "오늘 컨디션 참 개나리야/ 짜증!";
+		
+		
+		
+		
 		System.out.println(title.contains(w));
 		
 		if(title.contains(w)) {
@@ -29,6 +41,12 @@ public class Main {
 		}else {
 			System.out.println("good");
 		}
+		
+		System.out.println("test: " + title.substring(
+				title.indexOf(w), title.indexOf("/") ));
+		
+		
+		
 		
 		//자료형중요
 		
@@ -50,7 +68,9 @@ public class Main {
 		
 		System.out.println(title.substring(
 				title.indexOf(w), title.indexOf(
-						" ",title.indexOf(w)) )); // 뒤는 indexof (w)부터 of " "의 index
+						"/",title.indexOf(w)) )); // 뒤는 indexof (w)부터 of " "의 index
+		
+		
 		
 		System.out.println(title.substring(title.indexOf(w), title.indexOf("!")));
 		

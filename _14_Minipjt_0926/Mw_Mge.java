@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Mw_Mge {
-	ArrayList<Mw_One> mwlist = new ArrayList<>();
+	ArrayList<Mw_One> wordList = new ArrayList<>();
 	Scanner in = new Scanner(System.in);
 	
 	Mw_Mge() {
@@ -37,7 +37,7 @@ public class Mw_Mge {
 				
 			}else if(select == 4) {
 				System.out.println("4.단어수정");
-				set();
+				setWord();
 				
 				
 			}else if(select == 5) {
@@ -57,14 +57,14 @@ public class Mw_Mge {
 		in.nextLine();
 		String tempe = in.nextLine();
 		
-		if(jbcheck(tempe)==true) { // 단어 중복확인
+		if(ewordCheck(tempe)==true) { // 단어 중복확인
 			System.out.println("중복입니다");
 		}else {
 			wordOne.addEword(tempe);
 			System.out.println("한글 뜻을 입력하시오");			
 			String tempk = in.nextLine();			
 			wordOne.addKword(tempk);	
-			mwlist.add(wordOne);
+			wordList.add(wordOne);
 			System.out.println("단어가 입력되었습니다");
 			
 		}
@@ -72,9 +72,9 @@ public class Mw_Mge {
 		
 	}
 	
-	 public boolean jbcheck(String check) { // 영어단어 중복체크 메서드
-		for(int i =0; i<mwlist.size(); i++) {	
-			if(check.equals(mwlist.get(i).Eword)) {
+	 public boolean ewordCheck(String check) { // 영어단어 중복체크 메서드
+		for(int i =0; i<wordList.size(); i++) {	
+			if(check.equals(wordList.get(i).Eword)) {
 				return true; // 트루 라면 중복.
 			}
 		}
@@ -82,7 +82,7 @@ public class Mw_Mge {
 	}
 	 
 	 public void viewAll() { //전체보기 메서드
-			for(Mw_One w : mwlist) {
+			for(Mw_One w : wordList) {
 				w.prt();
 			}
 	 }
@@ -93,31 +93,31 @@ public class Mw_Mge {
 		 String tempe = in.nextLine();
 		 int removei = findidx(tempe);
 		 if(removei != -1) {
-			 mwlist.remove(removei);
+			 wordList.remove(removei);
 			 System.out.println(removei+1 + "번 "+tempe + " 이/가 삭제 되었습니다");
 		 }
 		 
 	 }
 	 
 	 public int findidx(String temp) { //중복이면 i값 리턴 메서드
-		 for(int i =0; i<mwlist.size(); i ++) {
-			 if(mwlist.get(i).Eword.equals(temp)) {
+		 for(int i =0; i<wordList.size(); i ++) {
+			 if(wordList.get(i).Eword.equals(temp)) {
 				 return i;
 			 }
 		 }
 		 return -1;
 	 }
 	 
-	 public void set () { // 수정 메서드
+	 public void setWord () { // 수정 메서드
 		 System.out.println("찾을 영어 단어를 입력하시오");
 		 in.nextLine();
 		 String tempe = in.nextLine();
-		 int seti = findidx(tempe);
-		 //mwlist.get(seti);
+		 int setWordi = findidx(tempe);
+		 //wordList.get(setWordi);
 		 		 
-			 if(seti != -1) {
+			 if(setWordi != -1) {
 				 System.out.println("단어를 찾았습니다");
-				 System.out.println(mwlist.get(seti).Eword + " "+ mwlist.get(seti).Kword);
+				 System.out.println(wordList.get(setWordi).Eword + " "+ wordList.get(setWordi).Kword);
 				 System.out.println("1. 영어 단어 수정");
 				 System.out.println("2. 한글 단어 수정");
 				 System.out.println("숫자를 입력하시오 >>");
@@ -128,13 +128,13 @@ public class Mw_Mge {
 				 if(select == 1) {//영어 수정
 					 System.out.println("수정할 영어 단어를 입력하시오");
 					 String tempee = in.nextLine();
-					 mwlist.get(seti).Eword = tempee;
+					 wordList.get(setWordi).Eword = tempee;
 					 System.out.println("수정 되었습니다");
 					 
 				 }else if(select == 2) { // 한글 수정
 					 System.out.println("수정할 영어 단어를 입력하시오");
 					 String tempee = in.nextLine();
-					 mwlist.get(seti).Kword = tempee;
+					 wordList.get(setWordi).Kword = tempee;
 					 System.out.println("수정 되었습니다");
 					 
 				 }else {
@@ -144,7 +144,7 @@ public class Mw_Mge {
 			 
 		     }
 			 
-			 if(seti == -1) {
+			 if(setWordi == -1) {
 				 System.out.println("찾는 단어가 없습니다");
 				 return;
 			 }
@@ -160,18 +160,18 @@ public class Mw_Mge {
 		 ArrayList wrlist = new ArrayList<>();
 		 System.out.println("한글로 단어의 뜻을 입력하시오");
 		 
-		 for(int i =0; i< mwlist.size(); i++) {
+		 for(int i =0; i< wordList.size(); i++) {
 			 
 			 
-			 System.out.println(mwlist.get(i).Eword);
+			 System.out.println(wordList.get(i).Eword);
 			 String tempp = in.nextLine();
 			 
-			 if (tempp.equals(mwlist.get(i).Kword)) {
+			 if (tempp.equals(wordList.get(i).Kword)) {
 				 System.out.println("정답");
 				 cnt++;
 			 }else {
 				 System.out.println("오답");
-				 wrlist.add(mwlist.get(i));
+				 wrlist.add(wordList.get(i));
 				 //wrlist.add(i);
 				 wcntnum++;
 			 }
@@ -192,7 +192,7 @@ public class Mw_Mge {
 			 in.nextLine();
 			 
 			 if(select == 1) {
-				 for(int i=0; i < mwlist.size(); i++) {
+				 for(int i=0; i < wordList.size(); i++) {
 					 wrlist.get(i);
 					 
 					 
@@ -206,10 +206,10 @@ public class Mw_Mge {
 		
 	 }
 	 
-	 public int testk (String temp1) { //한글 답 확인 메서드
+	 public int kwordCheck (String temp1) { //한글 답 확인 메서드
 		 
-		 for(int i = 0; i<mwlist.size(); i++) {
-			 if (temp1.equals(mwlist.get(i).Kword)) {
+		 for(int i = 0; i<wordList.size(); i++) {
+			 if (temp1.equals(wordList.get(i).Kword)) {
 				 return i;
 			 }
 		 }

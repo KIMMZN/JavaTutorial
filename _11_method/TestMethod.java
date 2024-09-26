@@ -33,7 +33,7 @@ public class TestMethod {
 		}
 	}
 	
-	public void setName(String n) {
+	public void setWordName(String n) {
 		name=n;
 	}
 	public String getName() {

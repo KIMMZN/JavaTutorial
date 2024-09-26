@@ -62,7 +62,7 @@ public class Word_m {
 		String eng = in.nextLine();
 		///  단어를 나누는 /가 들어가있는지 확인하는 기능 필요
 		if(wordCheck(eng) == true) { // /들어가있는지 확인하는 메서드
-			if (jbcheck(eng)==true) { // 중복 확인 메서드
+			if (ewordCheck(eng)==true) { // 중복 확인 메서드
 				System.out.println("중복입니다.");
 				
 			}else { // 중복이 아니라면 단어 추가
@@ -74,7 +74,7 @@ public class Word_m {
 		}
 		//wordOne = null;
 	}
-	public boolean jbcheck(String check) { // 영어단어 중복체크 메서드
+	public boolean ewordCheck(String check) { // 영어단어 중복체크 메서드
 		for(int i =0; i<wlist.size(); i++) {
 			String[] split1 = check.split("/");
 			String[] split2 = wlist.get(i).eWord.split("/");

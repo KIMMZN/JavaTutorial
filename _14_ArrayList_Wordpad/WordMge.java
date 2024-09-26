@@ -34,7 +34,7 @@ public class WordMge {
 		WordOne w = new WordOne();
 		System.out.println("영어 단어 입력");
 		String ename = in.nextLine();
-		w.setEname(ename);
+		w.setWordEname(ename);
 		int idx=findIdx(ename);
 		
 		if(idx == -1) {
@@ -74,7 +74,7 @@ public class WordMge {
 		}
 		return -1;
 	}
-	public void modWord() {    // set()
+	public void modWord() {    // setWord()
 		Scanner in = new Scanner(System.in);
 		System.out.println("영어 단어 입력");
 		String ename = in.nextLine();	
@@ -91,7 +91,7 @@ public class WordMge {
 		if(idx != -1) {
 			System.out.println("수정할 한글의 뜻을 입력하세요");
 			String kname = in.nextLine();
-			wordList.get(idx).setKname(kname);
+			wordList.get(idx).setWordKname(kname);
 		}
 
 	}; // 단어 수정 - 너가

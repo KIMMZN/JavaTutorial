@@ -87,7 +87,7 @@ public class Client_m {
 				if(idtemp.equals(idone)) {
 					System.out.println("수정할 이름을 입력하시오");
 					String nametemp = in.nextLine();
-					cList[i].setname(nametemp);
+					cList[i].setWordname(nametemp);
 					break;
 				}else {
 					System.out.println("정보 불일치");

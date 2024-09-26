@@ -9,7 +9,7 @@ public class Main1 {
 		
 		
 		System.out.println(t.name);
-		t.setName("hong");
+		t.setWordName("hong");
 		System.out.println(t.name);
 		System.out.println(t.getName());
 		

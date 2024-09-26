@@ -9,11 +9,11 @@ public class WordOne {
     	 
      }    // 단어와 한글 뜻 출력
      
-     public void setEname(String ename) {
+     public void setWordEname(String ename) {
     	 this.ename=ename;
      }     // 영어 단어 저장
      
-     public void setKname(String kname) {;    // 한글 단어 저장
+     public void setWordKname(String kname) {;    // 한글 단어 저장
      	 this.kname=kname;
      }
      

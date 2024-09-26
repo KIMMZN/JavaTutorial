@@ -19,7 +19,7 @@ public class Client_one {
 		return name;
 	}
 	
-	public void setname(String newname) {
+	public void setWordname(String newname) {
 		
 		name = newname;
 	}

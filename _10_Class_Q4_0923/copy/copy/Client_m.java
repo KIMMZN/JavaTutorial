@@ -62,6 +62,7 @@ public class Client_m {
 		//String id1 = client.pid(); //호출하고 리턴값 받아옴. 
 		
 		client.id = in.nextLine();
+		
 		System.out.println("이름을 입력하시오");
 		//String name1 = client.pname();
 		client.name = in.nextLine();

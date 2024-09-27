@@ -34,7 +34,7 @@ public class ListSample {
 		String b = "banana";
 		for(int i =0; i < a.size(); i++) { 
 			if(a.get(i).equals(b)) {
-				a.setWord(i, "ronaldo");
+			//	a.setWord(i, "ronaldo");
 				System.out.println(a.get(i));
 			}
 			
@@ -61,7 +61,7 @@ public class ListSample {
 			
 		}
 		
-		a.setWord(2, "갑오징어"); //특정 인덱스 수정
+		//a.setWord(2, "갑오징어"); //특정 인덱스 수정
 		System.out.println("------------");
 		for(int i =0; i < a.size(); i++) { //arraylist의 모든 string 출력 // 
 			System.out.println(a.get(i));

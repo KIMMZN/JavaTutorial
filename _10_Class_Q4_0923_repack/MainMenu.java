@@ -42,7 +42,7 @@ public class MainMenu {
 			}else if(num ==3) {
 				break; // while문 종료
 			}
-		}	
+	   }	
 		
 	}
 	

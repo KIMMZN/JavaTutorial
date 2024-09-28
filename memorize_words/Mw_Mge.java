@@ -6,16 +6,20 @@ import java.util.Scanner;
 public class Mw_Mge {
 	ArrayList<Mw_One> wordList = new ArrayList<>();
 	ArrayList<Mw_One> wrongAnswerList = new ArrayList<>();
-	
+	Mw_WordGameMain wordGame = null;
 	
 	
 	Mw_Mge() {
+		
 		
 		menu();
 		
 	}
 	
 	public void menu() {
+		if (wordGame == null) {
+			wordGame = new Mw_WordGameMain();
+		}
 		Scanner in = new Scanner(System.in);
 		while(true) {
 			System.out.println("단어암기장");
@@ -25,6 +29,7 @@ public class Mw_Mge {
 			System.out.println("4.단어수정");
 			System.out.println("5.전체보기");
 			System.out.println("6.종료");
+			System.out.println("7.자바드래곤");
 			System.out.println("숫자를 입력하시오 >>");
 			int select = in.nextInt();
 			if(select == 1) {
@@ -49,6 +54,10 @@ public class Mw_Mge {
 			}else if(select == 6) {
 				System.out.println("6.종료");
 				break;
+			}else if(select ==7) {
+				System.out.println("자바 드래곤");
+				wordGame.gameMenu();
+				
 			}
 		}
 	}

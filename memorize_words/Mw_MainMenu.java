@@ -20,7 +20,18 @@ public class Mw_MainMenu {
 		}
 		
 		mw_mge.clientMg = mw_client_mg;
-		mw_client_mg.mwMge = mw_mge;    
+		mw_client_mg.mwMge = mw_mge;
+	
+		if (mw_mge.wordGame == null) {
+            mw_mge.wordGame = new Mw_WordGameMain();  
+        }
+
+        mw_mge.wordGame.clientmg = mw_client_mg;  // 이
+		//mw_mge.wordGame.clientmg = mw_client_mg;
+        if(mw_mge.wordGame.wgplay == null) {
+        	mw_mge.wordGame.wgplay = new Mw_WordGamePlay();
+        }
+        mw_mge.wordGame.wgplay.mgemge = mw_client_mg;
 		
 		menu();
 	}

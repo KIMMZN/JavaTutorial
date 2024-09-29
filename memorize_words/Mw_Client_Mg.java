@@ -7,6 +7,7 @@ public class Mw_Client_Mg {
 	
 	ArrayList<Mw_Clietnt_One> clientList = new ArrayList<>();
 	Mw_Mge mwMge = null;
+	//Mw_WordGamePlay wgplay = new Mw_WordGamePlay();
 	
 	
 	public void clientMenu() {
@@ -80,9 +81,9 @@ public class Mw_Client_Mg {
 				clientList.add(clientOne);
 				System.out.println("회원정보 등록 완료");
 				//
-				if(clientList.get(0).joinDate == null) {
+				//if(clientList.get(0).joinDate == null) {
 					
-				}
+				//}
 			}
 			
 	

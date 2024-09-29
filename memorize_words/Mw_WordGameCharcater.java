@@ -10,20 +10,20 @@ public class Mw_WordGameCharcater {
 	
 	
 	public void CharcterInfo() { //케릭터 인포 메서드
-		System.out.println("-----------------------------");
+		System.out.println("------------------------------");
 		System.out.println("| 이름: "+name+"         등급:"+grade+"|");
-		System.out.println("-----------------------------");
+		System.out.println("------------------------------");
 		
 	}
 	
 	public void CharcterInfoLife() { //케릭터 인포 메서드
-		System.out.println("-------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
 		System.out.println("| 이름: "+name+"         등급:"+grade+"                 "  +  "라이프: " + getHealth() + "|");
-		System.out.println("-------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
 		
 	}
 	
-	public void setName(String name) { //이름 추가메서드 //시 등급도 추가
+	public void setNameGradeHealth(String name) { //이름 입력시, 이름 grade health 추가
 		
 		this.name = name;
 		this.grade = "자바초보";
@@ -44,9 +44,6 @@ public class Mw_WordGameCharcater {
 		} else if (health == 1){
 			
 			return "♥";
-		}
-		else if(this.health ==0) {
-			return "♡";
 		}else {
 			return "game over";
 		}
@@ -54,7 +51,13 @@ public class Mw_WordGameCharcater {
 	}
 	
 	
-	public String getName(String name) { //이름 추가메서드 //시 등급도 추가
+	public String setName(String name) { //이름 입력시 이름 리턴
+		
+		return name;
+		
+	}
+	
+	public String getName() { //이름 조회 메서드
 		
 		return name;
 		

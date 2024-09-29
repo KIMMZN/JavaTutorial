@@ -4,16 +4,12 @@ import java.util.Calendar;
 
 public class Mw_Clietnt_One {
 
-	Calendar calendar = Calendar.getInstance();
+	//Calendar calendar = Calendar.getInstance();
 	
 	String id = null;
 	String password = null;
 	String name = null;
 	String phonenumber = null;
-	String joinDate = null;
-	
-	
-	
 	
 	public void prt() { // 전체보기 메서드
 		System.out.println("회원정보");
@@ -42,8 +38,6 @@ public class Mw_Clietnt_One {
 		return password;
 	}
 	
-	
-	
 	public void addPhoneNumber(String phonenumber) { // 폰넘버 등록 메서드
 		this.phonenumber = phonenumber;
 		
@@ -53,6 +47,7 @@ public class Mw_Clietnt_One {
    	 			return phonenumber;
     }
 	
+    
 	
 	
 	

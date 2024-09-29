@@ -10,9 +10,10 @@ public class Mw_Mge {
 	Mw_WordGameMain wordGame = null;
 	
 	public void menu() {
-		if (wordGame == null) {
-			wordGame = new Mw_WordGameMain();
-		}
+		//if (wordGame == null) {
+		//	wordGame = new Mw_WordGameMain();
+		//}
+		
 		
 		//login();
 		Scanner in = new Scanner(System.in);

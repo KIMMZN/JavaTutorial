@@ -42,6 +42,8 @@ public class Javatwo_test_00 {
 			 	 System.out.println();
 			 
 		 }
+		 
+		 System.out.println(8*100/10);
 		
 		
 		

@@ -1,6 +1,7 @@
 package memorize_words;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -8,6 +9,7 @@ public class Mw_WordGamePlay {
 	ArrayList<Mw_WordGameCharcater> chlist = new ArrayList<>();
 	ArrayList<String> typelist = new ArrayList<>();
 	ArrayList<Mw_WordGameOne> wordglist = new ArrayList<>();
+	//ArrayList<Mw_WordGameOne> dupWordglist = new ArrayList<>();
 	Mw_Client_Mg mgemge = null;
 	public String dEvaluation;
 	
@@ -17,6 +19,7 @@ public class Mw_WordGamePlay {
     public int getCtn() {
         return ctn;
     }
+    
 	
 	
 	public void JavaDragon() {
@@ -148,6 +151,7 @@ public class Mw_WordGamePlay {
 	public void addWord(Mw_WordGameCharcater chOne) {
 		Mw_WordGameOne wordgameOne1 = new Mw_WordGameOne();
 		Scanner in = new Scanner(System.in);
+		ArrayList<Integer> checkdup= new ArrayList<>();
 		
 		wordgameOne1.setWord("자바에서 정수형 int는 몇 바이트(byte) 인가?", "4byte", "이런 easy한 문제는 힌트따위 없지만 숫자와 영어로 써라");
 		wordglist.add(wordgameOne1);
@@ -194,14 +198,20 @@ public class Mw_WordGamePlay {
 		
 		int wctn = 2; // 오답
 			for(int i =0; i<wordglist.size(); i++) {
-				System.out.println(i);
+				Random random = new Random();
+				int ran;
+				do {
+					ran = random.nextInt(wordglist.size());
+				} while (checkdup.contains(ran));
+				checkdup.add(ran);
 				
 				System.out.println("자 " + (i+1) +" 번째 문제다.");
 				chOne.CharcterInfoLife();
-				wordglist.get(i).getWordHint();
+				
+				wordglist.get(ran).getWordHint();
 				String answer = in.nextLine();
-				if(answer.equals(wordglist.get(i).getmeaning())) {
-					System.out.println("정답이다.. 자바력이 높은 아이구나");
+				if(answer.equals(wordglist.get(ran).getmeaning())) {
+					System.out.println("정답이다.. 자바력이 있는것 같구나");
 					ctn++;
 				}else {
 					wctn--;
@@ -213,6 +223,7 @@ public class Mw_WordGamePlay {
 					System.out.println("wrong !");
 					chOne.setHealth(wctn);
 				}
+					
 			}
 			
 			//mgemge.clientList.g

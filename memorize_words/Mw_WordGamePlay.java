@@ -117,11 +117,13 @@ public class Mw_WordGamePlay {
 		Mw_WordGameOne wordgameOne = new Mw_WordGameOne();
 		Scanner in = new Scanner(System.in);
 		wordgameOne.setWord("자바에서 정수형 int는 몇 바이트(byte) 인가?", "4byte", "이런 easy한 문제는 힌트따위 없다");
+		wordglist.add(wordgameOne);
 		wordgameOne.setWord("자바에서 claas는 무엇과 무엇으로 구성되어 있는가? (ooㅇo/ooo 형태로 입력)", "멤버변수/메서드", "이런 easy한 문제는 힌트따위 없다");
 		wordglist.add(wordgameOne);
 		int ctn = 0;
 		
 			for(int i =0; i<wordglist.size(); i++) {
+				System.out.println(i);
 				System.out.println("자 " + i+1 +" 번째 문제다.");
 				wordglist.get(i).getWordHint();
 				String answer = in.nextLine();

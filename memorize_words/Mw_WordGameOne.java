@@ -18,7 +18,7 @@ public class Mw_WordGameOne {
 	}
 	
 	public void getWordHint() {
-		System.out.println("단어:" + word+"  힌트:"+hint);
+		System.out.println("문제: " + word+"  힌트:"+hint);
 	}
 	
 	

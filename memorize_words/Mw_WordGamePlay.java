@@ -12,19 +12,24 @@ public class Mw_WordGamePlay {
 	
 	public void JavaDragon() {
 		Mw_WordGameCharcater chOne = new Mw_WordGameCharcater();
-		System.out.println("나의 이름은?");
-		Scanner in = new Scanner(System.in);
-		String name = in.nextLine();
-		chOne.setName(name);
-		chlist.add(chOne);
+		while(true) {
+			Scanner in = new Scanner(System.in);
+			System.out.println("나의 이름은?");
+			String name = in.nextLine();
+			
+			chOne.setName(name);
+			chlist.add(chOne);
+			
+			String point = ".";		
+			delay(point);
+			
+			chOne.CharcterInfo();
+			typeSentences(chOne);
+			
+			
+		}
 		
-		String point = ".";		
-		delay(point);
 		
-		
-		
-		chOne.CharcterInfo();
-		typeSentences(chOne);
 		
 		
 		
@@ -71,7 +76,8 @@ public class Mw_WordGamePlay {
 		typelist.add("크어어어어어어엉");
 		typelist.add("앗 저것은 ?");
 		typelist.add("???: 나는 전설의 드래곤, 자바 드래곤이다");
-		typelist.add("???: 이몸은 매우 배고프니 죽기 싫으면 입다물고 돌아가거라");
+		typelist.add("자바드래곤: 100000년 산 이몸을 노리고 온것인가?");
+		typelist.add("자바드래곤: 아니면 나에게 먹힐 인간을 구하러 온것인가 ?");
 		
 		
 		//System.out.println("");
@@ -85,7 +91,24 @@ public class Mw_WordGamePlay {
 		                                      }
 		catch (Exception e) {
 		      System.out.println(e);
-		    }
-	}
+		}
+		
+		System.out.println("사람을 구하기위해  100000년산 자바드래곤과 싸우겠습니까?");
+		System.out.println("1. Yes / 2. No");
+		int temp = in.nextInt();
+		in.nextLine();
+		if(temp == 1) {
+			System.out.println("용기있는 인간이군 ... 너의 자바 실력을 보도록 하겠다");
+		}else if(temp == 2) {
+			System.out.println("용기없는 벌레는 죽어라 !!!");
+			System.out.println("크아아아앙");
+			System.out.println("Game Over");
+			return;
+		}
+			
+		
+		}
+	
+		
 	
 }

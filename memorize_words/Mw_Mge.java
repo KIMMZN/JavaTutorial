@@ -79,6 +79,7 @@ public class Mw_Mge {
 			wordList.add(wordOne);
 			System.out.println("단어가 입력되었습니다");
 			
+			
 		}
 			
 		

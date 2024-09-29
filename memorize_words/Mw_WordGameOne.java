@@ -13,12 +13,17 @@ public class Mw_WordGameOne {
 		
 	}
 	
-	public String getWord() {
+	public String getWord() { // 문제 조회
 		return word;
 	}
 	
+	public String getmeaning() { // 답 조회
+		return meaning;
+	}
+	
 	public void getWordHint() {
-		System.out.println("문제: " + word+"  힌트:"+hint);
+		System.out.println("문제: " + word);
+		System.out.println("힌트: " + hint);
 	}
 	
 	

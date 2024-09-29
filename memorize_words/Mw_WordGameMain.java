@@ -8,9 +8,19 @@ public class Mw_WordGameMain {
 	
 	public void gameMenu() {
 		
+		//if(clientMg.findIdxOfIdPass(tempi, tempp) != -1) {
+			
+		//}else {
+		//	System.out.println("아이디 / 비밀번호가 일치하지 않습니다");
+			
+		//}	
+		
+		//System.out.println("id를 입력하시오");
+		//String tempi = in.nextLine();ㅂ
+		//System.out.println("패스워드를 입력하시오");
+		//String tempp = in.nextLine();
 		
 		while(true) {
-			
 			System.out.println("1.게임시작");
 			System.out.println("2.점수확인");
 			System.out.println("3.종료");
@@ -26,8 +36,9 @@ public class Mw_WordGameMain {
 			}else if(select ==2) {
 				System.out.println("3.종료");
 			}
-			
-			
 		}
+		
+		
+		
 	}
 }

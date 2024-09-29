@@ -22,8 +22,6 @@ public class Mw_WordGamePlay {
 			
 			String point = ".";		
 			delay(point);
-			
-			chOne.CharcterInfo();
 			typeSentences(chOne);
 			
 			
@@ -44,7 +42,7 @@ public class Mw_WordGamePlay {
 	}
 	
 	
-	public void delay (String delay) {
+	public void delay (String delay) { // . 시간초 딜레이 메서드
 		
 		try {			
 		      for (int i = 0; i < 3; i++) {	    	  
@@ -70,6 +68,23 @@ public class Mw_WordGamePlay {
 		typelist.add("오늘 하루종일 집중하느라 너무 힘들었다 .. 하..");
 		typelist.add("???: 꺄 ~~~~~~~ 악 !");
 		typelist.add("???: 사람살려 ~~~~");
+		typelist.add("  _______\r\n"
+				+ "    /       \\\r\n"
+				+ "   /  O   O  \\\r\n"
+				+ "  |     _     |\r\n"
+				+ "  |    (_)    |   \"헉!! 무슨 소리지?\"\r\n"
+				+ "   \\         /     /\r\n"
+				+ "    \\       /     /\r\n"
+				+ "     \\____ /   \r\n"
+				+ "       |  |      \r\n"
+				+ "      /|  |\\     \r\n"
+				+ "     / |  | \\    \r\n"
+				+ "    /  |  |  \\   \r\n"
+				+ "   /   |  |   \\  \r\n"
+				+ "  /    |  |    \\ \r\n"
+				+ " /     |  |     \\\r\n"
+				+ "/_____/    \\_____\\");
+		
 		typelist.add("!!! 학원 근처 골목길에서 무슨 소리? 가 들리는듯하다");
 		typelist.add("거기 무슨일 있나요 ? 무슨일이죠 ?");
 		typelist.add("앗 ?");
@@ -99,7 +114,7 @@ public class Mw_WordGamePlay {
 		in.nextLine();
 		if(temp == 1) {
 			System.out.println("용기있는 인간이군 ... 너의 자바 실력을 보도록 하겠다");
-			 addWord();
+			 addWord(chOne);
 			
 		}else if(temp == 2) {
 			System.out.println("용기없는 벌레는 죽어라 !!!");
@@ -113,31 +128,98 @@ public class Mw_WordGamePlay {
 	
 	
 	
-	public void addWord() {
-		Mw_WordGameOne wordgameOne = new Mw_WordGameOne();
+	public void addWord(Mw_WordGameCharcater chOne) {
+		Mw_WordGameOne wordgameOne1 = new Mw_WordGameOne();
 		Scanner in = new Scanner(System.in);
-		wordgameOne.setWord("자바에서 정수형 int는 몇 바이트(byte) 인가?", "4byte", "이런 easy한 문제는 힌트따위 없다");
-		wordglist.add(wordgameOne);
-		wordgameOne.setWord("자바에서 claas는 무엇과 무엇으로 구성되어 있는가? (ooㅇo/ooo 형태로 입력)", "멤버변수/메서드", "이런 easy한 문제는 힌트따위 없다");
-		wordglist.add(wordgameOne);
-		int ctn = 0;
 		
+		wordgameOne1.setWord("자바에서 정수형 int는 몇 바이트(byte) 인가?", "4byte", "이런 easy한 문제는 힌트따위 없지만 숫자와 영어로 써라");
+		wordglist.add(wordgameOne1);
+		
+		Mw_WordGameOne wordgameOne2 = new Mw_WordGameOne();
+		wordgameOne2.setWord("자바에서 claas는 무엇과 무엇으로 구성되어 있는가? (ooㅇo/ooo 형태로 입력)", "멤버변수/메서드", "oooo/o서o이다 아둔한 아이야");
+		wordglist.add(wordgameOne2);
+		
+		Mw_WordGameOne wordgameOne3 = new Mw_WordGameOne();
+		wordgameOne2.setWord("자바에서 배열의 인덱스는 몇부터 시작하는가?", "0", "틀리면 바로 pc를 끄고 집에 가라");
+		wordglist.add(wordgameOne3);
+		
+		Mw_WordGameOne wordgameOne4 = new Mw_WordGameOne();
+		wordgameOne2.setWord("자바에서 객체를 생성할 때 사용하는 키워드는?", "new", "old한 시대가 그립군..");
+		wordglist.add(wordgameOne4);
+		
+		Mw_WordGameOne wordgameOne5 = new Mw_WordGameOne();
+		wordgameOne2.setWord("자바에서 boolean 데이터 타입은 어떤 값들을 가질 수 있는가?", "true/false", "ooo/oooo형식으로 답해라 초보야");
+		wordglist.add(wordgameOne5);
+		
+		Mw_WordGameOne wordgameOne6 = new Mw_WordGameOne();
+		wordgameOne2.setWord("자바에서 문자열을 저장하는 데 사용하는 데이터 타입은?", "String", "힌트가 필요할까?");
+		wordglist.add(wordgameOne6);
+		
+		Mw_WordGameOne wordgameOne7 = new Mw_WordGameOne();
+		wordgameOne2.setWord("자바에서 두 값을 비교할 때 사용하는 연산자는?", "==", "연산자만 입력해라");
+		wordglist.add(wordgameOne7);
+		
+		Mw_WordGameOne wordgameOne8 = new Mw_WordGameOne();
+		wordgameOne2.setWord("자바에서 산술 연산자 중 나머지를 구하는 연산자는?", "%", "연산자만 입력해라. 답도 없는 녀석아");
+		wordglist.add(wordgameOne8);
+		
+		Mw_WordGameOne wordgameOne9 = new Mw_WordGameOne();
+		wordgameOne2.setWord("자바에서 메서드를 정의할 때 반환값이 없을 경우 사용하는 키워드는?", "void", "메서드가 값을 반환하지 않을 때 사용한다... 이제 지치는군");
+		wordglist.add(wordgameOne9);
+		
+		Mw_WordGameOne wordgameOne10 = new Mw_WordGameOne();
+		wordgameOne2.setWord("자바에서 메서드를 정의할 때 반환값이 없을 경우 사용하는 키워드는?", "break", "반복문을 빠져나갈때 사용한다 .. 알겠나?");
+		wordglist.add(wordgameOne10);
+		
+		
+		
+		
+		int ctn = 0; //정답
+		int wctn = 2; // 오답
 			for(int i =0; i<wordglist.size(); i++) {
 				System.out.println(i);
-				System.out.println("자 " + i+1 +" 번째 문제다.");
+				
+				System.out.println("자 " + (i+1) +" 번째 문제다.");
+				chOne.CharcterInfoLife();
 				wordglist.get(i).getWordHint();
 				String answer = in.nextLine();
-				if(answer.equals(wordglist.get(i).getWord())) {
+				if(answer.equals(wordglist.get(i).getmeaning())) {
 					System.out.println("정답이다.. 자바력이 높은 아이구나");
 					ctn++;
 				}else {
+					wctn--;
+					
+					if(wctn == 0) {
+						System.out.println("Game Over");
+						break;
+					}
 					System.out.println("wrong !");
+					chOne.setHealth(wctn);
 				}
+				    
+		           
 			}
+			 System.out.println("날 이기다니 제법이구나.. ");  // 현재 체력 출력
+	            delayO();
+	            System.out.println("하지만 이제부터 시작이다 ");
+	            delayO();
+	            System.out.println("맞힌갯수: "+ ctn + "생명" + chOne.getHealth());
 			
-		
-		
+			
+			
+			
 	}
+	
+	public void delayO () { // 딜레이 메서드
+	try {			
+	      for (int i = 0; i < 1; i++) {	    	  
+	    	  
+	          TimeUnit.SECONDS.sleep(1);		        
+	      }
+	    } catch (Exception e) {
+	      System.out.println(e);
+	    }
+    }
 	
 		
 	

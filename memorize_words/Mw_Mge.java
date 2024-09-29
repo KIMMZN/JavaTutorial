@@ -16,15 +16,10 @@ public class Mw_Mge {
 		
 		//login();
 		Scanner in = new Scanner(System.in);
-		System.out.println("id를 입력하시오");
-		String tempi = in.nextLine();
-		System.out.println("패스워드를 입력하시오");
-		String tempp = in.nextLine();
+	
 		
-		
-		if(clientMg.findIdxOfIdPass(tempi, tempp) != -1) {
 			while(true) {
-				System.out.println("*로그인*         "+ tempi + "님 환영합니다");
+				
 				System.out.println("단어암기장");
 				System.out.println("0.전설의게임 자바드래곤 플레이");
 				System.out.println("1.전체단어 테스트");
@@ -73,11 +68,7 @@ public class Mw_Mge {
 					break;
 				}
 			}
-			
-		}else {
-			System.out.println("아이디 / 비밀번호가 일치하지 않습니다");
-			
-		}
+		
 		
 		
 		

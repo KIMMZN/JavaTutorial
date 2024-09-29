@@ -5,7 +5,7 @@ public class Mw_Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		new Mw_Mge();
+		new Mw_MainMenu();
 	}
 
 }

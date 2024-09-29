@@ -1,0 +1,86 @@
+1.컨셉 정의
+단어장
+회원가입하여 아이디가 등록된 회원만 단어장 실행이 가능하고
+회원가입에는 ID , 패스워드, 이름, 폰넘버의 정보가 필요하다.
+단어는 한글과 영어단어의 조합이다
+단어의 테스트,추가,삭제,수정,전체보기,종료기능이 있다.
+단어 테스트 할때는 처음부터 테스트 하는 기능이 있고
+오답만 테스트하는 기능이 있다.
+
+
+1.기술회의
+<기술회의>
+프로젝트명: memorize_words
+네이밍규칙: 카멜표기법 동사 +명사
+소통방식은 : 카카오톡
+소스공유 : 깃 , 공유폴더, 카톡
+
+2.클래스 구분
+클래스 구분                                                              의존
+1.시작 클래스                                                        2. 메인메뉴 객체
+2.메인 메뉴                                                           3.단어관리 객체
+
+3.단어관리 클래스 (테스트,추가,삭제,수정,전체보기,종료기능)        2. 단어를 저장할 객체
+4.단어를 저장할 객체 한개                                   			        
+
+---------------------
+3. 클래스의 의존관계 변수 선언및 주소 할당 방법 선택
+
+클래스명                                           의존변수명
+
+1.Mw_Main (메인)                                new Mw_MainMenu()
+2.Mw_MainMenu (메인메뉴)                    Mw_Mge mwMge = null
+3.Mw_Mge (단어관리)                            Mw_Client_Mg clientMg = null;
+4.Mw_One (단어하나)
+5.Mw_Client_Mg (회원관리)		    Mw_Mge mwMge = null;
+6.Mw_Clietnt_One (회원하나)
+ 
+
+4. 클래스의 메서드만 정의 (매개변수와 리턴값을 고려)
+
+1.메인클래스 >> public static void main(String[] agrs);
+
+2.메인메뉴클래스 >> public void menu() ////메인메뉴,메뉴정의
+
+3.단어관리클래스>> 
+ArrayList<Mw_One> wordList = new ArrayList<>();
+ArrayList<Mw_One> wrongAnswerList = new ArrayList<>();
+public void menu()           // 메뉴 메서드
+public void addWord()       // 단어 추가 메서드
+public boolean ewordCheck(String check)  // 영어단어 중복체크 메서드
+public void viewAll()  //전체보기 메서드
+public void remove()  //삭제 메서드
+public int findidx(String temp)  //중복이면 i값 리턴 메서드
+public void setWord ()  // 수정 메서드
+public void testWords() { //단어 테스트 메서드
+public void wrongAnswer() { //틀린정답 재확인 메서드
+public int kwordCheck (String temp1) //한글단어 확인 메서드
+public void login() // 로그인 기능 메서드
+
+4. 단어하나클래스 >> 
+String Eword = null;
+String Kword = null;
+public void prt()  // 추가된단어 전체보기메서드
+public void addEword(String Eword) // 영어단어추가메서드
+public void addKword(String kword) // 한글단어추가메서드
+
+5. 회원관리클래스 >>
+public void clientMenu() // 회원관리메뉴메서드
+public void addId()  // id 추가 메서드
+public boolean idCheck(String check)  // id 중복체크 메서드 
+public boolean phoneCheck(String check)  // 폰 넘버 중복체크 메서드
+public void viewAll() //전체보기 메서드
+public void editPassWord() //회원정보 수정 메서드
+public void remove()     //탈퇴 메서드                     
+public int findidx(String temp) //중복 확인 메서드
+public int findIdxOfIdPass(String tId, String tPass ) //아이디,비밀번호 중복 확인 메서드
+
+6.회원하나 클래스 >>
+public void prt() { // 전체보기 메서드
+public void addId(String id) { // 아이디 등록 메서드
+public String getId() {    // 아이디 조회 메서드
+public void addName(String name) { // 이름 등록 메서드
+public void addPassword(String password) { // 패스워드 등록 메서드
+public String getPassword() { // 패스워드 조회 메서드
+public void addPhoneNumber(String phonenumber) { // 폰넘버 등록 메서드
+public String getPhoneNumber() { // 폰넘버 조회 메서드

@@ -1,3 +1,58 @@
+
+음
+
+테스트를 기능을 전체 단어 테스트와
+                     오답 테스트로 나누어 야 ??
+음
+
+아이디도 추가해서
+아이디 입력해야 실행되게 해볼까 ?
+
+
+
+
+1.Mw_Client_Mg          // Mw_clietnt_One    // ArrayList<Mw_Clietnt_One> clientList = new ArrayList<>()
+2.Mw_Clietnt_One
+
+1. id 등록/수정/삭제/전체보기         
+2. 고객정보 - id , 이름, 핸드폰번호
+-----------
+1.
+
+
+
+
+
+2.  String id = null;
+	String password = null;
+	String name = null;
+	String phonenumber = null;
+
+public void prt() {
+		
+	}
+	
+	public void addId(String id) { // 아이디
+		this.id  = id;
+		
+	}
+	
+	public void name(String name) { // 이름
+		this.name = name;
+		
+	}
+	public void phonenumber(String phonenumber) { // 폰넘버
+		this.phonenumber = phonenumber;
+		
+	}
+
+
+
+
+
+잠깐
+
+
 package memorize_words;
 
 import java.util.ArrayList;
@@ -7,26 +62,18 @@ public class Mw_Mge {
 	ArrayList<Mw_One> wordList = new ArrayList<>();
 	ArrayList<Mw_One> wrongAnswerList = new ArrayList<>();
 	Mw_Client_Mg clientMg = null;
-	Mw_WordGameMain wordGame = null;
+	
+
+
 	
 	public void menu() {
-		if (wordGame == null) {
-			wordGame = new Mw_WordGameMain();
-		}
-		
-		//login();
 		Scanner in = new Scanner(System.in);
-		System.out.println("id를 입력하시오");
-		String tempi = in.nextLine();
-		System.out.println("패스워드를 입력하시오");
-		String tempp = in.nextLine();
-		
+		login();
 		
 		if(clientMg.findIdxOfIdPass(tempi, tempp) != -1) {
 			while(true) {
-				System.out.println("*로그인*         "+ tempi + "님 환영합니다");
+				
 				System.out.println("단어암기장");
-				System.out.println("0.전설의게임 자바드래곤 플레이");
 				System.out.println("1.전체단어 테스트");
 				System.out.println("2.오답 테스트");
 				System.out.println("3.단어추가");
@@ -39,11 +86,7 @@ public class Mw_Mge {
 				if(select == 1) {
 					//System.out.println("1.테스트");
 					testWords();
-				}else if(select == 0) {
-					System.out.println("자바 드래곤");
-					wordGame.gameMenu();
-				}
-				else if(select == 2) {
+				}else if(select == 2) {
 					//System.out.println("오답 테스트");
 					if(wrongAnswerList.isEmpty() != true) {
 						wrongAnswer();
@@ -69,7 +112,7 @@ public class Mw_Mge {
 					viewAll();
 					
 				}else if(select == 7) {
-					System.out.println("돌아가기");
+					System.out.println("6.종료");
 					break;
 				}
 			}
@@ -78,8 +121,6 @@ public class Mw_Mge {
 			System.out.println("아이디 / 비밀번호가 일치하지 않습니다");
 			
 		}
-		
-		
 		
 		
 		
@@ -189,7 +230,9 @@ public class Mw_Mge {
 	 
 	 public void testWords() { //단어 테스트 메서드
 			 if(wordList.isEmpty() != true) {
+				 
 				 Scanner in = new Scanner(System.in);
+				 
 				 int ctcnt =0;
 				 System.out.println("한글로 단어의 뜻을 입력하시오");
 				 
@@ -204,6 +247,7 @@ public class Mw_Mge {
 						 System.out.println("오답");
 						 //생각하자. i가 필요하다. 아니면 주소값을 또다른 리스트에 저장하자
 						 wrongAnswerList.add(word);
+						 
 					 }
 				 }
 				 
@@ -271,5 +315,20 @@ public class Mw_Mge {
 		 return -1;
 	 }
 	 
+	 public void login() {
+
+			Scanner in = new Scanner(System.in);
+			System.out.println("id를 입력하시오");
+			String tempi = in.nextLine();
+			System.out.println("패스워드를 입력하시오");
+			String tempp = in.nextLine();
+		 
+	 }
+	 
+	 
+	
+	
 
 }
+
+

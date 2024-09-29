@@ -22,7 +22,7 @@ public class Mw_WordGameCharcater {
 		
 	}
 	
-	public String getName() { //이름 추가메서드 //시 등급도 추가
+	public String getName(String name) { //이름 추가메서드 //시 등급도 추가
 		
 		return name;
 		

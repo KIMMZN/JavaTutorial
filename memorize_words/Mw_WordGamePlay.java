@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class Mw_WordGamePlay {	
 	ArrayList<Mw_WordGameCharcater> chlist = new ArrayList<>();
 	ArrayList<String> typelist = new ArrayList<>();
-	boolean skip = true;
+	ArrayList<Mw_WordGameOne> wordglist = new ArrayList<>();
 	
 	
 	public void JavaDragon() {
@@ -99,6 +99,8 @@ public class Mw_WordGamePlay {
 		in.nextLine();
 		if(temp == 1) {
 			System.out.println("용기있는 인간이군 ... 너의 자바 실력을 보도록 하겠다");
+			 addWord();
+			
 		}else if(temp == 2) {
 			System.out.println("용기없는 벌레는 죽어라 !!!");
 			System.out.println("크아아아앙");
@@ -108,6 +110,32 @@ public class Mw_WordGamePlay {
 			
 		
 		}
+	
+	
+	
+	public void addWord() {
+		Mw_WordGameOne wordgameOne = new Mw_WordGameOne();
+		Scanner in = new Scanner(System.in);
+		wordgameOne.setWord("자바에서 정수형 int는 몇 바이트(byte) 인가?", "4byte", "이런 easy한 문제는 힌트따위 없다");
+		wordgameOne.setWord("자바에서 claas는 무엇과 무엇으로 구성되어 있는가? (ooㅇo/ooo 형태로 입력)", "멤버변수/메서드", "이런 easy한 문제는 힌트따위 없다");
+		wordglist.add(wordgameOne);
+		int ctn = 0;
+		
+			for(int i =0; i<wordglist.size(); i++) {
+				System.out.println("자 " + i+1 +" 번째 문제다.");
+				wordglist.get(i).getWordHint();
+				String answer = in.nextLine();
+				if(answer.equals(wordglist.get(i).getWord())) {
+					System.out.println("정답이다.. 자바력이 높은 아이구나");
+					ctn++;
+				}else {
+					System.out.println("wrong !");
+				}
+			}
+			
+		
+		
+	}
 	
 		
 	

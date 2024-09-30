@@ -226,19 +226,23 @@ public class Mw_WordGamePlay {
 				
 				System.out.println("자 " + (i+1) +" 번째 문제다.");
 				//
-				try {			
-				      for (int j = 1; i < 5; j++) {	    	  
-				    	  System.out.println("");
-				          TimeUnit.SECONDS.sleep(1);		        
-				      }
-				    } catch (Exception e) {
-				      System.out.println(e);
+				chOne.CharcterInfoLife();
+				   try {			
+					      for (int j = 5; j >= 1; j--) {	    	  
+					    	  System.out.println("                     "+j+ "초 안에 대답해라");
+					    	  if(j==5) {
+					    		  wordglist.get(ran).getWordHint();
+					    	  }
+					          TimeUnit.SECONDS.sleep(1);		        
+					      }
+					    } catch (Exception e) {
+					      System.out.println(e);
 				    }
 				
 				//
-				chOne.CharcterInfoLife();
 				
-				wordglist.get(ran).getWordHint();
+				
+				
 				String answer = in.nextLine();
 				if(answer.equals(wordglist.get(ran).getmeaning())) {
 					System.out.println("정답이다.. 자바력이 있는것 같구나");

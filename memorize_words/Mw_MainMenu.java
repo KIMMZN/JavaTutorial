@@ -6,7 +6,7 @@ public class Mw_MainMenu {
 
 	Mw_Mge mw_mge = null;
 	Mw_Client_Mg mw_client_mg = null;
-	
+	//Mw_WordGameMain wordGameMain = null; // play - gamemain - mge - mainmenu
 	
 	Mw_MainMenu () {
 		
@@ -31,7 +31,10 @@ public class Mw_MainMenu {
         if(mw_mge.wordGame.wgplay == null) {
         	mw_mge.wordGame.wgplay = new Mw_WordGamePlay();
         }
+        
         mw_mge.wordGame.wgplay.mgemge = mw_client_mg;
+        
+        mw_mge.wordGame.wgplay.wordGameMain = mw_mge.wordGame; // 추가
 		
 		menu();
 	}

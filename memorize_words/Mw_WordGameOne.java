@@ -6,7 +6,7 @@ public class Mw_WordGameOne {
 	String meaning = null;
 	String hint = null;	
 	
-	public void setWord(String word, String meaning, String hint) {
+	public void setWord(String word, String meaning, String hint) { //문제, 뜻, 힌트를 저장하는 메서드.
 		this.word = word;
 		this.meaning = meaning;
 		this.hint = hint;

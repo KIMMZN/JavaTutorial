@@ -160,7 +160,7 @@ public class Mw_Client_Mg {
 	 }
 	 //
 	 
-	 public void remove() { //id탈퇴 메서드
+	 public void remove() { //id삭제 메서드
 		 Scanner in = new Scanner(System.in);
 		 System.out.println("id를 입력하시오");
 		 //in.nextLine();

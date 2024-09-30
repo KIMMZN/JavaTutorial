@@ -7,6 +7,7 @@ public class Mw_WordGameMain {
 	Mw_WordGamePlay wgplay = null;
 	//Mw_WordGamePlay wgplay = new Mw_WordGamePlay();
 	Mw_Client_Mg clientmg = null;
+	String tempi = null;
 	
 	
 	public void gameMenu() {
@@ -14,7 +15,7 @@ public class Mw_WordGameMain {
 		
 		Scanner in = new Scanner(System.in);
 		System.out.println("id를 입력하시오");
-		String tempi = in.nextLine();
+		tempi = in.nextLine();
 		System.out.println("패스워드를 입력하시오");
 		String tempp = in.nextLine();
 		

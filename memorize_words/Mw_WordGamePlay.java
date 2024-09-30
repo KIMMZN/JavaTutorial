@@ -10,8 +10,12 @@ public class Mw_WordGamePlay {
 	ArrayList<String> typelist = new ArrayList<>();
 	ArrayList<Mw_WordGameOne> wordglist = new ArrayList<>();
 	//ArrayList<Mw_WordGameOne> dupWordglist = new ArrayList<>();
+	Mw_WordGameMain wordGameMain = null; // play - gamemain - mge - mainmenu
+	
 	Mw_Client_Mg mgemge = null;
-	public String dEvaluation;
+	public String dEvaluation;//평가
+	
+	
 	
 	public int ctn = 0;  // 맞힌 문제 수를 저장할 변수
 	private boolean prologue = false;  // 프롤로그 출력 여부를 확인하는 변수
@@ -192,7 +196,22 @@ public class Mw_WordGamePlay {
 		wordgameOne10.setWord("자바에서 루프를 즉시 종료할 때 사용하는 키워드는?", "break", "반복문을 빠져나갈때 사용한다 .. 알겠나?");
 		wordglist.add(wordgameOne10);
 		
+		Mw_WordGameOne wordgameOne11 = new Mw_WordGameOne();
+		wordgameOne11.setWord("자바에서 package내에서만 접근 가능하게 하는 접근제어자는?", "default", "기본을 해라 ..");
+		wordglist.add(wordgameOne11);
 		
+		Mw_WordGameOne wordgameOne12 = new Mw_WordGameOne();
+		wordgameOne12.setWord("자바에서 모든 package에서 접근 가능하게 하는 접근제어자는?", "public", "힌트는 없다");
+		wordglist.add(wordgameOne12);
+		
+		Mw_WordGameOne wordgameOne13 = new Mw_WordGameOne();
+		wordgameOne13.setWord("자바에서 class내에서만 접근 가능하게 하는 접근제어자는?", "private", "접근제어자는 쉽다.. 힌트는 없어");
+		wordglist.add(wordgameOne13);
+		
+
+		Mw_WordGameOne wordgameOne14 = new Mw_WordGameOne();
+		wordgameOne14.setWord("은닉화를 구현하기 위해 자바에서는 무엇을 사용하나?", "접근 제어자", "힌트는 띄어쓰기를 하라는거다");
+		wordglist.add(wordgameOne14);
 		
 		
 		
@@ -206,6 +225,17 @@ public class Mw_WordGamePlay {
 				checkdup.add(ran);
 				
 				System.out.println("자 " + (i+1) +" 번째 문제다.");
+				//
+				try {			
+				      for (int j = 1; i < 5; j++) {	    	  
+				    	  System.out.println("");
+				          TimeUnit.SECONDS.sleep(1);		        
+				      }
+				    } catch (Exception e) {
+				      System.out.println(e);
+				    }
+				
+				//
 				chOne.CharcterInfoLife();
 				
 				wordglist.get(ran).getWordHint();
@@ -255,6 +285,13 @@ public class Mw_WordGamePlay {
 	        System.out.println("Gave Over");
 	    }
 	    System.out.println("=====================");
+	    
+	    if(mgemge.findidx(wordGameMain.tempi) == -1) { // id에 스코어 추가.
+	    	
+	    	mgemge.clientList.get(mgemge.findidx(wordGameMain.tempi)).setScore(scorePercentage);
+	    }
+	    //mgemge.clientList.get(0).
+	    
 	}
 	
 	public void ScoreInfo() { // 이름별 점수확인 메서드
@@ -275,6 +312,8 @@ public class Mw_WordGamePlay {
 	      System.out.println(e);
 	    }
     }
+	
+	 
 	
 		
 	

@@ -10,6 +10,28 @@ public class Mw_Clietnt_One {
 	String password = null;
 	String name = null;
 	String phonenumber = null;
+	//
+	int score = 0;
+	String playerName = null;
+	
+	void setScore(int score) { // 스코어 입력
+		this.score = score;
+		
+	}
+	
+	int getScore() { // 스코어 조회
+		return score;
+		
+	}
+	
+	
+	
+	void playerName(String playerName) { // 플레이어 네임 입력
+		this.playerName = playerName;
+	}
+	
+	
+	
 	
 	public void prt() { // 전체보기 메서드
 		System.out.println("회원정보");
@@ -46,6 +68,7 @@ public class Mw_Clietnt_One {
 	public String getPhoneNumber() { // 폰넘버 조회 메서드
    	 			return phonenumber;
     }
+	
 	
     
 	

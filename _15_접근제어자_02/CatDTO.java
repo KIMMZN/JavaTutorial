@@ -3,6 +3,7 @@ package _15_접근제어자_02;
 public class CatDTO {
 	private String name = null;
 	private int age = 1;
+	
 	//멤버변수는 은닉화 시킨다. 무엇으로? 접근제어자로
 	// 은닉화 시키면 CatDTO클래스 외부에서 변수에 /
 	// 참조를 어떻게 하려고??

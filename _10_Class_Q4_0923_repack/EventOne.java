@@ -7,5 +7,7 @@ public class EventOne {
 	public void prt() {
 		System.out.println(title);
 		System.out.println(memo);
+		
+		
 	}
 }

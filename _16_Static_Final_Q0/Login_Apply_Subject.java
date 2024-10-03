@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Login_Apply_Subject {
-	ArrayList<Login_Apply_Subject_One> laslist = new ArrayList <>();
+	//ArrayList<Login_Apply_Subject_One> laslist = new ArrayList <>();
 	Subject_Student_menu subjectMenu;
 	
 	 public Login_Apply_Subject(Subject_Student_menu subjectMenu) {
@@ -44,8 +44,18 @@ public class Login_Apply_Subject {
 		String temp = in.nextLine();
 		if (Subject_mg.idxcheck(temp) != -1) {
 					String loginIdCheck= subjectMenu.loginId;
-					idsubone.setSubjectId(temp, loginIdCheck);
-					laslist.add(idsubone);
+					
+					
+					//idsubone.setSubjectId(temp, loginIdCheck);
+					//laslist.add(idsubone);
+					// 학생 객체 찾기
+		            for (Student_one student : Student_mg.slist) {
+		                if (student.getId().equals(loginIdCheck)) {
+		                    student.addSubject(temp); // 학생 객체에 과목 추가
+		                    System.out.println("수강신청이 완료되었습니다");
+		                    return;
+		                }
+		            }
 			
 			System.out.println("수강신청이 완료되었습니다");
 		}else {

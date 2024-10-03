@@ -95,7 +95,7 @@ public class Student_mg {
 		
 		for(int i=0; i<slist.size(); i++)
 				if(slist.get(i).getName().contains(tempname1)) {
-					slist.get(i).nameinfo();
+					slist.get(i).nameInfo();
 				}
 	}
 	

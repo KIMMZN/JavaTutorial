@@ -66,7 +66,8 @@ public class Subject_Student_menu {
 							lasmenu.menu();
 						}else if(select == 4) {
 							System.out.println("4.수강신청리스트");
-							viewSubject ();
+							viewApply();
+							//viewSubject ();
 						}else if(select == 5) {
 							System.out.println("종료");
 						}
@@ -134,11 +135,24 @@ public class Subject_Student_menu {
 	    	 
 	}
 	
+	/*
 	public void viewSubject () {
 		System.out.println("id : " + loginId);
 		for(int i =0; i<lasmenu.laslist.size(); i++) {
 			lasmenu.laslist.get(i).subjectInfo();
 		}
+	}*/
+	
+	public void viewApply() {
+		for(Student_one students : studentmg.slist) {
+			students.applyList();
+		}
+		
+		
+		//for(int i =0; i<studentmg.slist.size(); i++) {
+		//	studentmg.slist.get(i).applyList();
+		//}
+		
 	}
 
 	

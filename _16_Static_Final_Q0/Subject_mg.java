@@ -58,6 +58,7 @@ public class Subject_mg {
 	static public int idxcheck (String temp) { // 교과목 중복확인 메서드 // 중복 i return
 	for(int i=0; i<sublist.size(); i++) {
 		if(temp.equals(sublist.get(i).getSubjectName())) {
+				 // 중복이면 i값 리턴
 			return  i; // 중복이면 i값 리턴
 		}
 	}

@@ -1,6 +1,5 @@
 package _16_Static_Final_Q0;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Login_Apply_Subject {
@@ -35,19 +34,21 @@ public class Login_Apply_Subject {
 	}
 	
 	public void add(Subject_Student_menu subjectMenu) {
-		//this.subjectMenu = subjectMenu;
-		
-		Login_Apply_Subject_One idsubone = new Login_Apply_Subject_One();
-		
+	
 		Scanner in = new Scanner(System.in);
 		System.out.println("수강하고 싶은 과목을 입력하시오");
 		String temp = in.nextLine();
 		if (Subject_mg.idxcheck(temp) != -1) {
 					String loginIdCheck= subjectMenu.loginId;
+					for(int i =0; i<Student_mg.slist.size(); i++) {
+						if(Student_mg.slist.get(i).getId().equals(loginIdCheck)) {
+							Student_mg.slist.get(i).addSubject(temp);
+							return;
+						}
+						
+					}
 					
 					
-					//idsubone.setSubjectId(temp, loginIdCheck);
-					//laslist.add(idsubone);
 					// 학생 객체 찾기
 		            for (Student_one student : Student_mg.slist) {
 		                if (student.getId().equals(loginIdCheck)) {

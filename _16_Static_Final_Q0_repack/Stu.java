@@ -14,7 +14,7 @@ public class Stu {
 	private ArrayList<Part> myList=
 			new ArrayList<>();
 	
-	private PartMge partMge= null;
+	private PartMge partMge= null; //초기화
 	private Scanner in = new Scanner(System.in);
 	
 	private void add() {

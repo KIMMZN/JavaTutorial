@@ -33,6 +33,7 @@ public class MainMenu {
 		Scanner in = new Scanner(System.in);
 		System.out.println("로그인 하세요<id입력>");
 		String id = in.nextLine();
+		
 		nowUser = stuManager.loginID(id);
 		if(nowUser == null) {
 			System.out.println("아이디 없음");

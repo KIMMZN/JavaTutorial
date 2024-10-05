@@ -71,7 +71,7 @@ public class MainMenu {
 		}else {
 			System.out.println("정보없습니다");
 		}
-		studentmge.getSlist().get(0).getId();
+		
 	}
 	
 

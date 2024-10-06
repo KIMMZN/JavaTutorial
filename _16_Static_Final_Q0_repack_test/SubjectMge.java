@@ -6,6 +6,10 @@ import java.util.Scanner;
 public class SubjectMge {
 	ArrayList<Subject>sublist = new ArrayList<>();
 	
+	public ArrayList<Subject> getSublist() { //게터
+		return sublist;
+	}
+
 	SubjectMge() {
 		
 	}

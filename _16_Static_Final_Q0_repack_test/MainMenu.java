@@ -3,9 +3,9 @@ package _16_Static_Final_Q0_repack_test;
 import java.util.Scanner;
 
 public class MainMenu {
-	StudentMge studentmge = null;
-	SubjectMge subjectmge = null;
-	Student student = null; // 초기화
+	private StudentMge studentmge = null;
+	private SubjectMge subjectmge = null;
+	private Student userOne = null; // 초기화
 	
 	MainMenu() {
 		
@@ -68,10 +68,15 @@ public class MainMenu {
 		
 		if(nowUser != null) {
 			System.out.println("로그인 되었습니다");
-		}else {
-			System.out.println("정보없습니다");
-		}
+			userOne.menu(subjectmge);
 		
+			//수강신청메뉴 , 신청리스트
+			//- <로그인 기능 선택> 로그인을 하면 수강신청 메뉴와 신청리스트 메뉴가 나온다.
+			// 학생의 전체리스트를 확인 할 때, 수강 신청한 과목의 수를 숫자로 표시한다.
+			
+		}else {
+			System.out.println("ID없음");
+		}
 	}
 	
 

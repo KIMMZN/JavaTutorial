@@ -35,6 +35,7 @@ public class MainMenu {
 		String id = in.nextLine();
 		
 		nowUser = stuManager.loginID(id);
+		System.out.println(nowUser);
 		if(nowUser == null) {
 			System.out.println("아이디 없음");
 		}else {

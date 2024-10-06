@@ -24,6 +24,7 @@ public class Student {
 			
 			System.out.println("1.수강신청");
 			System.out.println("2.신청리스트");
+			System.out.println("3.신청리스트");
 			int seln = in.nextInt();
 			in.nextLine();
 			if(seln == 1) {
@@ -32,6 +33,9 @@ public class Student {
 			}else if(seln == 2) {
 				System.out.println("신청리스트");
 				mylist();
+			}else if(seln == 3) {
+				System.out.println("뒤로가기");
+				return;
 			}else {
 				System.out.println("잘못된접근");
 			}
@@ -41,7 +45,7 @@ public class Student {
 	private void add() {
 		ArrayList<Subject>getList = subjectmge1.getSublist();
 		Scanner in = new Scanner(System.in);
-		System.out.println("숫자를 입력하시오");
+		
 		int i =0;
 		
 		for(Subject getList1 : getList) {
@@ -49,9 +53,11 @@ public class Student {
 			getList1.info();
 			i++;
 		}
+		System.out.println("숫자를 입력하시오");
 		int seln = in.nextInt();
 		in.nextLine();
-		saddlist.add(saddlist.get(seln));
+		saddlist.add(getList.get(seln));
+		System.out.println("입력되었습니다");
 		
 	}
 	private void mylist() {
@@ -90,7 +96,7 @@ public class Student {
 	}
 	
 	public void info() {
-		System.out.println(id + "  " + name + "  " + pnumber + "  " + grade);
+		System.out.println("아이디: "+ id + "  이름: " + name + "  핸드폰번호" + pnumber + "  학년: " + grade+ "  수강한 과목 수: " + saddlist.size());
 		
 	}
 

@@ -40,7 +40,8 @@ public class SubjectMge {
 	
 private void add() { // 등록
 		Subject subject = new Subject();
-		Student studentOne = new Student();
+		//Student studentOne = new Student();
+		
 		System.out.println("등록할 과목을 입력하시오");
 		Scanner in = new Scanner(System.in);
 		String tempSubject = in.nextLine();
@@ -50,11 +51,11 @@ private void add() { // 등록
 			
 			System.out.println("강의실을 입력하시오");
 			String tempClass = in.nextLine();
-			subject.setSubjectClass(tempSubject);
+			subject.setSubjectClass(tempClass);
 			
 			System.out.println("담당교수를 입력하시오");
 			String tempProf = in.nextLine();
-			subject.setSubjectProf(tempSubject);
+			subject.setSubjectProf(tempProf);
 			System.out.println("입력 완료");
 			sublist.add(subject); //ArrayList에 객체 주소 저장
 		}else {

@@ -65,17 +65,19 @@ public class MainMenu {
 		System.out.println("로그인할 아이디를 입력하시오");
 		String temp = in.nextLine();
 		Student nowUser = studentmge.loginID(temp);
+		System.out.println(nowUser);
+		if(nowUser == null) {
+			System.out.println("ID없음");
 		
-		if(nowUser != null) {
-			System.out.println("로그인 되었습니다");
-			userOne.menu(subjectmge);
 		
 			//수강신청메뉴 , 신청리스트
 			//- <로그인 기능 선택> 로그인을 하면 수강신청 메뉴와 신청리스트 메뉴가 나온다.
 			// 학생의 전체리스트를 확인 할 때, 수강 신청한 과목의 수를 숫자로 표시한다.
 			
 		}else {
-			System.out.println("ID없음");
+			System.out.println("로그인 되었습니다");
+			nowUser.menu(subjectmge);
+			//userOne.menu(subjectmge);
 		}
 	}
 	

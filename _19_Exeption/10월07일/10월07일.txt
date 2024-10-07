@@ -1,0 +1,55 @@
+Java : 객체지향언어, 컴파일언어
+예외처리
+오라클연동(DAO,DTO)
+
+예외처리,,
+1. 에러                   vs            예외를 구분
+  error                                   execption
+컴파일언어                             실행중에
+컴파일x                                 예기치못한이슈발생
+↓                                        →오작동 ←사전에 방지
+실행이안됨
+이러는 실행이 안됨, 예외는 실행이 됨
+
+Java에서는 예외를 처리해주는 객체
+→exception에서 정의
+
+exception
+→ Nullpointer ~
+→ Indexoutof
+→ Typemismatch
+
+예외처리방법 2가지
+
+1. 직접처리 - try catch
+try catch란 직접 예외를 처리하는 구문
+try 실행하고 실행중 예외가 발생하면 catch구문 실행.
+finally는 try와 catch 아무거나 실행후  마지막 finally 실행
+
+2. 떠넘기기(누구에게?  call한위치로)
+메서드명() throws exception
+메서드에서 exception 발생시 나를 call한 메서드가 처리
+
+
+컴파일(bin) .class파일
+쓰레드
+jvm
+메서드 스택 힙
+
+
+jvm ㅡ java virutal machine. // java binary 실행
+
+ram 안에
+jvm
+oralce
+
+dto - data transfer object
+java와 oracle의 데이터를 실어나르는 객체
+dto 객체와 오라클의 튜플의 연관성이 있다
+예) 오라클의 튜플이 2개라면 돌려줄때 객체도 2개가 필요하다
+
+oracle
+라이브러리 배포
+소스파일묶음
+
+라이브러리. 자바에서 jar파일로 배포함.배포형식 jar

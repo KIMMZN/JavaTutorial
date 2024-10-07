@@ -46,8 +46,7 @@ public class Student {
 		ArrayList<Subject>getList = subjectmge1.getSublist();
 		Scanner in = new Scanner(System.in);
 		
-		int i =0;
-		
+		int i =0;		
 		for(Subject getList1 : getList) {
 			System.out.println("번호는 : " + i);
 			getList1.info();

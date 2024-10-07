@@ -12,7 +12,7 @@ public class aa {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			File file = new File("Output.txt");
+			File file = new File("Output1.txt");
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter bufferedWriter = new BufferedWriter(writer);
 			bufferedWriter.write(" i love you \n i like you");
@@ -25,7 +25,7 @@ public class aa {
 		
 		
 		try {
-			File file = new File("Output.txt");
+			File file = new File("Output1.txt");
 			FileWriter writer = new FileWriter(file,true);
 			BufferedWriter bufferedWriter = new BufferedWriter(writer);
 			bufferedWriter.write(" human");
@@ -37,7 +37,7 @@ public class aa {
 		
 		try{
 	        //파일 객체 생성
-	        File file = new File("Output.txt");
+	        File file = new File("Output1.txt");
 	         //입력 스트림 생성
 	        FileReader file_reader = new FileReader(file);
 	        BufferedReader bufferedReader = new BufferedReader(file_reader);

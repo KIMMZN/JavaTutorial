@@ -1,0 +1,108 @@
+오늘배울것
+
+클래스 설계
+DTO
+DAO
+
+
+
+디자인
+싱글톤
+static
+final
+
+
+운영체제 아키텍쳐
+: 컴퓨터를 구성하는 하드웨어 자원을 관리하는 역할
+CPU, RAM , HDD, KEYBOARD , LAN 등등을 운영체제가 관리하고 있다
+
+*JVM이 빌려온 자원은 예외처리 해주는게 좋고 반납해주는게 좋다(close();)
+
+RAM
+
+JVM
+| Connection
+Oracle
+
+connection pool (dbcp)
+왜만드나 - 1. 오라클을 공통으로 누구나 사용할수 있게 하려고
+              2. 자원을 무한으로 만들지 않겠다.
+
+
+
+main    fishdto     fishadmin           fishdao(database access object)(crud하려고 많이 만듬)*싱글톤*        db
+
+
+
+
+프로그램 이해할때
+1.패키지 보기
+2.클래스를 어떻게 사용하려고 하는가(멤버변수, 메서드 확인)
+3.메서드를 어떻게 정의해 놨는지 확인
+
+싱글톤 - 외부에서 객체를 못만들게 함 , 자기 자신만 자신의 객체 생성 가능
+
+
+음 프로젝트하면
+재고관리 , 비디오 대여등 웹개발과 관련된것을 하면 좋음
+
+
+------------
+- 개발 준비단계
+빌드 무엇을? 오라클 라이브러리를 빌드 .. 확장자 jar
+IDE : 이클립스
+DBMS : ORACLE 11g r2
+언어: java 1.8
+라이브러리: ojdbc6.jar
+DB Tool: sql developer
+
+
+-주제와 테이블 정의
+주제: 물고기의 아이디와 비밀번호 저장
+
+create table fishdata(
+id varchar2(8) primary key,
+pwd varchar2(4),
+indate timestamp default sysdate);
+
+create table ideadata(
+id varchar
+);
+
+
+
+-구현 기능 정의
+1.등록     개발자 : kim    날짜 : 10-08일
+2.수정     개발자: kim      날짜 10-08일
+3.삭제          **
+4.전체보기         **
+5.자세히 보기         **
+
+-package 나누기 : main / dta/ dao / service
+
+
+preparedstatement는 mapping이 필요함 , ? 있음
+statement는 mapping x
+
+
+트랜잭션 처리
+commit
+rollback 
+
+
+-----
+싱글톤
+
+1.생성자에 private
+2. 멤버변수에 private static 객체이름 변수명 = null;
+3. 싱글톤 코드
+예) public static FishDAO getInstace() {
+		if(fishdao == null) {
+			fishdao = new FishDAO();
+		}
+		return fishdao;
+	}
+4. 객체가 필요한 클래스에서
+FishDAO fishdao = FishDAO.getInstace(); // 싱글톤.getInstance();
+
+

@@ -79,7 +79,7 @@ eword varchar2(20)
 
 
 
-
+한글깨짐 encoding 하자
 -Dfile.encoding=MS949
-
+EUC-KR
 

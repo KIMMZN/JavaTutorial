@@ -1,0 +1,86 @@
+객체지향언어의 특징으로
+다형성이 있는데
+그중의 한 예제가 다형성이다
+
+
+zooinfo h = 호랑이();
+
+--------------------------------------------------------
+추상클래스: - 인스턴스화(객체생성)가  불가능한 클래스.
+		 - 추상 클래스는 일반 메서드와 추상 메서드를 모두 가질 수 있음.
+		 - 인스턴스를 만들 수 없으므로 상속을 통해서만 사용 가능.
+		 - 추상메서드가 한개라도 있으면 무조건 추상클래스가 되어야 한다.
+
+추상메서드: -메서드의 선언만 있고, 구현(메서드의몸체)은 없는 메서드.
+        - 이를 상속받은 자식 클래스에서 *반드시* 구현해야함 
+
+
+추상메서드 예)
+public abstract void kkk();     -- 선언만 하고 구현은 없음
+: subclass가 반드시 override 강제 해야한다.
+
+//암기
+
+* 객체
+-Component 요소
+: 화면을 구성하는 요소
+
+-Container 컨테이너
+:요소를 배치하는 객체
+
+? 이객체는 컴포넌트인가 컨테이너인가 생각
+JFrame은 컨테이너 
+
+이벤트 같은 기능이 필요하면
+implements actionlister로부터 구현 받는다.
+그 기능이 발생했을때
+내가 어떤 서비스를 정의 할것인가
+actionperformed(actionevent e) {
+정의한다
+}
+
+
+오늘 과제 쿼리
+create table wordlove (
+num number(3) primary key,
+kword varchar2(20),
+eword varchar2(20)
+);
+
+
+CREATE SEQUENCE wordnum
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 9999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+
+
+
+desc wordlove;
+select * from wordlove;
+delete from wordlove;
+drop table wordlove;
+
+create table wordlove (
+num number(3) primary key,
+kword varchar2(20),
+eword varchar2(20)
+);
+
+
+
+
+
+
+
+
+
+
+
+-Dfile.encoding=MS949
+
+

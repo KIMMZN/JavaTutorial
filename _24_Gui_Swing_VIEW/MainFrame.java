@@ -27,7 +27,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JPanel center_3 = new JPanel();
 	private List wordList =new List(5,false);
 	//리스트
-	
+	JButton c22btn = new JButton("선택단어삭제");
 	
 	
 	//단어저장
@@ -50,9 +50,9 @@ public class MainFrame extends JFrame implements ActionListener {
 		center_p.setBackground(Color.yellow);
 		this.add(title_p, "North");
 		this.add(center_p, "Center");
-		center_1.setBackground(Color.red);
-		center_2.setBackground(Color.cyan);
-		center_3.setBackground(Color.green);
+		center_1.setBackground(Color.magenta);
+		center_2.setBackground(Color.magenta);
+		center_3.setBackground(Color.magenta);
 		
 		center_p.setLayout(new GridLayout());
 		center_p.add(center_1);
@@ -87,7 +87,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		JLabel c221 = new JLabel("단어리스트");
 		//c221.
 		//List c22list = new List();
-		JButton c22btn = new JButton("선택단어삭제");
+		//JButton c22btn = new JButton("선택단어삭제");
 		c22.add(c221,"North");
 		c22.add(wordList,"Center");
 		c22.add(c22btn,"South");
@@ -99,7 +99,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		JLabel c5 = new JLabel("단어수정");		
 		//JButton c5btn=new JButton("수정");
 		JPanel c5c = new JPanel();
-		c5c.setBackground(Color.gray);
+		c5c.setBackground(Color.BLUE);
 		
 		c5c.setLayout(new GridLayout(3, 2));
 		JLabel c8 = new JLabel("수정할번호");
@@ -127,6 +127,8 @@ public class MainFrame extends JFrame implements ActionListener {
 		
 		//리스너 등록
 		c1btn.addActionListener(this);
+		c5btn.addActionListener(this);
+		c22btn.addActionListener(this);
 		//input.addActionListener(this);
 		//
 		//this.setVisible(true);
@@ -143,7 +145,6 @@ public class MainFrame extends JFrame implements ActionListener {
 			wordList.add(i.toString());
 			//worddto.add(i.toString());
 		}
-		
 	}
 	
 	
@@ -152,62 +153,85 @@ public class MainFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == c1btn || e.getSource() == j1 || e.getSource() == j2 
-				|| e.getSource() == c5btn || e.getSource() == j8 
-				|| e.getSource() == j5 || e.getSource() == j6  ) {
+		if(e.getSource() == c1btn) { // 단어 추가
 			
 			//System.out.println("버튼이 클릭 됨");
 			String t = j1.getText();
 			String t2 = j2.getText();
-			String t8 = j8.getText();
-			String t5 = j5.getText();
-			
-			
-			
 			System.out.println("입력하신 글은 : " +t);
 			j1.setText("");
 			j2.setText("");
-			j8.setText("");
-		//	wordList.add(t);
 			
-			//
-		/*	
-			WordDTO worddto = worddao.selectOne(modnum);
-			System.out.println("현재정보");
-			System.out.println("영어단어수정하세요");
-			String eword = in.nextLine();
-			
-			System.out.println("한글단어수정하세요");
-			String kword = in.nextLine();
-			worddto.setKword(kword);
-			
-			worddto.setEword(eword);
-			worddao.update(worddto);
-			
-			*/
-			
-			
-			
-			
-			
-			
-			
-			
-			//
+		    //wordList.add(t);
+		
+			//단어입력
 			WordDTO dto = new WordDTO();
 			dto.setEword(t);
 			dto.setKword(t2);
 			
 			//dto.setTitle(t);
 			worddao.insert(dto); //DB에저장
+			
+			//if(dto.getNum() > 0) {
+				wordList.add(dto.toString()); // 단어 리스트에 추가
+			//}else {
+			//	System.out.println("단어 추가 실패");
+			//}
 			//ideaDao.insert(dto);
-			wordList.add(dto.toString()); // 단어 리스트에 추가
-		}
+		 }
 		
+		 if (e.getSource() == c22btn) { // 삭제
+			 System.out.println("클릭은되나");
+			 int selidx = wordList.getSelectedIndex(); // 클릭한 인덱스 //선택되지 않으면 -1리턴
+			 if(selidx != -1) {
+				 String selectone = wordList.getItem(selidx); //선택한것 String selectone에 저장
+				 //selectone을 .을 기준으로 split()를 통해 나눈다. 배열의 첫번째요소[0]을 가져온다.
+				 //trim()는 앞뒤의 공백제거
+				 int num = Integer.parseInt(selectone.split("\\.")[0].trim());
+				 worddao.delete(num);	//db에서 삭제;			
+				 //loadDB();
+			 }else {
+				 System.out.println("선택 안함");
+			 }
+		     wordList.remove(selidx);
+		     System.out.println("리스트에서 삭제완료");
+		 }
+			
+			if(e.getSource() == c5btn) { //단어 수정
+				
+				int t8 = Integer.parseInt(j8.getText()); // 넘버
+				String t5 = j5.getText(); //영어
+				String t6 = j6.getText(); //한글단어
+				
+
+				//update
+				WordDTO worddto = worddao.selectOne(t8);
+				if(worddto != null) {
+					System.out.println("현재정보");
+					System.out.println("영어단어수정하세요");
+					String eword = t5;
+					System.out.println("한글단어수정하세요");
+					String kword = t6;
+					worddto.setKword(kword);			
+					worddto.setEword(eword);
+					worddao.update(worddto); //
+					
+					//리스트 업데이터
+					int update = t8 - 1;  //인덱스는 0부터
+			        wordList.replaceItem(worddto.toString(), update);  // 기존 항목 대체
+					
+					//wordList.remove(t8-1);
+					//wordList.add(worddto.toString());
+					//wordList.add(t8-1, worddto.toString());
+					
+					
+				}else {
+					System.out.println("수정하는 단어를 찾을수 없습니다");
+				}
+				j8.setText("");
+				j5.setText(""); // 영__--__
+				j6.setText("");
+			}
 	}
 	
-	
-	
-	
-
 }

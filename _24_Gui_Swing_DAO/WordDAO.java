@@ -58,6 +58,14 @@ public class WordDAO {
 		if(conn()) {		//wordnum
 			try {
 				String sql = "insert into wordlove values" +"(wordnum.nextval, ?,?)";
+				
+				//String sql = "insert into wordlove (num, eword, kword) values ("
+				//           + "(SELECT NVL(MIN(num) + 1, 1) AS new_num "
+				 //          + "FROM wordlove w WHERE NOT EXISTS "
+				 //          + "(SELECT 1 FROM wordlove w2 WHERE w2.num = w.num + 1)), ?, ?)";
+				
+				
+				
 				PreparedStatement psmt = conn.prepareStatement(sql);
 				psmt.setString(1, worddto.getKword());
 				psmt.setString(2, worddto.getEword());
@@ -65,7 +73,7 @@ public class WordDAO {
 				//쿼리 실행
 				int resultInt = psmt.executeUpdate();
 				//트랜잭션 처리
-				if(resultInt > 0) {
+				if (resultInt > 0) {
 					conn.commit();
 				}else {
 					conn.rollback();
@@ -164,7 +172,29 @@ public class WordDAO {
 		return null;
 	}
 	
-	
+	public void delete(int temp) {
+		if(conn()) {
+			try {
+				String sql = "delete from wordlove where num = ?";
+				PreparedStatement psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, temp);//(1, number);
+				int resultInt = psmt.executeUpdate();
+				System.out.println("resultint " + resultInt);
+				//트랜잭션 처리
+				if (resultInt > 0) {
+					conn.commit();
+				}else {
+					conn.rollback();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			System.out.println("데이터베이스 개선실패");
+		}
+	}
+  
 	
 
 }

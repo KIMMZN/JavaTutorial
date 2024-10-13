@@ -45,7 +45,7 @@ public class WordDTO {
 	
 	@Override
 	public String toString() {
-		return "WordDTO [num=" + num + ", kword=" + kword + ", eword=" + eword + "]";
+		 return num + ".  영어단어 " + eword + " -  한국단어  " + kword;
 	}
 	
 	

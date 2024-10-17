@@ -69,6 +69,8 @@ public class StuMge {
 		}
 		return null;
 	}
+	
+	
 	private void delete() {
 		Scanner in = new Scanner(System.in);
 		System.out.println("삭제 아이디 입력");

@@ -1,13 +1,13 @@
 package c_Main;
 
-import c_Service.LoginService;
+import c_Service.Login_Service;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		LoginService logins = new LoginService();
+		Login_Service logins = new Login_Service();
 	}
 
 }

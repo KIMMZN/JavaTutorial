@@ -3,6 +3,7 @@ package c_Adm_DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import c_Adm_DTO.Adm_DTO;
@@ -82,16 +83,80 @@ public class Adm_DAO implements Adm_DBdao {
 			System.out.println("커넥션 실패");
 		}
 	}
-	public Adm_DTO admLogin(String id, String pass) {
-		//ArrayList<Adm_DTO> 
+
+
+
+	@Override
+	public boolean admLogin(Adm_DTO admdto) {
+		// TODO Auto-generated method stub
 		if(con()) {
-			
+			try {
+				String sql = "SELECT * FROM c_admin WHERE id LIKE ? AND password LIKE ?";
+				PreparedStatement psmt = con.prepareStatement(sql);
+				
+				psmt.setString(1, "%"+admdto.getID()+"%");
+				psmt.setString(2, "%"+admdto.getPassWord()+"%");
+				ResultSet rs = psmt.executeQuery();
+				if(rs.next()) {
+					return true;
+					
+				}else {
+					return false;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+		}else {
+			System.out.println("실패");
+			return false;
+		}
+		
+		
+	}
+
+
+
+	
+	
+	
+	/*
+	public ArrayList<IdeaDTO> searchOne(String temp) {
+		ArrayList<IdeaDTO> idealist = new ArrayList<>();
+		if(conn()) {
+			try {
+				//String sql = "delete from ideadata where ideanum = ?";			
+				String sql = "select * from ideadata where title like ?";
+				
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				//mapping
+				pstmt.setString(1, "%"+temp+"%");
+				ResultSet rs = pstmt.executeQuery();
+				
+				while(rs.next()) {//next()메서드는 rs에서 참조하는 테이블에서
+								//튜플을 순차적으로 하나씩 접근하는 메서드
+					IdeaDTO IdeaTemp = new IdeaDTO();
+					//rs.getString("id") rs가 접근한 튜플에서 id컬럼의 값을 가져옴
+					IdeaTemp.setIdeaNum(rs.getString("ideanum"));
+					IdeaTemp.setTitle(rs.getString("title"));;
+					IdeaTemp.setText(rs.getString("text"));
+					IdeaTemp.setUeserName(rs.getString("name"));
+					IdeaTemp.setIndate(rs.getString("indate"));
+					idealist.add(IdeaTemp);
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}else {
 			System.out.println("실패");
 		}
-		return null;
+		return idealist;
 	}
+	 */
 	/*
 	public WordDTO selectOne (int findId) {
 		//ArrayList<IdeaDTO> idealist = new ArrayList<>();

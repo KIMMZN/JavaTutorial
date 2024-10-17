@@ -11,5 +11,6 @@ public interface Client_DBdao {
 	//public ArrayList<WordDTO> selectAll();
 	public ArrayList<Client_DTO> listAll();
 	
+	
 
 }

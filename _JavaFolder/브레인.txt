@@ -226,14 +226,22 @@ CREATE SEQUENCE amdin_num
 
 --프로덕츠 테이블
 CREATE TABLE products (
-    num NUMBER(10) PRIMARY KEY,  
-    type VARCHAR2(40) not null,                 
-    name VARCHAR2(40) not null unique,                
+    num NUMBER(10) PRIMARY KEY,
+    Delivery_company varchar2(40),	  
+    type varchar2(20) not null,                 
+    name varchar2(40) not null,                
     info VARCHAR2(255),                
     quantity NUMBER(5) not null,                
     price NUMBER(10) not null,                  
     indate TIMESTAMP DEFAULT SYSDATE   
 );
+
+//1018오늘 추가한것
+ALTER TABLE products
+MODIFY name VARCHAR2(100);
+
+
+
 --프로덕츠 넘버 시퀀스
 CREATE SEQUENCE product_num
     INCREMENT BY 1

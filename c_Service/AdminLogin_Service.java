@@ -5,10 +5,14 @@ import java.util.Scanner;
 import c_Adm_DAO.Adm_DAO;
 import c_Adm_DAO.Adm_DBdao;
 import c_Adm_DTO.Adm_DTO;
+import c_Products_DAO.Products_DAO;
+import c_Products_DAO.Products_DBdao;
 
 public class AdminLogin_Service {
 	Adm_DBdao admdbdao = null;
 	boolean loginflag = true;
+	Products_DBdao pdbdao = null;
+	Product_Service pdservice = null;
 	
 	
 	
@@ -22,6 +26,9 @@ public class AdminLogin_Service {
 	public void init() {
 		if(admdbdao == null) {
 			admdbdao = new Adm_DAO();
+		}
+		if(pdbdao == null) {
+			pdbdao = new Products_DAO();
 		}
 	}
 	
@@ -60,7 +67,7 @@ public class AdminLogin_Service {
 		admdto.setPassWord(pass);
 		if(admdbdao.admLogin(admdto)) {
 			System.out.println("로그인성공");
-			
+			admon();
 			
 		}else {
 			System.out.println("로그인실패");
@@ -90,6 +97,12 @@ public class AdminLogin_Service {
 			admdto.setPhoneNumber(pnumber);
 			admdto.setAddress(address);
 			admdbdao.add(admdto);
+	}
+	
+	public void admon() {
+		if(pdservice == null) {
+			pdservice = new Product_Service(pdbdao);
+		}
 	}
 	
 

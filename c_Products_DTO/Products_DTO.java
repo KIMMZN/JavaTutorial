@@ -5,13 +5,13 @@ import java.sql.Timestamp;
 public class Products_DTO {
 	//컴퓨터 부품 정보
 	public enum ProductType{
-		CPU, 메인보드, 메모리, SSD, HDD, 케이스, 파워, 모니터, 운영체제, 마우스, 키보드, 스피커 
+		CPU, 그래픽카드, 메인보드, 메모리카드, SSD, HDD, 케이스, 파워, 모니터, 운영체제, 마우스, 키보드, 스피커 
 	}
 	
 	
 	//private String type = null;
 	private int num = 0;
-
+	private String delivery_Company = null;
 	private ProductType type = null;
 	private String name = null;
 	private String info = null;
@@ -19,10 +19,28 @@ public class Products_DTO {
 	private int price = 0;
 	private Timestamp indate = null;
 	
-	@Override
-	public String toString() {
-		return "Products_DTO [num=" + num + ", type=" + type + ", name=" + name + ", info=" + info + ", quantity="
-				+ quantity + ", price=" + price + ", indate=" + indate + "]";
+	  @Override
+		public String toString() {
+		  int totalPrice = (quantity * price);
+			//return "Products_DTO [num=" + num + ", delivery_Company=" + delivery_Company + ","
+			//		+ " type=" + type + ", name="
+			//		+ name + ", info=" + info + ", quantity=" + quantity + ", price=" + price +
+			//		", indate=" + indate + "]";
+			
+			return "Products_DTO [num=" + num + ", delivery_Company=" + delivery_Company + ","
+			+ " type=" + type + ", name="
+			+ name + ", info=" + info + ", quantity=" + quantity + ", price(개당)=" + price +
+			", totalPrice="+ totalPrice + ", indate=" + indate + "]";
+			
+		}
+	
+	
+	public String getDelivery_Company() {
+		return delivery_Company;
+	}
+
+	public void setDelivery_Company(String delivery_Company) {
+		this.delivery_Company = delivery_Company;
 	}
 	
 	public int getNum() {

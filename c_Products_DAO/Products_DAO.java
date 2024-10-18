@@ -51,7 +51,8 @@ public class Products_DAO implements Products_DBdao {
 				String sql = "insert into products values" 
 							+"(product_num.nextval, ?,?,?,?,?,?,default)";
 				PreparedStatement psmt = con.prepareStatement(sql);
-				psmt.setInt(1, pddto.getNum());
+				//psmt.setInt(1, pddto.getNum());
+				psmt.setString(1, pddto.getDelivery_Company());
 				psmt.setString(2, pddto.getType().name());
 				psmt.setString(3, pddto.getName());
 				psmt.setString(4, pddto.getInfo());
@@ -92,21 +93,148 @@ public class Products_DAO implements Products_DBdao {
 		 ArrayList<Products_DTO> pdlist = new  ArrayList<>();
 		if(con()) {
 			try {
-				String sql = "select * from c_admin";
+				String sql = "select * from products";
 				PreparedStatement psmt = con.prepareStatement(sql);
 				ResultSet rs = psmt.executeQuery();
 				while(rs.next()) {
 					Products_DTO pdto = new Products_DTO();
 					pdto.setNum(rs.getInt("num"));
+					pdto.setDelivery_Company(rs.getString("Delivery_company"));
 					pdto.setType(ProductType.valueOf(rs.getString("type")));
 					//pdto.setType(rs.getString("type"));
 					pdto.setName(rs.getString("name"));
 					pdto.setInfo(rs.getString("info"));
 					pdto.setQuantity(rs.getInt("quantity"));
 					pdto.setPrice(rs.getInt("price"));
-					pdto.setIndate(rs.getTimestamp("indaste"));
+					pdto.setIndate(rs.getTimestamp("indate"));
 					pdlist.add(pdto);
 				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(con != null) {
+						con.close();
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}else {
+			System.out.println("실패");
+		}
+		return pdlist;
+	}
+
+	@Override
+	public ArrayList<Products_DTO> searchOne(String temp) {
+		// TODO Auto-generated method stub
+		ArrayList<Products_DTO> pdlist = new  ArrayList<>();
+		if(con()) {
+			try {
+				String sql = "select * from products where "+
+							 "name like '%"+temp+"%' or "+
+							 "Delivery_company like '%"+temp+"%' or "+
+							 "type like '%"+temp+"%'";
+				
+				//con.prepareStatement(sql);
+				PreparedStatement psmt =null;
+				psmt = con.prepareStatement(sql);
+				ResultSet rs = psmt.executeQuery();
+				while(rs.next()) {
+					Products_DTO pdto = new Products_DTO();
+					pdto.setNum(rs.getInt("num"));
+					pdto.setDelivery_Company(rs.getString("Delivery_company"));
+					pdto.setType(ProductType.valueOf(rs.getString("type")));
+					pdto.setName(rs.getString("name"));
+					pdto.setInfo(rs.getString("info"));
+					pdto.setQuantity(rs.getInt("quantity"));
+					pdto.setPrice(rs.getInt("price"));
+					pdto.setIndate(rs.getTimestamp("indate"));
+					pdlist.add(pdto);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(con != null) {
+						con.close();
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}else {
+			System.out.println("실패");
+		}
+		return pdlist;
+	}
+
+	@Override
+	public void delete(String temp) {
+		// TODO Auto-generated method stub
+		if(con()) {
+				try {
+					String sql = "delete from products where name = ?";
+					PreparedStatement psmt = con.prepareStatement(sql);
+					psmt.setString(1, temp);
+					int resultInt = psmt.executeUpdate();
+					
+					if(resultInt > 0) {
+						con.commit();
+						System.out.println("삭제");
+					}else {
+						con.rollback();
+						System.out.println("삭제실패");
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally {
+					try {
+						if(con != null) {
+							con.close();
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		}else {
+			System.out.println("실패");
+		}
+	}
+
+	@Override
+	public void update(Products_DTO pddto) {
+		// TODO Auto-generated method stub
+		if(con()) {
+			try {
+				String sql = "update products set"+
+							 " Delivery_company=?,type=?,name=?,info=?,quantity=?,price=? "
+							 + "where num=?";
+				PreparedStatement psmt = con.prepareStatement(sql);
+				psmt.setInt(7, pddto.getNum());
+				psmt.setString(1, pddto.getDelivery_Company());
+				psmt.setString(2, pddto.getType().name());
+				psmt.setString(3, pddto.getName());
+				psmt.setString(4, pddto.getInfo());
+				psmt.setInt(5, pddto.getQuantity());
+				psmt.setInt(6, pddto.getPrice());
+				int upint = psmt.executeUpdate();
+				if(upint > 0) {
+					con.commit();
+					System.out.println("업데이트완료");
+				}else {
+					con.rollback();
+					System.out.println("업데이트실패");
+				}
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -114,11 +242,51 @@ public class Products_DAO implements Products_DBdao {
 		}else {
 			System.out.println("실패");
 		}
-		return pdlist;
 	}
-	
-	
 
+	@Override
+	public Products_DTO selectOne(int temp) {
+		if(con()) {
+			try {
+				String sql = "select * from products where num=?";
+				PreparedStatement psmt = con.prepareStatement(sql);
+				psmt.setInt(1, temp);
+				ResultSet rs = psmt.executeQuery();
+				while(rs.next()) {
+					Products_DTO pdto = new Products_DTO();
+					pdto.setNum(rs.getInt("num"));
+					pdto.setNum(rs.getInt("num"));
+					pdto.setDelivery_Company(rs.getString("Delivery_company"));
+					pdto.setType(ProductType.valueOf(rs.getString("type")));
+					pdto.setName(rs.getString("name"));
+					pdto.setInfo(rs.getString("info"));
+					pdto.setQuantity(rs.getInt("quantity"));
+					pdto.setPrice(rs.getInt("price"));
+					pdto.setIndate(rs.getTimestamp("indate"));
+					return pdto;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(con != null) {
+						con.close();
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}else {
+			System.out.println("실패");
+		}
+		
+		return null;
+	}
+
+	
+	
 }
 
 	

@@ -10,7 +10,7 @@ public interface Client_DBdao {
 	public void add(Client_DTO ctdto);
 	//public ArrayList<WordDTO> selectAll();
 	public ArrayList<Client_DTO> listAll();
-	
+
 	
 
 }

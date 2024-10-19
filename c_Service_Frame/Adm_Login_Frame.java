@@ -29,6 +29,9 @@ public class Adm_Login_Frame extends JFrame implements ActionListener, ItemListe
 	Products_DBdao pdbdao = null;
 	Product_Service pdservice = null;
 	
+	
+	
+	
 	private JPanel title_p = new JPanel();
 	//기본 레이아웃이 flow 레이아웃.. 가운데부터 하나씩 정렬
 	private JLabel title = new JLabel("로그인");
@@ -59,8 +62,11 @@ public class Adm_Login_Frame extends JFrame implements ActionListener, ItemListe
 		init();
 		//admLogin();
 		//
+		//레이아웃 설정
+		//setLayout(null);
+		this.setBounds(0,0,1080,900);
+		center_p.setLayout(null);
 		
-		this.setBounds(500,500,500,500);
 		
 		title_p.add(title);
 		center_p.setBackground(Color.cyan);
@@ -73,7 +79,7 @@ public class Adm_Login_Frame extends JFrame implements ActionListener, ItemListe
 		center_1.setBounds(45,50,400,300);
 		//center_2.setBackground(Color.blue);
 		//
-		center_p.setLayout(null);
+		
 		center_p.add(center_1);
 		//center_p.add(center_2);
 		
@@ -109,7 +115,7 @@ public class Adm_Login_Frame extends JFrame implements ActionListener, ItemListe
 		center_1.add(c1c3, "South");
 		c1btn.addActionListener(this);
 		
-		
+		add(center_p);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		

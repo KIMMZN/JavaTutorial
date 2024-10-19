@@ -9,7 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import c_Adm_DAO.Adm_DBdao;
+import c_Adm_DTO.Adm_DTO;
+
 public class Adm_Join extends JFrame implements ActionListener {
+	Adm_DBdao admdbdao = null;
+	
 	JPanel mainP;  
 	JLabel idLabel; JTextField idTextField;
 	JLabel passLabel; JTextField passTextField;
@@ -96,7 +101,11 @@ public class Adm_Join extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		//if(e.getSource() == )
+		if(e.getSource() == joinButton ) {
+			Adm_DTO admdto = new Adm_DTO();
+			
+			
+		}
 		
 	}
 	

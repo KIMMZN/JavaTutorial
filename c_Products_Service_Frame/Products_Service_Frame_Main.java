@@ -28,6 +28,7 @@ public class Products_Service_Frame_Main extends JFrame implements ActionListene
 ItemListener {
 	Products_DBdao pdbdao = null;
 	Products_Service_Frame_Main_Add psfma = null;
+	Products_Service_Frame_Main psfmain = null;
 	
 	private JPanel northPanel; private JLabel northLabel;
 	private JPanel northSouthPanel; private JLabel northSouthLabel;
@@ -47,7 +48,9 @@ ItemListener {
 	private JScrollPane scrollPane;
 	
 	
-	public Products_Service_Frame_Main () {
+	public Products_Service_Frame_Main (Products_Service_Frame_Main psfmain) {
+		this.psfmain = psfmain;
+		
 		init();
 		this.setTitle("조립 컴퓨터 재고관리 프로그램 v.1.0");
 		this.setLayout(new BorderLayout());
@@ -124,9 +127,13 @@ ItemListener {
 		if(pdbdao == null) {
 			pdbdao = new Products_DAO();
 		}
+		
+		
+
 	}
 	
 	private void loadJdb() { //jtable에 데이터 추가
+		model.setRowCount(0); // 기존행 초기화
 		ArrayList<Products_DTO> pdlist = pdbdao.listAll();
 		
 		for(Products_DTO plist : pdlist) {
@@ -172,6 +179,8 @@ ItemListener {
 	
 	public void reset() {
 		psfma = null;
+		//psfmain = null;
+		loadJdb();
 	}
 	
 	

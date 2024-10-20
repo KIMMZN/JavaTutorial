@@ -69,6 +69,8 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 		
 		this.setTitle("컴퓨터 재고관리 프로그램 v.1.0");
 		this.setSize(1080,800);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
 		//레이아웃 설정
 		this.setLayout(null);
 		JLayeredPane layeredP = new JLayeredPane();
@@ -251,11 +253,9 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 	
 	private void psfm() { // 재고관리객체생성
 		if(psfm == null) {
-			psfm = new Products_Service_Frame_Main();
+			psfm = new Products_Service_Frame_Main(this.psfm);
 		}
 	}
-	
-	
 	
 	
 }

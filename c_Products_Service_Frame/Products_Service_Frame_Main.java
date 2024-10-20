@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -17,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,10 +28,9 @@ import c_Products_DAO.Products_DBdao;
 import c_Products_DTO.Products_DTO;
 
 public class Products_Service_Frame_Main extends JFrame implements ActionListener,
-ItemListener {
+ItemListener, MouseListener {
 	Products_DBdao pdbdao = null;
 	Products_Service_Frame_Main_Add psfma = null;
-	Products_Service_Frame_Main psfmain = null;
 	
 	private JPanel northPanel; private JLabel northLabel;
 	private JPanel northSouthPanel; private JLabel northSouthLabel;
@@ -36,7 +38,14 @@ ItemListener {
 	private JButton button4; private JButton button5;
 	//오른쪽 패널
 	private JPanel eastPanel; private JLabel eastJlabel;
-	private JButton buttona1;private JButton buttona2;private JButton buttona3; 
+	private JButton buttona1;private JButton buttona2;private JButton buttona3;
+	//왼쪽 패널
+	private JPanel westPanel; private JLabel westJlabel6;private JLabel westJlabel2;private JLabel westJlabel3;
+	private JLabel westJlabel4;private JLabel westJlabel5;private JLabel westJlabel7; private JLabel westJlabel1;
+	
+	private JTextField westTextField1;private JTextField westTextField2;private JTextField westTextField3;
+	private JTextField westTextField4;private JTextField westTextField5;private JTextField westTextField6;
+	private JTextField westTextField7;
 	//현재화면크기 가져오기
 	private Toolkit toolkit = Toolkit.getDefaultToolkit();
 	private Dimension screenSize = toolkit.getScreenSize(); // 화면크기
@@ -48,8 +57,7 @@ ItemListener {
 	private JScrollPane scrollPane;
 	
 	
-	public Products_Service_Frame_Main (Products_Service_Frame_Main psfmain) {
-		this.psfmain = psfmain;
+	public Products_Service_Frame_Main () {
 		
 		init();
 		this.setTitle("조립 컴퓨터 재고관리 프로그램 v.1.0");
@@ -85,6 +93,58 @@ ItemListener {
 		buttona1 = new JButton("등록");buttona2 = new JButton("수정");buttona3 = new JButton("삭제");
 		eastPanel.add(buttona1); eastPanel.add(buttona2); eastPanel.add(buttona3);
 		
+		//west panel
+		westPanel = new JPanel();
+		westPanel.setLayout(new GridLayout(14, 1));
+		westPanel.setBackground(Color.white);
+		westPanel.setBorder(new LineBorder(Color.black, 2));
+		westPanel.setPreferredSize(new Dimension(200, this.getHeight()));
+		
+		JLabel westJlabel1 = new JLabel ("공급사");
+		westJlabel1.setOpaque(true);  // JLabel을 불투명하게 설정
+		westJlabel1.setBackground(Color.GRAY);  // 배경색 설정
+		westTextField1 = new JTextField ();
+		JLabel westJlabel2 = new JLabel ("타입");
+		westJlabel2.setOpaque(true);  // JLabel을 불투명하게 설정
+		westJlabel2.setBackground(Color.GRAY);  // 배경색 설정
+		westTextField2 = new JTextField ();
+		JLabel westJlabel3 = new JLabel ("상품명");
+		westTextField3 = new JTextField ();
+		westJlabel3.setOpaque(true);  // JLabel을 불투명하게 설정
+		westJlabel3.setBackground(Color.GRAY);  // 배경색 설정
+		JLabel westJlabel4 = new JLabel ("정보");
+		westTextField4 = new JTextField ();
+		westJlabel4.setOpaque(true);  // JLabel을 불투명하게 설정
+		westJlabel4.setBackground(Color.GRAY);  // 배경색 설정
+		JLabel westJlabel5 = new JLabel ("수량");
+		westTextField5 = new JTextField ();
+		westJlabel5.setOpaque(true);  // JLabel을 불투명하게 설정
+		westJlabel5.setBackground(Color.GRAY);  // 배경색 설정
+		JLabel westJlabel6 = new JLabel ("개당가격");
+		westTextField6 = new JTextField ();
+		westJlabel6.setOpaque(true);  // JLabel을 불투명하게 설정
+		westJlabel6.setBackground(Color.GRAY);  // 배경색 설정
+		JLabel westJlabel7 = new JLabel ("총가격");
+		westTextField7 = new JTextField ();
+		westJlabel7.setOpaque(true);  // JLabel을 불투명하게 설정
+		westJlabel7.setBackground(Color.GRAY);  // 배경색 설정
+		westPanel.add(westJlabel1);
+		westPanel.add(westTextField1);
+		westPanel.add(westJlabel2);
+		westPanel.add(westTextField2);
+		westPanel.add(westJlabel3);
+		westPanel.add(westTextField3);
+		westPanel.add(westJlabel4);
+		westPanel.add(westTextField4);
+		westPanel.add(westJlabel5);
+		westPanel.add(westTextField5);
+		westPanel.add(westJlabel6);
+		westPanel.add(westTextField6);
+		westPanel.add(westJlabel7);
+		westPanel.add(westTextField7);
+		
+		//westPanel
+		
 		//eastJlabel = new JLabel("동쪽임시");
 		//eastPanel.add(eastJlabel);
 		
@@ -113,6 +173,7 @@ ItemListener {
 		//add
 		northPanel.add(northSouthPanel, "South");
 		northPanel.add(northLabel, "East");
+		this.add(westPanel, "West");
 		this.add(eastPanel, "East");
 		this.add(scrollPane, "Center");
 		this.add(northPanel, "North");
@@ -162,10 +223,11 @@ ItemListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == buttona1) {
+		if(e.getSource() == buttona1) {//등록
 			add();
-			
 		}
+		
+		
 		
 	}
 	
@@ -181,6 +243,54 @@ ItemListener {
 		psfma = null;
 		//psfmain = null;
 		loadJdb();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		/*
+		  // 클릭한 셀의 행(row)과 열(column)을 가져옴
+        int row = jtable.rowAtPoint(e.getPoint());
+        int col = jtable.columnAtPoint(e.getPoint());
+
+        // 클릭한 셀의 값을 가져옴
+        Object value = jtable.getValueAt(row, col);
+
+        // 콘솔에 클릭된 셀의 정보 출력
+        System.out.println("클릭된 셀 - 행: " + row + ", 열: " + col + ", 값: " + value);
+
+        if (e.getClickCount() == 2) {  // 더블 클릭 이벤트 처리
+            System.out.println("더블 클릭 - 선택된 셀 값: " + value);
+        }
+		
+		*/
+		
+		
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

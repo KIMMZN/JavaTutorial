@@ -253,7 +253,7 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 	
 	private void psfm() { // 재고관리객체생성
 		if(psfm == null) {
-			psfm = new Products_Service_Frame_Main(this.psfm);
+			psfm = new Products_Service_Frame_Main();
 		}
 	}
 	

@@ -27,6 +27,7 @@ import c_Adm_DAO.Adm_DBdao;
 import c_Adm_DTO.Adm_DTO;
 import c_Products_DAO.Products_DAO;
 import c_Products_DAO.Products_DBdao;
+import c_Products_Service_Frame.Products_Service_Frame_Main;
 import c_Service.Product_Service;
 import c_Service_Frame_Join.Adm_Join;
 
@@ -34,9 +35,11 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 	//
 	Adm_DBdao admdbdao = null;
 	boolean loginflag = true;
-	Products_DBdao pdbdao = null;
-	Product_Service pdservice = null;
+	//Products_DBdao pdbdao = null;
+	//Product_Service pdservice = null;
 	Adm_Join Admjoin = null;
+	Products_Service_Frame_Main psfm = null;
+	
 	
 	private JPanel centerP;
 	private JPanel cneterP_1;
@@ -174,9 +177,9 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 		if(admdbdao == null) {
 			admdbdao = new Adm_DAO();
 		}
-		if(pdbdao == null) {
-			pdbdao = new Products_DAO();
-		}
+		//if(pdbdao == null) {
+		//	pdbdao = new Products_DAO();
+		//}
 	}
 	
 	@Override
@@ -194,23 +197,26 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 				if(e.getSource() == button1 ) {
 					String idTemp = loginField.getText();
 					char[] passTemp = passField.getPassword();
-					
 					//char[]를 string으로 변환
 					String passwordString = new String(passTemp);
-					
-					java.util.Arrays.fill(passTemp, '0');
-					
-					System.out.println(idTemp + "/ " + passwordString );
-					//DTO 저장하고, DAO를 통해서 DB에 저장
-					Adm_DTO amdto = new Adm_DTO();
-					amdto.setID(idTemp);
-					amdto.setPassWord(passwordString);
-					
-					if(admdbdao.admLogin(amdto)) {
-						System.out.println("로그인 성공");
+					if(!idTemp.isEmpty() && !passwordString.isEmpty() ) {
+						java.util.Arrays.fill(passTemp, '0');
+						
+						System.out.println(idTemp + "/ " + passwordString );
+						//DTO 저장하고, DAO를 통해서 DB에 저장
+						Adm_DTO amdto = new Adm_DTO();
+						amdto.setID(idTemp);
+						amdto.setPassWord(passwordString);
+						
+						if(admdbdao.admLogin(amdto)) {
+							System.out.println("로그인 성공");
+							psfm(); //재고관리객체생성 메서드
+						}else {
+							JOptionPane.showMessageDialog(centerP, "ID나 비밀번호를 확인하세요", "로그인 실패", JOptionPane.ERROR_MESSAGE );
+							//System.out.println("실패");
+						}
 					}else {
-						JOptionPane.showMessageDialog(centerP, "ID나 비밀번호를 확인하세요", "로그인 실패", JOptionPane.ERROR_MESSAGE );
-						//System.out.println("실패");
+						JOptionPane.showMessageDialog(centerP, "ID나 비밀번호를 입력하시오", "로그인 실패", JOptionPane.ERROR_MESSAGE );
 					}
 				}
 				//종료 버튼 누를시
@@ -237,9 +243,15 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
         }
     }
 	
-	private void amdJoin() {
+	private void amdJoin() { //회원가입객체생성
 		if(Admjoin==null) {
-			Admjoin = new Adm_Join();
+			Admjoin = new Adm_Join(admdbdao);
+		}
+	}
+	
+	private void psfm() { // 재고관리객체생성
+		if(psfm == null) {
+			psfm = new Products_Service_Frame_Main();
 		}
 	}
 	

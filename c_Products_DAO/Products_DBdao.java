@@ -14,5 +14,7 @@ public interface Products_DBdao {
 	public void update(Products_DTO pddto);
 	public Products_DTO selectOne(int temp);
 	
+	
+	
 
 }

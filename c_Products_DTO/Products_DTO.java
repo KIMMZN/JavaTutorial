@@ -22,10 +22,6 @@ public class Products_DTO {
 	  @Override
 		public String toString() {
 		  int totalPrice = (quantity * price);
-			//return "Products_DTO [num=" + num + ", delivery_Company=" + delivery_Company + ","
-			//		+ " type=" + type + ", name="
-			//		+ name + ", info=" + info + ", quantity=" + quantity + ", price=" + price +
-			//		", indate=" + indate + "]";
 			
 			return "Products_DTO [num=" + num + ", delivery_Company=" + delivery_Company + ","
 			+ " type=" + type + ", name="

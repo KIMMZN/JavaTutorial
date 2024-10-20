@@ -1,0 +1,305 @@
+컴퓨터조립입출고관리프로그램
+
+관리자 ID필요
+관리자로 로그인 한뒤
+컴퓨터 부품들의 입출고를 관리.
+
+CPU
+메인보드
+메모리
+SSD
+HDD
+케이스
+파워
+
+조립비 유무선택 (default 50000)
+모니터 선택
+운영체제 선택 (윈도우스 홈, PRO)
+
+관리자가 등록한 컴퓨터 제품을
+고객이 ID로 로그인 한뒤
+하나씩 선택하여 조립
+조립비 모니터 운영체제 선택가능
+후 결제.
+
+
+
+
+
+
+main 클래스
+메인메뉴프레임
+ - 로그인창 ( 아이디 패스워드 , 회원가입, 관리자로그인,)
+상품재고dao
+상품재고dto
+회원가입dao
+회원가입dto
+
+
+
+
+client 로그인  DTO
+넘버  int
+아이디 string
+비밀번호 stirng
+이름 string
+핸드폰번호 int
+주소 string
+가입일 int
+
+
+고객dto
+private int num = 0;
+	private String ID = null;
+	private String passWord = null;
+	private String name = null;
+	private String phoneNumber = null;
+	private String address = null;
+	private Timestamp indate = null; 
+	
+고객정보 테이블
+
+CREATE TABLE c_client (
+    num NUMBER(9) UNIQUE,
+    id VARCHAR2(20) PRIMARY KEY,
+    password VARCHAR2(20),
+    name VARCHAR2(20),
+    phoneNumber VARCHAR2(15),
+    address VARCHAR2(40),
+    indate TIMESTAMP(6) DEFAULT SYSDATE
+);
+
+고객정보 시퀀스
+CREATE SEQUENCE clien_num
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 999999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+어드민 정보
+CREATE TABLE c_admin (
+    num NUMBER(9) UNIQUE,
+    id VARCHAR2(20) PRIMARY KEY,
+    password VARCHAR2(20),
+    name VARCHAR2(20),
+    phoneNumber VARCHAR2(15),
+    address VARCHAR2(40),
+    indate TIMESTAMP(6) DEFAULT SYSDATE
+);
+
+어드민 정보
+CREATE SEQUENCE amdin_num
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 999999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+-----------------------------
+컴퓨터 부품
+
+CPU
+메인보드
+메모리
+SSD
+HDD
+케이스
+파워
+모니터
+운영체제
+마우스
+키보드
+스피커
+
+
+조립비 유무선택 (default 50000)
+모니터 선택
+운영체제 선택 (윈도우스 홈, PRO)
+
+Products dto
+ 
+상품종류 (메인보드,메모리,ssd등등)
+상품이름
+상품정보
+상품수량
+상품가격(개당)
+
+private String type = null;
+private String name = null;
+private String info = null;
+private int quantity = 0;
+private int price = 0;
+
+테이블 쿼리
+CREATE TABLE products (
+    num NUMBER(10) PRIMARY KEY,  
+    type VARCHAR2(40) not null,                 
+    name VARCHAR2(40) not null unique,                
+    info VARCHAR2(255),                
+    quantity NUMBER(5) not null,                
+    price NUMBER(10) not null,                  
+    indate TIMESTAMP DEFAULT SYSDATE   
+);
+
+CREATE SEQUENCE product_num
+    INCREMENT BY 1
+    START WITH 1
+    NOCYCLE;
+
+
+
+
+ public enum ProductType {
+        CPU, 메인보드, 메모리, SSD, HDD, 케이스, 파워, 모니터, 운영체제, 마우스, 키보드, 스피커
+   }
+
+    // 컴퓨터 부품 정보
+    private ProductType type;  // enum 타입 사용
+
+
+// ProductDTO 클래스
+public class ProductDTO {
+    private ProductType type;
+    
+    public void setType(ProductType type) {
+        this.type = type;
+    }
+
+    public ProductType getType() {
+        return type;
+    }
+}
+
+// ResultSet에서 값을 가져와서 enum으로 변환
+pdto.setType(ProductType.valueOf(rs.getString("type")));
+
+//
+DB ㅋㄹ
+
+--클라이언트 테이블
+CREATE TABLE c_client (
+    num NUMBER(9) UNIQUE,
+    id VARCHAR2(20) PRIMARY KEY,
+    password VARCHAR2(20),
+    name VARCHAR2(20),
+    phoneNumber VARCHAR2(15),
+    address VARCHAR2(40),
+    indate TIMESTAMP(6) DEFAULT SYSDATE
+);
+select * from c_client;
+desc c_client;
+--클라이언트 시퀀스
+CREATE SEQUENCE clien_num
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 999999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+--admin 관리 테이블       
+CREATE TABLE c_admin (
+    num NUMBER(9) UNIQUE,
+    id VARCHAR2(20) PRIMARY KEY,
+    password VARCHAR2(20),
+    name VARCHAR2(20),
+    phoneNumber VARCHAR2(15),
+    address VARCHAR2(40),
+    indate TIMESTAMP(6) DEFAULT SYSDATE
+);
+
+-- adimin 시퀀스
+CREATE SEQUENCE amdin_num
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 999999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+--프로덕츠 테이블
+CREATE TABLE products (
+    num NUMBER(10) PRIMARY KEY,
+    Delivery_company varchar2(40),	  
+    type varchar2(20) not null,                 
+    name varchar2(40) not null,                
+    info VARCHAR2(255),                
+    quantity NUMBER(5) not null,                
+    price NUMBER(10) not null,                  
+    indate TIMESTAMP DEFAULT SYSDATE   
+);
+
+//1018오늘 추가한것
+ALTER TABLE products
+MODIFY name VARCHAR2(100);
+
+
+
+--프로덕츠 넘버 시퀀스
+CREATE SEQUENCE product_num
+    INCREMENT BY 1
+    START WITH 1
+    NOCYCLE;
+
+drop table products;
+--------------------------------
+
+String header[] = {"넘버","공급사","타입","상품이름","정보","수량","개당가격","총가격","등록일"};
+String contents[][] {
+{""}
+
+};
+
+.tostirng() -- 자바에서 객체를 문자열로 변환.
+
+//
+package c_Products_Service_Frame;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+public class Products_Service_Frame_Main_Add extends JFrame implements ActionListener {
+	//현재화면크기 가져오기
+		private Toolkit toolkit = Toolkit.getDefaultToolkit();
+		private Dimension screenSize = toolkit.getScreenSize(); // 화면크기
+		
+		
+
+	Products_Service_Frame_Main_Add() {
+		
+		this.setTitle("조립 컴퓨터 재고관리 프로그램 v.1.0");
+		this.setSize(screenSize.width, screenSize.height);
+		
+		
+		
+		
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
+		
+		
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+
+
+//
+
+

@@ -249,8 +249,57 @@ CREATE SEQUENCE product_num
     NOCYCLE;
 
 drop table products;
+--------------------------------
+
+String header[] = {"넘버","공급사","타입","상품이름","정보","수량","개당가격","총가격","등록일"};
+String contents[][] {
+{""}
+
+};
+
+.tostirng() -- 자바에서 객체를 문자열로 변환.
+
+//
+package c_Products_Service_Frame;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+public class Products_Service_Frame_Main_Add extends JFrame implements ActionListener {
+	//현재화면크기 가져오기
+		private Toolkit toolkit = Toolkit.getDefaultToolkit();
+		private Dimension screenSize = toolkit.getScreenSize(); // 화면크기
+		
+		
+
+	Products_Service_Frame_Main_Add() {
+		
+		this.setTitle("조립 컴퓨터 재고관리 프로그램 v.1.0");
+		this.setSize(screenSize.width, screenSize.height);
+		
+		
+		
+		
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
+		
+		
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
 
 
-
+//
 
 

@@ -41,9 +41,9 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
     
     
     // 타입 선택을 위한 콤보박스 항목
-    private String[] productTypes = {
-        "CPU", "그래픽카드", "메인보드", "메모리카드", "SSD", "HDD", "케이스", "파워", "모니터", "운영체제", "마우스", "키보드", "스피커"
-    };
+   // private String[] productTypes = {
+   //     "CPU", "그래픽카드", "메인보드", "메모리카드", "SSD", "HDD", "케이스", "파워", "모니터", "운영체제", "마우스", "키보드", "스피커"
+    //};
 
     Products_Service_Frame_Main_Add(Products_DBdao dbdao, Products_Service_Frame_Main mainc ) {
         // 기본 설정

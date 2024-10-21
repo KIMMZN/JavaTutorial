@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,21 +32,31 @@ public class Products_Service_Frame_Main extends JFrame implements ActionListene
 ItemListener, MouseListener {
 	Products_DBdao pdbdao = null;
 	Products_Service_Frame_Main_Add psfma = null;
+	Products_Service_Frame_Main_Edit psfmae = null;
 	
 	private JPanel northPanel; private JLabel northLabel;
 	private JPanel northSouthPanel; private JLabel northSouthLabel;
-	private JButton button1;private JButton button2;private JButton button3;
-	private JButton button4; private JButton button5;
+	//northSouth_c
+	private JPanel northSouthPanel_c; private JLabel northSouthLabel_c;
+	private JTextField northSouthField_c; private JButton northSouthbutton_c;
+	private JButton northSouthbutton_c1;
+	
 	//오른쪽 패널
 	private JPanel eastPanel; private JLabel eastJlabel;
 	private JButton buttona1;private JButton buttona2;private JButton buttona3;
+	
 	//왼쪽 패널
 	private JPanel westPanel; private JLabel westJlabel6;private JLabel westJlabel2;private JLabel westJlabel3;
 	private JLabel westJlabel4;private JLabel westJlabel5;private JLabel westJlabel7; private JLabel westJlabel1;
+	private JLabel westJlabel0;
 	
-	private JTextField westTextField1;private JTextField westTextField2;private JTextField westTextField3;
+	private JTextField westTextField1;
+	
+	
+
+	private JTextField westTextField2;private JTextField westTextField3;
 	private JTextField westTextField4;private JTextField westTextField5;private JTextField westTextField6;
-	private JTextField westTextField7;
+	private JTextField westTextField7;private JTextField westTextField0;
 	//현재화면크기 가져오기
 	private Toolkit toolkit = Toolkit.getDefaultToolkit();
 	private Dimension screenSize = toolkit.getScreenSize(); // 화면크기
@@ -77,7 +88,7 @@ ItemListener, MouseListener {
 		
 		//norh southern panel
 		northSouthPanel = new JPanel();
-		northSouthPanel.setLayout(new GridLayout(1, 5));
+		northSouthPanel.setLayout(new BorderLayout());
 		northSouthPanel.setBackground(Color.white);
 		northSouthPanel.setBorder(new LineBorder(Color.black, 2));
 		northSouthPanel.setPreferredSize(new Dimension(this.getWidth(), 50));
@@ -95,10 +106,18 @@ ItemListener, MouseListener {
 		
 		//west panel
 		westPanel = new JPanel();
-		westPanel.setLayout(new GridLayout(14, 1));
+		westPanel.setLayout(new GridLayout(16, 1));
 		westPanel.setBackground(Color.white);
 		westPanel.setBorder(new LineBorder(Color.black, 2));
 		westPanel.setPreferredSize(new Dimension(200, this.getHeight()));
+		
+		//private JTextField westTextField0;
+		//private JLabel westJlabel0;
+		//westpanel _ 라벨과 텍스트필드
+		westJlabel0 = new JLabel ("넘버");
+		westJlabel0.setOpaque(true);
+		westTextField0 = new JTextField();
+		westJlabel0.setBackground(Color.GRAY); 
 		
 		JLabel westJlabel1 = new JLabel ("공급사");
 		westJlabel1.setOpaque(true);  // JLabel을 불투명하게 설정
@@ -128,6 +147,9 @@ ItemListener, MouseListener {
 		westTextField7 = new JTextField ();
 		westJlabel7.setOpaque(true);  // JLabel을 불투명하게 설정
 		westJlabel7.setBackground(Color.GRAY);  // 배경색 설정
+		
+		westPanel.add(westJlabel0);
+		westPanel.add(westTextField0);
 		westPanel.add(westJlabel1);
 		westPanel.add(westTextField1);
 		westPanel.add(westJlabel2);
@@ -150,17 +172,29 @@ ItemListener, MouseListener {
 		
 		
 		//기본 선택 버튼
-		button1 = new JButton("기본버튼1");
-		button2 = new JButton("기본버튼2");
-		button3 = new JButton("기본버튼3");
-		button4 = new JButton("기본버튼4");
-		button5 = new JButton("기본버튼5");
+		//private JPanel northSouthPanel_c; private JLabel northSouthLabel_c;
+		//private JTextField northSouthField_c; private JButton northSouthbutton_c;
+		northSouthLabel_c = new JLabel("검색");
+		northSouthLabel_c.setHorizontalAlignment(JLabel.CENTER); // 수평 중앙 정렬
+		northSouthLabel_c.setVerticalAlignment(JLabel.CENTER); 
 		
-		northSouthPanel.add(button1);
-		northSouthPanel.add(button2);
-		northSouthPanel.add(button3);
-		northSouthPanel.add(button4);
-		northSouthPanel.add(button5);
+		northSouthField_c = new JTextField();
+		northSouthbutton_c = new JButton("검색"); //검색버튼
+		northSouthbutton_c1 = new JButton("새로고침"); //새로고침버튼
+		northSouthPanel_c = new JPanel();
+		northSouthPanel_c.setLayout(new GridLayout(1, 4));
+		northSouthPanel_c.setBorder(new LineBorder(Color.black, 2));
+		northSouthPanel_c.add(northSouthLabel_c);
+		northSouthPanel_c.add(northSouthField_c);
+		northSouthPanel_c.add(northSouthbutton_c);
+		northSouthPanel_c.add(northSouthbutton_c1);
+		
+		northSouthPanel.setBorder(BorderFactory.createEmptyBorder(0,200,0,200));
+		
+		northSouthPanel.add(northSouthPanel_c, "Center");
+		
+		
+		
 			
 		//Jtable		
 		jtable = new JTable(model);
@@ -181,6 +215,12 @@ ItemListener, MouseListener {
 		this.setVisible(true);
 		
 		loadJdb();
+		//리스너 등록;
+		northSouthbutton_c.addActionListener(this);
+		northSouthField_c.addActionListener(this);
+		northSouthbutton_c1.addActionListener(this);
+		buttona2.addActionListener(this);
+		jtable.addMouseListener(this);
 		
 	}
 	
@@ -195,6 +235,8 @@ ItemListener, MouseListener {
 	
 	private void loadJdb() { //jtable에 데이터 추가
 		model.setRowCount(0); // 기존행 초기화
+		
+		
 		ArrayList<Products_DTO> pdlist = pdbdao.listAll();
 		
 		for(Products_DTO plist : pdlist) {
@@ -223,8 +265,47 @@ ItemListener, MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		if(e.getSource() == buttona1) {//등록
 			add();
+		}
+		
+		if(e.getSource() == buttona2) {//수정
+			edit();
+			
+		}
+		if(e.getSource() == buttona3) {//삭제
+			
+		}
+		
+		if(e.getSource() == northSouthbutton_c) { // 검색버튼
+			model.setRowCount(0); // 기존행 초기화
+			String searhTemp= northSouthField_c.getText();
+			ArrayList<Products_DTO> pdlist = pdbdao.searchOne(searhTemp);
+			
+			for(Products_DTO plist : pdlist) {
+				String[] data= {
+						String.valueOf(plist.getNum()),
+						plist.getDelivery_Company(),
+						plist.getType().toString(),
+						plist.getName(),
+						plist.getInfo(),
+						String.valueOf(plist.getQuantity()),
+						String.valueOf(plist.getPrice()),
+						String.valueOf(plist.getPrice() * plist.getQuantity()), //총가격
+						plist.getIndate().toString()
+				};
+				model.addRow(data);
+			}
+		}
+		
+		if(e.getSource() == northSouthField_c) { //검색필드에서 엔터키 입려시
+			northSouthbutton_c.doClick();
+		}
+		
+		if(e.getSource() == northSouthbutton_c1) { //새로고침 버튼
+			loadJdb();
+			
 		}
 		
 		
@@ -239,8 +320,18 @@ ItemListener, MouseListener {
 		
 	}
 	
-	public void reset() {
+	private void edit() {
+		Products_Service_Frame_Main_Edit psfmae = null;
+		if(psfmae == null) {
+			psfmae = new Products_Service_Frame_Main_Edit(pdbdao, this);
+		}
+		
+	}
+	
+	
+	public void reset() { //리셋
 		psfma = null;
+		psfmae = null;
 		//psfmain = null;
 		loadJdb();
 	}
@@ -248,17 +339,32 @@ ItemListener, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		/*
-		  // 클릭한 셀의 행(row)과 열(column)을 가져옴
-        int row = jtable.rowAtPoint(e.getPoint());
-        int col = jtable.columnAtPoint(e.getPoint());
-
-        // 클릭한 셀의 값을 가져옴
+		
+		int row = jtable.getSelectedRow();
+		int col = jtable.getSelectedColumn();
+		
         Object value = jtable.getValueAt(row, col);
 
-        // 콘솔에 클릭된 셀의 정보 출력
-        System.out.println("클릭된 셀 - 행: " + row + ", 열: " + col + ", 값: " + value);
-
+        
+        System.out.println("클릭된 셀 - 행: " + row + ", 열: " + col + ", 값: "
+        + value);
+        westTextField0.setText(jtable.getValueAt(row, 0).toString());
+        westTextField1.setText(jtable.getValueAt(row, 1).toString());
+        westTextField2.setText(jtable.getValueAt(row, 2).toString());
+        westTextField3.setText(jtable.getValueAt(row, 3).toString());
+        westTextField4.setText(jtable.getValueAt(row, 4).toString());
+        westTextField5.setText(jtable.getValueAt(row, 5).toString());
+        westTextField6.setText(jtable.getValueAt(row, 6).toString());
+        westTextField7.setText(jtable.getValueAt(row, 7).toString());
+        
+        
+        
+        
+        //private JTextField westTextField1;private JTextField westTextField2;private JTextField westTextField3;
+    	//private JTextField westTextField4;private JTextField westTextField5;private JTextField westTextField6;
+    	//private JTextField westTextField7;
+        
+        /*
         if (e.getClickCount() == 2) {  // 더블 클릭 이벤트 처리
             System.out.println("더블 클릭 - 선택된 셀 값: " + value);
         }
@@ -268,6 +374,10 @@ ItemListener, MouseListener {
 		
 		
 	}
+	private void delete() {
+		
+	}
+	
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -291,6 +401,71 @@ ItemListener, MouseListener {
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	//
+	public JTextField getWestTextField1() {
+		return westTextField1;
+	}
+
+	public void setWestTextField1(JTextField westTextField1) {
+		this.westTextField1 = westTextField1;
+	}
+
+	public JTextField getWestTextField2() {
+		return westTextField2;
+	}
+
+	public void setWestTextField2(JTextField westTextField2) {
+		this.westTextField2 = westTextField2;
+	}
+
+	public JTextField getWestTextField3() {
+		return westTextField3;
+	}
+
+	public void setWestTextField3(JTextField westTextField3) {
+		this.westTextField3 = westTextField3;
+	}
+
+	public JTextField getWestTextField4() {
+		return westTextField4;
+	}
+
+	public void setWestTextField4(JTextField westTextField4) {
+		this.westTextField4 = westTextField4;
+	}
+
+	public JTextField getWestTextField5() {
+		return westTextField5;
+	}
+
+	public void setWestTextField5(JTextField westTextField5) {
+		this.westTextField5 = westTextField5;
+	}
+
+	public JTextField getWestTextField6() {
+		return westTextField6;
+	}
+
+	public void setWestTextField6(JTextField westTextField6) {
+		this.westTextField6 = westTextField6;
+	}
+
+	public JTextField getWestTextField7() {
+		return westTextField7;
+	}
+
+	public void setWestTextField7(JTextField westTextField7) {
+		this.westTextField7 = westTextField7;
+	}
+
+	public JTextField getWestTextField0() {
+		return westTextField0;
+	}
+
+	public void setWestTextField0(JTextField westTextField0) {
+		this.westTextField0 = westTextField0;
 	}
 	
 	

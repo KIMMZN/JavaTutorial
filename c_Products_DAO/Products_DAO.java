@@ -138,6 +138,17 @@ public class Products_DAO implements Products_DBdao {
 							 "name like '%"+temp+"%' or "+
 							 "Delivery_company like '%"+temp+"%' or "+
 							 "type like '%"+temp+"%'";
+				/*
+				 String sql = "select * from products where name like ? or Delivery_company like ? or type like ?";
+					PreparedStatement pstmt = connection.prepareStatement(sql);
+					pstmt.setString(1, "%" + temp + "%");
+					pstmt.setString(2, "%" + temp + "%");
+					pstmt.setString(3, "%" + temp + "%");
+					ResultSet rs = pstmt.executeQuery();
+
+				 */
+				
+				
 				
 				//con.prepareStatement(sql);
 				PreparedStatement psmt =null;

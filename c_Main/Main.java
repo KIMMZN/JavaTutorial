@@ -1,6 +1,5 @@
 package c_Main;
 
-import c_Service_Frame.Adm_Login_Frame;
 import c_Service_Frame.Adm_Login_Frame2;
 
 public class Main {

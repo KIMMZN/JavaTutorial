@@ -25,21 +25,18 @@ import javax.swing.border.LineBorder;
 import c_Adm_DAO.Adm_DAO;
 import c_Adm_DAO.Adm_DBdao;
 import c_Adm_DTO.Adm_DTO;
-import c_Products_DAO.Products_DAO;
-import c_Products_DAO.Products_DBdao;
 import c_Products_Service_Frame.Products_Service_Frame_Main;
-import c_Service.Product_Service;
 import c_Service_Frame_Join.Adm_Join;
 
 public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemListener {
 	//
 	Adm_DBdao admdbdao = null;
-	boolean loginflag = true;
+	//boolean loginflag = true;
 	//Products_DBdao pdbdao = null;
 	//Product_Service pdservice = null;
 	Adm_Join Admjoin = null;
 	Products_Service_Frame_Main psfm = null;
-	
+	//Products_Service_Frame_Main psfm1 = null;
 	
 	private JPanel centerP;
 	private JPanel cneterP_1;
@@ -246,7 +243,7 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
     }
 	
 	private void amdJoin() { //회원가입객체생성
-		if(Admjoin==null) {
+		if(Admjoin == null) {
 			Admjoin = new Adm_Join(admdbdao);
 		}
 	}

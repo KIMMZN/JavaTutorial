@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,12 +44,17 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 	
 	BufferedImage img = null; //이미지
 	
-	JLabel Login; //로그인안 
+	 JLabel Login; //로그인안 
 	//= new JLabel("로그인");
-	JLabel passLabel;
+	private JLabel passLabel;
 	JLabel idLabel;
-	JTextField loginField; // 로그인텍스트필드
-	JPasswordField passField; // 패스워드필드
+	private JTextField loginField; // 로그인텍스트필드
+
+	public JTextField getLoginField() {
+		return loginField;
+	}
+
+	private JPasswordField passField; // 패스워드필드
 	JButton button1;	// 로그인버튼1
 	JButton joinButton; // 회원가입버튼
 	JButton exitButton; // 종료버튼
@@ -250,9 +256,10 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 	
 	private void psfm() { // 재고관리객체생성
 		if(psfm == null) {
-			psfm = new Products_Service_Frame_Main();
+			psfm = new Products_Service_Frame_Main(this);
 		}
 	}
+
 	
 	
 }

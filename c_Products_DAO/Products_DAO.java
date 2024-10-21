@@ -187,13 +187,14 @@ public class Products_DAO implements Products_DBdao {
 	}
 
 	@Override
-	public void delete(String temp) {
+	public void delete(int temp) {
 		// TODO Auto-generated method stub
 		if(con()) {
 				try {
-					String sql = "delete from products where name = ?";
+					String sql = "delete from products where num = ?";
 					PreparedStatement psmt = con.prepareStatement(sql);
-					psmt.setString(1, temp);
+					psmt.setInt(1, temp);
+					//psmt.setString(1, temp);
 					int resultInt = psmt.executeUpdate();
 					
 					if(resultInt > 0) {

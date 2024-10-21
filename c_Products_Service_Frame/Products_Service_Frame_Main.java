@@ -17,6 +17,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,12 +28,15 @@ import javax.swing.table.DefaultTableModel;
 import c_Products_DAO.Products_DAO;
 import c_Products_DAO.Products_DBdao;
 import c_Products_DTO.Products_DTO;
+import c_Service_Frame.Adm_Login_Frame2;
 
 public class Products_Service_Frame_Main extends JFrame implements ActionListener,
 ItemListener, MouseListener {
 	Products_DBdao pdbdao = null;
 	Products_Service_Frame_Main_Add psfma = null;
 	Products_Service_Frame_Main_Edit psfmae = null;
+	//
+	Adm_Login_Frame2 admlf2 = null;
 	
 	private JPanel northPanel; private JLabel northLabel;
 	private JPanel northSouthPanel; private JLabel northSouthLabel;
@@ -67,8 +71,12 @@ ItemListener, MouseListener {
 	private DefaultTableModel model = new DefaultTableModel(colNames, 0);
 	private JScrollPane scrollPane;
 	
-	
-	public Products_Service_Frame_Main () {
+	//삭제하기 위한 멤버변수선언
+	private int row; // jtable row
+	private int col; // jtable cul
+	public Products_Service_Frame_Main (Adm_Login_Frame2 alf2) {
+		admlf2 = alf2;
+		
 		
 		init();
 		this.setTitle("조립 컴퓨터 재고관리 프로그램 v.1.0");
@@ -82,7 +90,18 @@ ItemListener, MouseListener {
 		//패널 높이 조정
 		northPanel.setPreferredSize(new Dimension(this.getWidth(), 100));
 		//라벨
-		northLabel = new JLabel("north라벨 ID님 환영합니다");
+		//아이디 문구
+		//admlf2.getLoginField();
+		
+		JTextField idfield = new JTextField();
+		idfield = admlf2.getLoginField();
+		String idtemp = idfield.getText().toString();
+		
+		 //String idfiedl = admlf2.getLoginField().getText();
+		 System.out.println(idtemp);
+		String welcome = " 님 환영합니다";
+		String idtemp1 = idtemp + welcome;
+		northLabel = new JLabel(idtemp1);
 		
 		
 		
@@ -221,6 +240,7 @@ ItemListener, MouseListener {
 		northSouthbutton_c1.addActionListener(this);
 		buttona2.addActionListener(this);
 		jtable.addMouseListener(this);
+		buttona3.addActionListener(this);
 		
 	}
 	
@@ -275,7 +295,22 @@ ItemListener, MouseListener {
 			
 		}
 		if(e.getSource() == buttona3) {//삭제
+			//delete();
+			//loadJdb();
+			//JOptionPane.showMessageDialog(this, "삭제하시겠습니까?", "삭제 확인창", JOptionPane.WARNING_MESSAGE );
+			//JOptionPane.showMessageDialog(this,"ID나 비밀번호를 확인하세요", "로그인 실패", JOptionPane.ERROR_MESSAGE );
+			int result = JOptionPane.showConfirmDialog(this, "선택한 데이터를 삭제하시겠습니까?", "경고창", 
+					JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			
+			if(result == JOptionPane.YES_OPTION) {
+				System.out.println("예스 테스트");
+				delete();
+				loadJdb();
+			}else if(result == JOptionPane.NO_OPTION) {
+				System.out.println("노 테스트");
+			}
+			
+				
 		}
 		
 		if(e.getSource() == northSouthbutton_c) { // 검색버튼
@@ -340,8 +375,8 @@ ItemListener, MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-		int row = jtable.getSelectedRow();
-		int col = jtable.getSelectedColumn();
+		row = jtable.getSelectedRow();
+		col = jtable.getSelectedColumn();
 		
         Object value = jtable.getValueAt(row, col);
 
@@ -357,9 +392,10 @@ ItemListener, MouseListener {
         westTextField6.setText(jtable.getValueAt(row, 6).toString());
         westTextField7.setText(jtable.getValueAt(row, 7).toString());
         
+       
         
-        
-        
+        System.out.println("로우 + 컬럼0밸류 : " + jtable.getValueAt(row, 0) +
+        		"로우 + 컬럼0밸류tostring : "+jtable.getValueAt(row, 0).toString());
         //private JTextField westTextField1;private JTextField westTextField2;private JTextField westTextField3;
     	//private JTextField westTextField4;private JTextField westTextField5;private JTextField westTextField6;
     	//private JTextField westTextField7;
@@ -375,7 +411,17 @@ ItemListener, MouseListener {
 		
 	}
 	private void delete() {
+		System.out.println("삭제할 제품의 넘버를 입력하시오");
+		Object valued = jtable.getValueAt(row, col);
 		
+		row = jtable.getSelectedRow();
+		col = jtable.getSelectedColumn();
+		
+        Object value = jtable.getValueAt(row, col);
+        
+        int numTemp = Integer.parseInt(jtable.getValueAt(row, 0).toString());
+        
+        pdbdao.delete(numTemp);
 	}
 	
 

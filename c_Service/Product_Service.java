@@ -86,6 +86,7 @@ public class Product_Service {
 			System.out.println(pp.toString());
 		}
 	}
+	/*
 	private void delete() {
 		listAll();
 		Scanner in = new Scanner(System.in);
@@ -94,6 +95,19 @@ public class Product_Service {
 		//
 		pdbdao.delete(temp);
 	}
+	*/
+	private void delete() {
+		listAll();
+		Scanner in = new Scanner(System.in);
+		System.out.println("삭제할 제품의 넘버를 입력하시오");
+		int temp = in.nextInt();
+		in.nextLine();
+		//
+		pdbdao.delete(temp);
+	}
+	
+	
+	
 	private void update() {
 		//public void update(Products_DTO pddto);
 		listAll();

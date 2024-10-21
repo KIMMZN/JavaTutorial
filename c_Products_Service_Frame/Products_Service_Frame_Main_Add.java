@@ -1,6 +1,7 @@
 package c_Products_Service_Frame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -38,6 +39,9 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
     private JTextField priceField;  // 개당 가격 입력 필드
 
     private JButton registerButton, cancelButton;  // 등록 및 취소 버튼
+    //north 패널및 라벨
+    private JPanel northPanel;
+    private JLabel northLabel;
     
     
     // 타입 선택을 위한 콤보박스 항목
@@ -54,6 +58,7 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
     	
         this.setTitle("조립 컴퓨터 재고관리 프로그램 v.1.0");
         this.setSize(400, 600);
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         // 레이아웃 설정
@@ -92,12 +97,22 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
 
         buttonPanel.add(registerButton);
         buttonPanel.add(cancelButton);
+        
+        //north panel
+        northPanel = new JPanel();
+        northLabel = new JLabel("상품등록");
+        northPanel.setBackground(Color.LIGHT_GRAY);
+        northPanel.add(northLabel);
+        //private JPanel northPanel;
+        //private JLabel northLabel;
+        
 
         // 버튼에 액션 리스너 추가
         registerButton.addActionListener(this);
         cancelButton.addActionListener(this);
 
         // 메인 프레임에 컴포넌트 추가
+        this.add(northPanel, BorderLayout.NORTH);
         this.add(inputPanel, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
         

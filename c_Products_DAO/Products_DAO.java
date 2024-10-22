@@ -49,7 +49,7 @@ public class Products_DAO implements Products_DBdao {
 		if(con()) {
 			try {
 				String sql = "insert into products values" 
-							+"(product_num.nextval, ?,?,?,?,?,?,default)";
+							+"(product_num.nextval, ?,?,?,?,?,?,default,?)";
 				PreparedStatement psmt = con.prepareStatement(sql);
 				//psmt.setInt(1, pddto.getNum());
 				psmt.setString(1, pddto.getDelivery_Company());
@@ -58,6 +58,7 @@ public class Products_DAO implements Products_DBdao {
 				psmt.setString(4, pddto.getInfo());
 				psmt.setInt(5, pddto.getQuantity());
 				psmt.setInt(6, pddto.getPrice());
+				psmt.setString(7, pddto.getId());
 				//psmt.setTimestamp(5, pddto.getIndate());;
 				//쿼리실행 값(횟수) 리턴
 				int resultInt = psmt.executeUpdate();
@@ -88,16 +89,18 @@ public class Products_DAO implements Products_DBdao {
 	}
 
 	@Override
-	public ArrayList<Products_DTO> listAll() {
+	public ArrayList<Products_DTO> listAll(String idtemp) {
 		// TODO Auto-generated method stub
 		 ArrayList<Products_DTO> pdlist = new  ArrayList<>();
 		if(con()) {
 			try {
-				String sql = "select * from products";
+				String sql = "select * from products where id = ?";
 				PreparedStatement psmt = con.prepareStatement(sql);
+				psmt.setString(1, idtemp);
 				ResultSet rs = psmt.executeQuery();
 				while(rs.next()) {
 					Products_DTO pdto = new Products_DTO();
+					pdto.setId(rs.getString("id"));
 					pdto.setNum(rs.getInt("num"));
 					pdto.setDelivery_Company(rs.getString("Delivery_company"));
 					pdto.setType(ProductType.valueOf(rs.getString("type")));
@@ -129,33 +132,24 @@ public class Products_DAO implements Products_DBdao {
 	}
 
 	@Override
-	public ArrayList<Products_DTO> searchOne(String temp) {
+	public ArrayList<Products_DTO> searchOne(String temp, String idTemp) {
 		// TODO Auto-generated method stub
 		ArrayList<Products_DTO> pdlist = new  ArrayList<>();
 		if(con()) {
 			try {
 				String sql = "select * from products where "+
+							 "id = '"+idTemp+"' and " +	
 							 "name like '%"+temp+"%' or "+
 							 "Delivery_company like '%"+temp+"%' or "+
 							 "type like '%"+temp+"%'";
-				/*
-				 String sql = "select * from products where name like ? or Delivery_company like ? or type like ?";
-					PreparedStatement pstmt = connection.prepareStatement(sql);
-					pstmt.setString(1, "%" + temp + "%");
-					pstmt.setString(2, "%" + temp + "%");
-					pstmt.setString(3, "%" + temp + "%");
-					ResultSet rs = pstmt.executeQuery();
-
-				 */
-				
-				
-				
+			
 				//con.prepareStatement(sql);
 				PreparedStatement psmt =null;
 				psmt = con.prepareStatement(sql);
 				ResultSet rs = psmt.executeQuery();
 				while(rs.next()) {
 					Products_DTO pdto = new Products_DTO();
+					pdto.setId(rs.getString("id"));
 					pdto.setNum(rs.getInt("num"));
 					pdto.setDelivery_Company(rs.getString("Delivery_company"));
 					pdto.setType(ProductType.valueOf(rs.getString("type")));

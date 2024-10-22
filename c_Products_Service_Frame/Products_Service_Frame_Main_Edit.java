@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -194,6 +195,7 @@ KeyListener		{
 			pdto.setQuantity(quantityTemp);
 			pdto.setPrice(PriceOneTemp);
 			pdbdao.update(pdto);
+			 JOptionPane.showMessageDialog(this, "수정 되었습니다", "확인", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("수정완료");
 		}else if (e.getSource() == cancelButton) {
             // 취소 버튼 클릭 시 창 닫기

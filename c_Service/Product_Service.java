@@ -70,7 +70,8 @@ public class Product_Service {
 		System.out.println("상품등록완료");
 	}
 	private void listAll() {
-		ArrayList<Products_DTO> plist = pdbdao.listAll();
+		String temp = null;
+		ArrayList<Products_DTO> plist = pdbdao.listAll(temp); //임시방편 수정
 		for(Products_DTO pl : plist) {
 			System.out.println(pl.toString());
 			
@@ -81,7 +82,8 @@ public class Product_Service {
 		Scanner in = new Scanner(System.in);
 		System.out.println("검색어를 입력 하세요");
 		String temp = in.nextLine();
-		ArrayList<Products_DTO> plist = pdbdao.searchOne(temp);
+		String temp1 = in.nextLine();
+		ArrayList<Products_DTO> plist = pdbdao.searchOne(temp,  temp1);
 		for(Products_DTO pp : plist) {
 			System.out.println(pp.toString());
 		}

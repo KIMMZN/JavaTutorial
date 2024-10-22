@@ -2,7 +2,14 @@ package c_Products_DTO;
 
 import java.sql.Timestamp;
 
+import c_Products_Service_Frame.Products_Service_Frame_Main;
+import c_Service_Frame.Adm_Login_Frame2;
+
 public class Products_DTO {
+	//Adm_Login_Frame2 alfm2;
+	//Products_Service_Frame_Main psfm;
+	
+	
 	//컴퓨터 부품 정보
 	public enum ProductType{
 		CPU, 그래픽카드, 메인보드, 메모리카드, SSD, HDD, 케이스, 파워, 모니터, 운영체제, 마우스, 키보드, 스피커 
@@ -18,8 +25,9 @@ public class Products_DTO {
 	private int quantity = 0;
 	private int price = 0;
 	private Timestamp indate = null;
-	
-	  @Override
+	private String id = null;
+
+	@Override
 		public String toString() {
 		  int totalPrice = (quantity * price);
 			
@@ -29,6 +37,16 @@ public class Products_DTO {
 			", totalPrice="+ totalPrice + ", indate=" + indate + "]";
 			
 		}
+	
+	 public String getId() {
+			return id;
+		}
+
+
+		public void setId(String id) {
+			this.id = id;
+		}
+	
 	
 	
 	public String getDelivery_Company() {

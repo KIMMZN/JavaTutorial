@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -14,13 +16,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import c_Products_DAO.Products_DBdao;
 import c_Products_DTO.Products_DTO;
 
-public class Products_Service_Frame_Main_Add extends JFrame implements ActionListener {
+public class Products_Service_Frame_Main_Add extends JFrame implements ActionListener, KeyListener {
 	private Products_DBdao pdbdao = null;
 	//private JFrame mainFrame;
 	Products_Service_Frame_Main mainc = null;
@@ -37,22 +40,27 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
     private JTextField infoField;  // 상품 정보 입력 필드
     private JTextField quantityField;  // 수량 입력 필드
     private JTextField priceField;  // 개당 가격 입력 필드
+    private JTextField inputTotalPriceField; // 종합가격필드
 
     private JButton registerButton, cancelButton;  // 등록 및 취소 버튼
     //north 패널및 라벨
     private JPanel northPanel;
     private JLabel northLabel;
-    
-    
+    //아이디 값
+    private String idTemp;
+   
     // 타입 선택을 위한 콤보박스 항목
    // private String[] productTypes = {
    //     "CPU", "그래픽카드", "메인보드", "메모리카드", "SSD", "HDD", "케이스", "파워", "모니터", "운영체제", "마우스", "키보드", "스피커"
     //};
 
-    Products_Service_Frame_Main_Add(Products_DBdao dbdao, Products_Service_Frame_Main mainc ) {
+    Products_Service_Frame_Main_Add(Products_DBdao dbdao, Products_Service_Frame_Main mainc, String idTemp) {
         // 기본 설정
     	pdbdao = dbdao;
     	this.mainc = mainc;
+    	this.idTemp = idTemp;
+    	System.out.println("id확인1"+idTemp);
+    	
     	
     	//pdbdao.
     	
@@ -63,7 +71,7 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
 
         // 레이아웃 설정
         JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(6, 2, 3, 10));  // 6행 2열 그리드 레이아웃
+        inputPanel.setLayout(new GridLayout(8, 2, 3, 10));  // 6행 2열 그리드 레이아웃
 
         // 라벨과 입력 필드 추가
         inputPanel.add(new JLabel("공급사:"));
@@ -89,6 +97,11 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
         inputPanel.add(new JLabel("개당 가격:"));
         priceField = new JTextField();
         inputPanel.add(priceField);
+        
+        inputPanel.add(new JLabel("총가격"));
+        inputTotalPriceField = new JTextField();
+        inputPanel.add(inputTotalPriceField);
+        
 
         // 등록 및 취소 버튼 패널
         JPanel buttonPanel = new JPanel();
@@ -110,6 +123,14 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
         // 버튼에 액션 리스너 추가
         registerButton.addActionListener(this);
         cancelButton.addActionListener(this);
+        // 가격관련 필드 박스에 키 리스너 추가
+        quantityField.addKeyListener(this);
+        priceField.addKeyListener(this);
+        inputTotalPriceField.addKeyListener(this);
+        
+        
+        
+        
 
         // 메인 프레임에 컴포넌트 추가
         this.add(northPanel, BorderLayout.NORTH);
@@ -151,11 +172,17 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
             pddto.setInfo(info);
             pddto.setQuantity(quantity);
             pddto.setPrice(price);
+            //10-22추가
+            //String setidtmep1 = mainc.getIdtemp();
+            pddto.setId(idTemp);
+          
             pdbdao.add(pddto);
+            JOptionPane.showMessageDialog(this, "등록 되었습니다", "확인", JOptionPane.INFORMATION_MESSAGE);
             
            
             
-            // 입력 값 출력 (또는 DB 처리 로직 추가)
+            // 입력 값 출력
+            System.out.println("아이디" + idTemp);
             System.out.println("공급사: " + supplier);
             System.out.println("타입: " + type);
             System.out.println("상품명: " + name);
@@ -173,4 +200,76 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
             mainc.reset();
         }
     }
+	
+	private void calculatePriceTotal() { //종합 가격 계산
+		
+		
+		 try {
+		        int priceOne = Integer.parseInt(priceField.getText());
+		        int totalQuantity = Integer.parseInt(quantityField.getText());
+
+		        if (priceOne > 0 && totalQuantity > 0) {
+		            int totalPrice = priceOne * totalQuantity;
+		            inputTotalPriceField.setText(Integer.toString(totalPrice));
+		        } else {
+		            inputTotalPriceField.setText("");
+		        }
+		    } catch (NumberFormatException e) {
+		        
+		        inputTotalPriceField.setText("");
+		    }
+	}
+	
+	private void calculPriceOne() { //개당가격 계산
+	    try {
+	        int totalPrice = Integer.parseInt(inputTotalPriceField.getText());
+	        int totalQuantity = Integer.parseInt(quantityField.getText());
+
+	        if (totalQuantity > 0 && totalPrice > 0) {
+	            int priceOne = totalPrice / totalQuantity;
+	            priceField.setText(Integer.toString(priceOne));
+	        } else {
+	        	priceField.setText("");
+	        }
+	    } catch (NumberFormatException e) {
+	        
+	    	priceField.setText("");
+	    }
+	}
+
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		//calculatePrice() { //종합 가격 계산
+		
+		
+		if(e.getSource() == quantityField || e.getSource() == priceField ) {
+			calculatePriceTotal();
+		}else if(e.getSource() == inputTotalPriceField) {
+			calculPriceOne();
+		}
+	        
+		
+		
+		
+	}
 }

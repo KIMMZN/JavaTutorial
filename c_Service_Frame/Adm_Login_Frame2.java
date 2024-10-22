@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,19 +25,22 @@ import javax.swing.border.LineBorder;
 import c_Adm_DAO.Adm_DAO;
 import c_Adm_DAO.Adm_DBdao;
 import c_Adm_DTO.Adm_DTO;
+import c_Products_DTO.Products_DTO;
 import c_Products_Service_Frame.Products_Service_Frame_Main;
 import c_Service_Frame_Join.Adm_Join;
 
 public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemListener {
 	//
 	Adm_DBdao admdbdao = null;
-	//boolean loginflag = true;
-	//Products_DBdao pdbdao = null;
-	//Product_Service pdservice = null;
+
 	Adm_Join Admjoin = null;
 	Products_Service_Frame_Main psfm = null;
 	//Products_Service_Frame_Main psfm1 = null;
 	
+	public Products_Service_Frame_Main getPsfm() {
+		return psfm;
+	}
+
 	private JPanel centerP;
 	private JPanel cneterP_1;
 	
@@ -53,7 +55,10 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 	public JTextField getLoginField() {
 		return loginField;
 	}
-
+	
+	//public String idtemp11 = loginField.getText();
+	
+	
 	private JPasswordField passField; // 패스워드필드
 	JButton button1;	// 로그인버튼1
 	JButton joinButton; // 회원가입버튼
@@ -64,7 +69,8 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 	
 	
 	
-
+	//아이디
+	String idTemp;
 	
 	public Adm_Login_Frame2(){
 		//super("컴퓨터 재고관리 프로그램 v.1.0");
@@ -182,9 +188,7 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 		if(admdbdao == null) {
 			admdbdao = new Adm_DAO();
 		}
-		//if(pdbdao == null) {
-		//	pdbdao = new Products_DAO();
-		//}
+	
 	}
 	
 	@Override
@@ -200,7 +204,8 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 		// TODO Auto-generated method stub
 		//로그인 버튼 누를시
 				if(e.getSource() == button1 ) {
-					String idTemp = loginField.getText();
+					idTemp = loginField.getText();
+					System.out.println("로그인필드id"+idTemp );//
 					char[] passTemp = passField.getPassword();
 					//char[]를 string으로 변환
 					String passwordString = new String(passTemp);
@@ -214,8 +219,10 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 						amdto.setPassWord(passwordString);
 						
 						if(admdbdao.admLogin(amdto)) {
-							System.out.println("로그인 성공");
+							System.out.println("로그인 성공" + idTemp);
 							psfm(); //재고관리객체생성 메서드
+							//psfm = new Products_Service_Frame_Main(this, idTemp);
+							System.out.println("아이디확인" + idTemp);
 						}else {
 							JOptionPane.showMessageDialog(centerP, "ID나 비밀번호를 확인하세요", "로그인 실패", JOptionPane.ERROR_MESSAGE );
 							//System.out.println("실패");
@@ -256,7 +263,9 @@ public class Adm_Login_Frame2 extends JFrame implements ActionListener, ItemList
 	
 	private void psfm() { // 재고관리객체생성
 		if(psfm == null) {
-			psfm = new Products_Service_Frame_Main(this);
+			psfm = new Products_Service_Frame_Main(this, idTemp);
+			System.out.println("아이디확인" + idTemp);
+			this.setVisible(false);
 		}
 	}
 

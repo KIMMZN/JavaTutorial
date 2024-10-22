@@ -35,6 +35,7 @@ ItemListener, MouseListener {
 	Products_DBdao pdbdao = null;
 	Products_Service_Frame_Main_Add psfma = null;
 	Products_Service_Frame_Main_Edit psfmae = null;
+	Products_Service_Frame_Main_menu2 psfm2 = null;
 	//
 	Adm_Login_Frame2 admlf2 = null;
 	
@@ -53,8 +54,9 @@ ItemListener, MouseListener {
 	private JPanel westPanel; private JLabel westJlabel6;private JLabel westJlabel2;private JLabel westJlabel3;
 	private JLabel westJlabel4;private JLabel westJlabel5;private JLabel westJlabel7; private JLabel westJlabel1;
 	private JLabel westJlabel0;
-	
+	private JLabel westLabelid; private JTextField westTextFieldid;
 	private JTextField westTextField1;
+	
 	
 	
 
@@ -67,18 +69,28 @@ ItemListener, MouseListener {
 	
 	//jtable
 	private JTable jtable;
-	private String colNames[] = {"넘버","공급사","타입","상품명","정보","수량","개당가격","총가격","등록일"};
+	private String colNames[] = {"등록ID", "넘버","공급사","타입","상품명","정보","수량","개당가격","총가격","등록일"};
 	private DefaultTableModel model = new DefaultTableModel(colNames, 0);
 	private JScrollPane scrollPane;
 	
-	//삭제하기 위한 멤버변수선언
+	//삭제하기 위한 jtable row,col을 멤버변수로
 	private int row; // jtable row
 	private int col; // jtable cul
-	public Products_Service_Frame_Main (Adm_Login_Frame2 alf2) {
+	
+	//id를 활용하기 위한 변수
+	String idTemp = null; 
+	
+	//위 옵션버튼
+	JButton testjbutton1;
+	JButton testjbutton2;
+	
+	
+
+	public Products_Service_Frame_Main (Adm_Login_Frame2 alf2, String idTemp) {
 		admlf2 = alf2;
 		
 		
-		init();
+		
 		this.setTitle("조립 컴퓨터 재고관리 프로그램 v.1.0");
 		this.setLayout(new BorderLayout());
 		this.setSize(screenSize.width, screenSize.height);
@@ -89,21 +101,32 @@ ItemListener, MouseListener {
 		northPanel.setBorder(new LineBorder(Color.black,2));
 		//패널 높이 조정
 		northPanel.setPreferredSize(new Dimension(this.getWidth(), 100));
+		
 		//라벨
-		//아이디 문구
-		//admlf2.getLoginField();
 		
-		JTextField idfield = new JTextField();
-		idfield = admlf2.getLoginField();
-		String idtemp = idfield.getText().toString();
+		//아이디 문구 환영문구		
 		
+		//String idtemp = idfield.getText().toString();
+		this.idTemp = idTemp;
+		System.out.println("id확인" + idTemp);
+		
+		//String idtemp11 = 
 		 //String idfiedl = admlf2.getLoginField().getText();
-		 System.out.println(idtemp);
+		
+		
+		if(idTemp == null) {
+			System.out.println("idtemp11는 비었음");
+		}else {
+			System.out.println(idTemp+"님환영합니다");
+			
+		}
+		
+		System.out.println("뭔데안돼");
 		String welcome = " 님 환영합니다";
-		String idtemp1 = idtemp + welcome;
+		String idtemp1 = idTemp + welcome;
 		northLabel = new JLabel(idtemp1);
 		
-		
+		init();
 		
 		//norh southern panel
 		northSouthPanel = new JPanel();
@@ -125,14 +148,20 @@ ItemListener, MouseListener {
 		
 		//west panel
 		westPanel = new JPanel();
-		westPanel.setLayout(new GridLayout(16, 1));
+		westPanel.setLayout(new GridLayout(18, 1));
 		westPanel.setBackground(Color.white);
 		westPanel.setBorder(new LineBorder(Color.black, 2));
 		westPanel.setPreferredSize(new Dimension(200, this.getHeight()));
 		
-		//private JTextField westTextField0;
-		//private JLabel westJlabel0;
+		
 		//westpanel _ 라벨과 텍스트필드
+		
+		westLabelid = new JLabel ("등록id");
+		westLabelid.setOpaque(true);
+		westTextFieldid = new JTextField();
+		westLabelid.setBackground(Color.GRAY); 
+		
+		
 		westJlabel0 = new JLabel ("넘버");
 		westJlabel0.setOpaque(true);
 		westTextField0 = new JTextField();
@@ -167,6 +196,9 @@ ItemListener, MouseListener {
 		westJlabel7.setOpaque(true);  // JLabel을 불투명하게 설정
 		westJlabel7.setBackground(Color.GRAY);  // 배경색 설정
 		
+		
+		westPanel.add(westLabelid);
+		westPanel.add(westTextFieldid);
 		westPanel.add(westJlabel0);
 		westPanel.add(westTextField0);
 		westPanel.add(westJlabel1);
@@ -223,7 +255,31 @@ ItemListener, MouseListener {
 		//액션리스너
 		buttona1.addActionListener(this);
 		
-		//add
+		//add north쪽 메뉴선택창
+		JPanel northPanel_C = new JPanel(new GridLayout(1, 3));
+		JPanel testpanel0 = new JPanel();
+		testpanel0.setBackground(Color.lightGray);
+		JLabel testjlabel0 = new JLabel("메뉴");
+		//JPanel testpanel1 = new JPanel();
+		//JLabel testjlabel1 = new JLabel("테스트라벨1");
+		testjbutton1 = new JButton("재품등록");
+		testjbutton2 = new JButton("고객주문");
+		
+		//JPanel testpanel2 = new JPanel();
+		//JLabel testjlabel2 = new JLabel("테스트라벨2");
+		
+		
+		testpanel0.add(testjlabel0);
+		//testpanel1.add(testjlabel1);
+		//testpanel2.add(testjlabel2);
+		//testpanel1.add(testjbutton1);
+		//testpanel2.add(testjbutton2);
+		northPanel_C.add(testpanel0);
+		northPanel_C.add(testjbutton1);
+		northPanel_C.add(testjbutton2);
+		
+		
+		northPanel.add(northPanel_C, "Center");
 		northPanel.add(northSouthPanel, "South");
 		northPanel.add(northLabel, "East");
 		this.add(westPanel, "West");
@@ -241,6 +297,9 @@ ItemListener, MouseListener {
 		buttona2.addActionListener(this);
 		jtable.addMouseListener(this);
 		buttona3.addActionListener(this);
+		//
+		testjbutton1.addActionListener(this);
+		testjbutton2.addActionListener(this);
 		
 	}
 	
@@ -248,19 +307,20 @@ ItemListener, MouseListener {
 		if(pdbdao == null) {
 			pdbdao = new Products_DAO();
 		}
-		
-		
 
 	}
+	
+
 	
 	private void loadJdb() { //jtable에 데이터 추가
 		model.setRowCount(0); // 기존행 초기화
 		
 		
-		ArrayList<Products_DTO> pdlist = pdbdao.listAll();
+		ArrayList<Products_DTO> pdlist = pdbdao.listAll(idTemp);
 		
 		for(Products_DTO plist : pdlist) {
 			String[] data= {
+					plist.getId(),
 					String.valueOf(plist.getNum()),
 					plist.getDelivery_Company(),
 					plist.getType().toString(),
@@ -316,10 +376,12 @@ ItemListener, MouseListener {
 		if(e.getSource() == northSouthbutton_c) { // 검색버튼
 			model.setRowCount(0); // 기존행 초기화
 			String searhTemp= northSouthField_c.getText();
-			ArrayList<Products_DTO> pdlist = pdbdao.searchOne(searhTemp);
+			//String searhTemp1= northSouthField_c.getText();
+			ArrayList<Products_DTO> pdlist = pdbdao.searchOne(searhTemp, idTemp);
 			
 			for(Products_DTO plist : pdlist) {
 				String[] data= {
+						plist.getId(),
 						String.valueOf(plist.getNum()),
 						plist.getDelivery_Company(),
 						plist.getType().toString(),
@@ -334,23 +396,32 @@ ItemListener, MouseListener {
 			}
 		}
 		
-		if(e.getSource() == northSouthField_c) { //검색필드에서 엔터키 입려시
+		if(e.getSource() == northSouthField_c) { //검색필드에서 엔터키 입력시
 			northSouthbutton_c.doClick();
 		}
 		
 		if(e.getSource() == northSouthbutton_c1) { //새로고침 버튼
 			loadJdb();
-			
+		}
+		
+		if(e.getSource() == testjbutton1) {
+			this.setVisible(true);
+		}
+		if(e.getSource() == testjbutton2) {
+			openClientOrder();
 		}
 		
 		
+			//northPanel_C.add(testjbutton1);
+		//northPanel_C.add(testjbutton2);
+			
 		
 	}
 	
 	private void add() {
 		//Products_Service_Frame_Main_Add psfma = null;
 		if (psfma == null) {
-			psfma = new Products_Service_Frame_Main_Add(pdbdao, this);
+			psfma = new Products_Service_Frame_Main_Add(pdbdao, this, idTemp);
 		}
 		
 	}
@@ -383,14 +454,15 @@ ItemListener, MouseListener {
         
         System.out.println("클릭된 셀 - 행: " + row + ", 열: " + col + ", 값: "
         + value);
-        westTextField0.setText(jtable.getValueAt(row, 0).toString());
-        westTextField1.setText(jtable.getValueAt(row, 1).toString());
-        westTextField2.setText(jtable.getValueAt(row, 2).toString());
-        westTextField3.setText(jtable.getValueAt(row, 3).toString());
-        westTextField4.setText(jtable.getValueAt(row, 4).toString());
-        westTextField5.setText(jtable.getValueAt(row, 5).toString());
-        westTextField6.setText(jtable.getValueAt(row, 6).toString());
-        westTextField7.setText(jtable.getValueAt(row, 7).toString());
+        westTextFieldid.setText(jtable.getValueAt(row, 0).toString());
+        westTextField0.setText(jtable.getValueAt(row, 1).toString());
+        westTextField1.setText(jtable.getValueAt(row, 2).toString());
+        westTextField2.setText(jtable.getValueAt(row, 3).toString());
+        westTextField3.setText(jtable.getValueAt(row, 4).toString());
+        westTextField4.setText(jtable.getValueAt(row, 5).toString());
+        westTextField5.setText(jtable.getValueAt(row, 6).toString());
+        westTextField6.setText(jtable.getValueAt(row, 7).toString());
+        westTextField7.setText(jtable.getValueAt(row, 8).toString());
         
        
         
@@ -412,16 +484,27 @@ ItemListener, MouseListener {
 	}
 	private void delete() {
 		System.out.println("삭제할 제품의 넘버를 입력하시오");
-		Object valued = jtable.getValueAt(row, col);
+		//Object valued = jtable.getValueAt(row, col);
 		
 		row = jtable.getSelectedRow();
 		col = jtable.getSelectedColumn();
 		
-        Object value = jtable.getValueAt(row, col);
+        //Object value = jtable.getValueAt(row, col);
         
-        int numTemp = Integer.parseInt(jtable.getValueAt(row, 0).toString());
-        
+        int numTemp = Integer.parseInt(jtable.getValueAt(row, 1).toString());
         pdbdao.delete(numTemp);
+        	
+        JOptionPane.showMessageDialog(this, "안의 데이터", "확인", JOptionPane.INFORMATION_MESSAGE);
+        
+	}
+	
+	private void openClientOrder() {
+		if (psfm2 == null) {
+			psfm2 = new Products_Service_Frame_Main_menu2(this ,idTemp);
+			psfm2.setVisible(true);
+			this.setVisible(false);
+		}
+		
 	}
 	
 

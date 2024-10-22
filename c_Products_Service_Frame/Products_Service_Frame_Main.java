@@ -32,12 +32,13 @@ import c_Service_Frame.Adm_Login_Frame2;
 
 public class Products_Service_Frame_Main extends JFrame implements ActionListener,
 ItemListener, MouseListener {
-	Products_DBdao pdbdao = null;
-	Products_Service_Frame_Main_Add psfma = null;
-	Products_Service_Frame_Main_Edit psfmae = null;
-	Products_Service_Frame_Main_menu2 psfm2 = null;
+	private Products_DBdao pdbdao = null;
+	private Products_Service_Frame_Main_Add psfma = null;
+	private Products_Service_Frame_Main_Edit psfmae = null;
+	private Products_Service_Frame_Main_menu2 psfm2 = null;
+	
 	//
-	Adm_Login_Frame2 admlf2 = null;
+	private Adm_Login_Frame2 admlf2 = null;
 	
 	private JPanel northPanel; private JLabel northLabel;
 	private JPanel northSouthPanel; private JLabel northSouthLabel;
@@ -85,7 +86,7 @@ ItemListener, MouseListener {
 	JButton testjbutton2;
 	
 	
-
+		
 	public Products_Service_Frame_Main (Adm_Login_Frame2 alf2, String idTemp) {
 		admlf2 = alf2;
 		
@@ -404,17 +405,12 @@ ItemListener, MouseListener {
 			loadJdb();
 		}
 		
-		if(e.getSource() == testjbutton1) {
+		if(e.getSource() == testjbutton1) { // 현재창
 			this.setVisible(true);
 		}
-		if(e.getSource() == testjbutton2) {
+		if(e.getSource() == testjbutton2) { // 주문창
 			openClientOrder();
 		}
-		
-		
-			//northPanel_C.add(testjbutton1);
-		//northPanel_C.add(testjbutton2);
-			
 		
 	}
 	
@@ -438,6 +434,7 @@ ItemListener, MouseListener {
 	public void reset() { //리셋
 		psfma = null;
 		psfmae = null;
+		psfm2 = null;
 		//psfmain = null;
 		loadJdb();
 	}
@@ -465,21 +462,9 @@ ItemListener, MouseListener {
         westTextField7.setText(jtable.getValueAt(row, 8).toString());
         
        
-        
-        System.out.println("로우 + 컬럼0밸류 : " + jtable.getValueAt(row, 0) +
-        		"로우 + 컬럼0밸류tostring : "+jtable.getValueAt(row, 0).toString());
-        //private JTextField westTextField1;private JTextField westTextField2;private JTextField westTextField3;
-    	//private JTextField westTextField4;private JTextField westTextField5;private JTextField westTextField6;
-    	//private JTextField westTextField7;
-        
-        /*
-        if (e.getClickCount() == 2) {  // 더블 클릭 이벤트 처리
-            System.out.println("더블 클릭 - 선택된 셀 값: " + value);
-        }
-		
-		*/
-		
-		
+        //테스트
+        System.out.println("로우 + 컬럼밸류 : " + jtable.getValueAt(row, 0) +
+        		"로우 + 컬럼밸류tostring : "+jtable.getValueAt(row, 0).toString());
 		
 	}
 	private void delete() {
@@ -494,16 +479,18 @@ ItemListener, MouseListener {
         int numTemp = Integer.parseInt(jtable.getValueAt(row, 1).toString());
         pdbdao.delete(numTemp);
         	
-        JOptionPane.showMessageDialog(this, "안의 데이터", "확인", JOptionPane.INFORMATION_MESSAGE);
-        
+        JOptionPane.showMessageDialog(this, "삭제 되었습니다", "확인", JOptionPane.INFORMATION_MESSAGE);
+        reset();
 	}
 	
 	private void openClientOrder() {
 		if (psfm2 == null) {
-			psfm2 = new Products_Service_Frame_Main_menu2(this ,idTemp);
+			psfm2 = new Products_Service_Frame_Main_menu2(this ,idTemp, pdbdao);
 			psfm2.setVisible(true);
 			this.setVisible(false);
 		}
+		// Products_DBdao pdbdao
+		
 		
 	}
 	

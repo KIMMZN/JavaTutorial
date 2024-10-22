@@ -261,13 +261,14 @@ public class Products_DAO implements Products_DBdao {
 				while(rs.next()) {
 					Products_DTO pdto = new Products_DTO();
 					pdto.setNum(rs.getInt("num"));
-					pdto.setNum(rs.getInt("num"));
+					pdto.setId(rs.getString("id"));
+					//pdto.setNum(rs.getInt("num"));
 					pdto.setDelivery_Company(rs.getString("Delivery_company"));
 					pdto.setType(ProductType.valueOf(rs.getString("type")));
 					pdto.setName(rs.getString("name"));
 					pdto.setInfo(rs.getString("info"));
 					pdto.setQuantity(rs.getInt("quantity"));
-					pdto.setPrice(rs.getInt("price"));
+					pdto.setPrice(rs.getInt("price")); //개당
 					pdto.setIndate(rs.getTimestamp("indate"));
 					return pdto;
 				}

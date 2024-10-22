@@ -155,7 +155,9 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
 	@Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registerButton) {
-            // 등록 버튼 클릭 시 처리 로직 (예: 입력값 DB 저장 등)
+        	
+        	
+            // 등록 버튼 클릭 시
             String supplier = supplierField.getText();
             Products_DTO.ProductType type = (Products_DTO.ProductType) typeComboBox.getSelectedItem();
            // String typeTemp = type.toString();
@@ -178,8 +180,8 @@ public class Products_Service_Frame_Main_Add extends JFrame implements ActionLis
           
             pdbdao.add(pddto);
             JOptionPane.showMessageDialog(this, "등록 되었습니다", "확인", JOptionPane.INFORMATION_MESSAGE);
-            
-           
+            dispose();
+            mainc.reset();
             
             // 입력 값 출력
             System.out.println("아이디" + idTemp);

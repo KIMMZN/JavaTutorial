@@ -361,6 +361,38 @@ CREATE SEQUENCE order_num
 products num을 입력하면
 자동계산
 
+--
+--1022
+ CREATE TABLE products (
+    num NUMBER(10) PRIMARY KEY,
+    Delivery_company varchar2(40),	  
+    type varchar2(20) not null,                 
+    name varchar2(40) not null,                
+    info VARCHAR2(255),                
+    quantity NUMBER(5) not null,                
+    price NUMBER(10) not null,                  
+    indate TIMESTAMP DEFAULT SYSDATE,
+    id VARCHAR2(50) not null
+);
 
+
+create table client_order (
+order_num NUMBER(10) PRIMARY KEY,
+adm_id VARCHAR2(50) not null,
+client_id VARCHAR2(20) not null,
+product_num number(10) not null,
+product_type varchar2(40) not null,
+product_name VARCHAR2(40) not null,
+product_quantity NUMBER(5) not null,
+product_price_one NUMBER(10) not null,
+product_price_total NUMBER(10) not null,   
+indate TIMESTAMP DEFAULT SYSDATE
+);
+
+--고객주문 시퀸스 num
+CREATE SEQUENCE order_num
+    INCREMENT BY 1
+    START WITH 1
+    NOCYCLE;    
 
 

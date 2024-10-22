@@ -5,8 +5,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,18 +23,20 @@ import javax.swing.table.DefaultTableModel;
 import c_Order_DAO.Order_DAO;
 import c_Order_DAO.Order_DBdao;
 import c_Order_DTO.Order_DTO;
+import c_Products_DAO.Products_DBdao;
 import c_Products_DTO.Products_DTO;
 import c_Service_Frame.Adm_Login_Frame2;
 
-public class Products_Service_Frame_Main_menu2 extends JFrame {
+public class Products_Service_Frame_Main_menu2 extends JFrame implements ActionListener {
 	//현재화면크기 가져오기
 		private Toolkit toolkit = Toolkit.getDefaultToolkit();
 		private Dimension screenSize = toolkit.getScreenSize(); // 화면크기
 		//
-		//Products_DBdao pdbdao = null;
+		Products_DBdao pdbdao = null;
 		Order_DBdao odbdao = null;
-		Products_Service_Frame_Main psfm =null;
 		
+		Products_Service_Frame_Main psfm =null;
+		Products_Service_Frame_Main_menu2_add psfmm2a = null;
 		//
 		Adm_Login_Frame2 admlf2 = null;
 		
@@ -39,8 +44,8 @@ public class Products_Service_Frame_Main_menu2 extends JFrame {
 		private JPanel northSouthPanel; private JLabel northSouthLabel;
 		//northSouth_c
 		private JPanel northSouthPanel_c; private JLabel northSouthLabel_c;
-		//private JTextField northSouthField_c; private JButton northSouthbutton_c;
-		//private JButton northSouthbutton_c1;
+		private JTextField northSouthField_c; private JButton northSouthbutton_c;
+		private JButton northSouthbutton_c1;
 		
 		//오른쪽 패널
 		private JPanel eastPanel; private JLabel eastJlabel;
@@ -76,10 +81,12 @@ public class Products_Service_Frame_Main_menu2 extends JFrame {
 		JButton testjbutton1;
 		JButton testjbutton2;
 	
-		Products_Service_Frame_Main_menu2(Products_Service_Frame_Main psfm, String idTemp) {
+		Products_Service_Frame_Main_menu2(Products_Service_Frame_Main psfm, String idTemp, Products_DBdao pdbdao) {
 			//admlf2 = alf2;
 			//Products_Service_Frame_Main psfm =null;
+			this.pdbdao = pdbdao;
 			this.psfm = psfm;
+			this.idTemp = idTemp;
 			
 			this.setTitle("조립 컴퓨터 재고관리 프로그램 v.1.0");
 			this.setLayout(new BorderLayout());
@@ -96,7 +103,7 @@ public class Products_Service_Frame_Main_menu2 extends JFrame {
 			//아이디 문구 환영문구		
 			
 			//String idtemp = idfield.getText().toString();
-			this.idTemp = idTemp;
+			
 			System.out.println("id확인" + idTemp);
 			String welcome = " 님 환영합니다";
 			String idtemp1 = idTemp + welcome;
@@ -140,6 +147,33 @@ public class Products_Service_Frame_Main_menu2 extends JFrame {
 			testjbutton1 = new JButton("재품등록");
 			testjbutton2 = new JButton("고객주문");
 			
+			//northsouth panel // 검색창
+			northSouthLabel_c = new JLabel("검색");
+			northSouthLabel_c.setHorizontalAlignment(JLabel.CENTER); // 수평 중앙 정렬
+			northSouthLabel_c.setVerticalAlignment(JLabel.CENTER); 
+			
+			northSouthField_c = new JTextField();
+			northSouthbutton_c = new JButton("검색"); //검색버튼
+			northSouthbutton_c1 = new JButton("새로고침"); //새로고침버튼
+			northSouthPanel_c = new JPanel();
+			northSouthPanel_c.setLayout(new GridLayout(1, 4));
+			northSouthPanel_c.setBorder(new LineBorder(Color.black, 2));
+			northSouthPanel_c.add(northSouthLabel_c);
+			northSouthPanel_c.add(northSouthField_c);
+			northSouthPanel_c.add(northSouthbutton_c);
+			northSouthPanel_c.add(northSouthbutton_c1);
+			
+			northSouthPanel.setBorder(BorderFactory.createEmptyBorder(0,200,0,200));
+			
+			northSouthPanel.add(northSouthPanel_c, "Center");
+			
+			//검색 리스너 추가
+			northSouthbutton_c.addActionListener(this); // 검색버튼
+			northSouthbutton_c1.addActionListener(this); //새로고침 버튼
+			northSouthField_c.addActionListener(this);
+			
+			
+			
 			//JPanel testpanel2 = new JPanel();
 			//JLabel testjlabel2 = new JLabel("테스트라벨2");
 			
@@ -164,6 +198,11 @@ public class Products_Service_Frame_Main_menu2 extends JFrame {
 			
 			loadJdb();
 			
+			//리스너 등록
+			testjbutton1.addActionListener(this);
+			buttona1.addActionListener(this);
+			
+			
 		}
 		
 		private void init() {
@@ -185,32 +224,79 @@ public class Products_Service_Frame_Main_menu2 extends JFrame {
 						olist.getAdm_id(),
 						olist.getClient_id(),
 						String.valueOf(olist.getProduct_num()),
-						olist.getProduct_type(),
+						olist.getProduct_type().toString(),
 						olist.getProduct_name(),
 						String.valueOf(olist.getProduct_quantity()),
 						String.valueOf(olist.getProduct_price_one()),
 						String.valueOf(olist.getProduct_price_total()),
 						olist.getIndate().toString()
-	/*
-	private String colNames[] = {"주문번호","관리자id","고객id","상품넘버","상품타입","상품명",
-			"상품수량","개당가격","총가격","주문일"};
-						plist.getId(),
-						String.valueOf(plist.getNum()),
-						plist.getDelivery_Company(),
-						plist.getType().toString(),
-						plist.getName(),
-						plist.getInfo(),
-						String.valueOf(plist.getQuantity()),
-						String.valueOf(plist.getPrice()),
-						String.valueOf(plist.getPrice() * plist.getQuantity()), //총가격
-						plist.getIndate().toString()
-						*/
 				};
 				model.addRow(data);
 			}
 			
 		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			//testjbutton1.addActionListener(this);
+			if(e.getSource() == testjbutton1 ) { //메인메뉴버튼1
+				view1();
+			}
+			
+			if(e.getSource() == buttona1) { //메인메튜버튼2
+				if(psfmm2a == null) {
+					psfmm2a = new Products_Service_Frame_Main_menu2_add (pdbdao,odbdao,idTemp,this);
+				}
+			}
+			if(e.getSource() == northSouthbutton_c ) { //검색버튼
+				model.setRowCount(0); // 기존행 초기화
+				String searhTemp= northSouthField_c.getText();
+				ArrayList<Order_DTO> odtolist = odbdao.searchOne(searhTemp, idTemp); // 검색, id
+				
+				for(Order_DTO olist : odtolist) {
+					String[] data= {
+							String.valueOf(olist.getOrder_num()),
+							olist.getAdm_id(),
+							olist.getClient_id(),
+							String.valueOf(olist.getProduct_num()),
+							olist.getProduct_type().toString(),
+							olist.getProduct_name(),
+							String.valueOf(olist.getProduct_quantity()),
+							String.valueOf(olist.getProduct_price_one()),
+							String.valueOf(olist.getProduct_price_total()),
+							olist.getIndate().toString()
+					};
+					model.addRow(data);
+				}
+				System.out.println("검색 됐나");
+			}
+			if(e.getSource() == northSouthbutton_c1) {//새로고침 버튼
+				loadJdb();
+				System.out.println("새로고침완료디버그");
+				
+			}
+			if(e.getSource() == northSouthField_c) {
+				northSouthbutton_c.doClick();
+				
+				
+			}
+			
+			
+		}
+			
 		
+		private void  view1() {
+			psfm.setVisible(true);
+			this.setVisible(false);
+			
+			
+			psfm.reset();
+		}
+		
+		public void reset() {
+			psfmm2a = null;
+		}
 		
 		
 	

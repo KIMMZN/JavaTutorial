@@ -145,7 +145,7 @@ public class Client_DAO implements Client_DBdao {
 	*/
 
 	@Override
-	public Client_DTO selectOne(String temp) {
+	public Client_DTO selectOne(String temp) { // id있는지 검사(중복)
 		Client_DTO cdto = null;
 		if(con()) {
 			try {

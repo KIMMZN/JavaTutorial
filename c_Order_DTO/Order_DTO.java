@@ -4,13 +4,10 @@ import java.sql.Timestamp;
 
 public class Order_DTO {
 	private int order_num = 0;
-	private String adm_id = null;
+	//private String adm_id = null;
 	private String client_id = null;
 	private int product_num = 0;
 	private String product_type = null;
-	
-	
-	
 	private String product_name = null;
 	private int product_quantity =0;
 	private int product_price_one = 0;
@@ -34,13 +31,13 @@ public class Order_DTO {
 	
 	
 
-	@Override
-	public String toString() {
-		return "Order_DTO [order_num=" + order_num + ", adm_id=" + adm_id + ", client_id=" + client_id
-				+ ", product_num=" + product_num + ", product_name=" + product_name + ", product_quantity="
-				+ product_quantity + ", product_price_one=" + product_price_one + ", product_price_total="
-				+ product_price_total + ", indate=" + indate + "]";
-	}
+	//@Override
+	//public String toString() {
+	//	return "Order_DTO [order_num=" + order_num + ", adm_id=" + adm_id + ", client_id=" + client_id
+	//			+ ", product_num=" + product_num + ", product_name=" + product_name + ", product_quantity="
+	//			+ product_quantity + ", product_price_one=" + product_price_one + ", product_price_total="
+	//			+ product_price_total + ", indate=" + indate + "]";
+	//}
 	
 	public int getOrder_num() {
 		return order_num;
@@ -48,12 +45,14 @@ public class Order_DTO {
 	public void setOrder_num(int order_num) {
 		this.order_num = order_num;
 	}
+	/*
 	public String getAdm_id() {
 		return adm_id;
 	}
 	public void setAdm_id(String adm_id) {
 		this.adm_id = adm_id;
 	}
+	*/
 	public String getClient_id() {
 		return client_id;
 	}

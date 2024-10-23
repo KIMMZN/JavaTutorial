@@ -66,7 +66,7 @@ public class Products_Service_Frame_Main_menu2 extends JFrame implements ActionL
 		
 		//jtable
 		private JTable jtable;
-		private String colNames[] = {"주문번호","관리자id","고객id","상품넘버","상품타입","상품명",
+		private String colNames[] = {"주문번호","고객id","상품넘버","상품타입","상품명",
 				"상품수량","개당가격","총가격","주문일"};
 		private DefaultTableModel model = new DefaultTableModel(colNames, 0);
 		private JScrollPane scrollPane;
@@ -220,12 +220,12 @@ public class Products_Service_Frame_Main_menu2 extends JFrame implements ActionL
 			model.setRowCount(0); // 기존행 초기화
 			System.out.println("jtable 데이터 로드중");
 			
-			ArrayList<Order_DTO> odtolist = odbdao.listAll(idTemp);
+			ArrayList<Order_DTO> odtolist = odbdao.listAll();
 			
 			for(Order_DTO olist : odtolist) {
 				String[] data= {
 						String.valueOf(olist.getOrder_num()),
-						olist.getAdm_id(),
+						//olist.getAdm_id(),
 						olist.getClient_id(),
 						String.valueOf(olist.getProduct_num()),
 						olist.getProduct_type().toString(),
@@ -237,7 +237,6 @@ public class Products_Service_Frame_Main_menu2 extends JFrame implements ActionL
 				};
 				model.addRow(data);
 			}
-			
 		}
 
 		@Override
@@ -256,12 +255,12 @@ public class Products_Service_Frame_Main_menu2 extends JFrame implements ActionL
 			if(e.getSource() == northSouthbutton_c ) { //검색버튼
 				model.setRowCount(0); // 기존행 초기화
 				String searhTemp= northSouthField_c.getText();
-				ArrayList<Order_DTO> odtolist = odbdao.searchOne(searhTemp, idTemp); // 검색, id
+				ArrayList<Order_DTO> odtolist = odbdao.searchOne(searhTemp); // 검색, id
 				
 				for(Order_DTO olist : odtolist) {
 					String[] data= {
 							String.valueOf(olist.getOrder_num()),
-							olist.getAdm_id(),
+							//olist.getAdm_id(),
 							olist.getClient_id(),
 							String.valueOf(olist.getProduct_num()),
 							olist.getProduct_type().toString(),

@@ -292,6 +292,99 @@ public class Products_DAO implements Products_DBdao {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Products_DTO> listAllbyClient() {
+		// TODO Auto-generated method stub
+				 ArrayList<Products_DTO> pdlist = new  ArrayList<>();
+				if(con()) {
+					try {
+						String sql = "select * from products";
+						PreparedStatement psmt = con.prepareStatement(sql);
+						//psmt.setString(1, idtemp);
+						ResultSet rs = psmt.executeQuery();
+						while(rs.next()) {
+							Products_DTO pdto = new Products_DTO();
+							pdto.setId(rs.getString("id"));
+							pdto.setNum(rs.getInt("num"));
+							pdto.setDelivery_Company(rs.getString("Delivery_company"));
+							pdto.setType(ProductType.valueOf(rs.getString("type")));
+							//pdto.setType(rs.getString("type"));
+							pdto.setName(rs.getString("name"));
+							pdto.setInfo(rs.getString("info"));
+							pdto.setQuantity(rs.getInt("quantity"));
+							pdto.setPrice(rs.getInt("price"));
+							pdto.setIndate(rs.getTimestamp("indate"));
+							pdlist.add(pdto);
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						try {
+							if(con != null) {
+								con.close();
+							}
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}else {
+					System.out.println("실패");
+				}
+				return pdlist;
+				
+	}
+
+	@Override
+	public ArrayList<Products_DTO> searchOnebyClient(String temp) {
+		// TODO Auto-generated method stub
+				ArrayList<Products_DTO> pdlist = new ArrayList<>();
+				if(con()) {
+					try {
+						 String sql = "select * from products WHERE " +
+		                         "name like ? OR " +
+		                         "type like ?";
+
+				            PreparedStatement psmt = con.prepareStatement(sql);
+				            String searchTemp = "%" + temp + "%";
+				            psmt.setString(1, searchTemp);
+				            psmt.setString(2, searchTemp);
+				            
+						ResultSet rs = psmt.executeQuery();
+						while(rs.next()) {
+							Products_DTO pdto = new Products_DTO();
+							pdto.setId(rs.getString("id"));
+							pdto.setNum(rs.getInt("num"));
+							pdto.setDelivery_Company(rs.getString("Delivery_company"));
+							pdto.setType(ProductType.valueOf(rs.getString("type")));
+							pdto.setName(rs.getString("name"));
+							pdto.setInfo(rs.getString("info"));
+							pdto.setQuantity(rs.getInt("quantity"));
+							pdto.setPrice(rs.getInt("price"));
+							pdto.setIndate(rs.getTimestamp("indate"));
+							pdlist.add(pdto);
+						}
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						try {
+							if(con != null) {
+								con.close();
+							}
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}else {
+					System.out.println("실패");
+				}
+				return pdlist;
+	}
+
 	
 	
 

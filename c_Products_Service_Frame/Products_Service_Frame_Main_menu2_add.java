@@ -163,7 +163,7 @@ public class Products_Service_Frame_Main_menu2_add extends JFrame implements Act
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == registerButton) {
+		if(e.getSource() == registerButton) { // 주문 버튼 클릭시
 			Order_DTO odto = new Order_DTO();
 			
 			String cid = clientIdField.getText();
@@ -172,7 +172,9 @@ public class Products_Service_Frame_Main_menu2_add extends JFrame implements Act
 			Client_DTO cdto= new Client_DTO();
 			
 			System.out.println("cdto:"+ cdto);
-			odto.setAdm_id(idTemp);
+			
+			odto.setClient_id(cid);
+			//odto.setAdm_id(idTemp);
 			//여기서 등록된 고객인지 확인
 			//Client_DBdao cltdbdao = null;
 			cdto = cltdbdao.selectOne(cid);
@@ -191,8 +193,10 @@ public class Products_Service_Frame_Main_menu2_add extends JFrame implements Act
 			if(cidTemp.equals(cid)) {
 				odto.setClient_id(cid);
 				odto.setProduct_num(pdnum);
+				
 				pdbdao.selectOne(pdnum);
 				Products_DTO pdto = pdbdao.selectOne(pdnum);
+				
 				odto.setProduct_type(pdto.getType().toString());
 				odto.setProduct_name(pdto.getName());
 				odto.setProduct_quantity(Integer.parseInt(quantityField.getText()));

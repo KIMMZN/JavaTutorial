@@ -66,16 +66,16 @@ public class Order_DAO implements Order_DBdao {
 				
 				if(nowQuantityp >= odto.getProduct_quantity()) {
 					String sql = "insert into client_order values" 
-							+"(order_num.nextval, ?,?,?,?,?,?,?,?,default)";
+							+"(order_num.nextval, ?,?,?,?,?,?,?,default)";
 					PreparedStatement psmt = con.prepareStatement(sql);
-					psmt.setString(1, odto.getAdm_id());
-					psmt.setString(2, odto.getClient_id());
-					psmt.setInt(3, odto.getProduct_num());
-					psmt.setString(4, odto.getProduct_type());
-					psmt.setString(5, odto.getProduct_name());
-					psmt.setInt(6, odto.getProduct_quantity());
-					psmt.setInt(7, odto.getProduct_price_one());
-					psmt.setInt(8, odto.getProduct_price_total());
+					//psmt.setString(1, odto.getAdm_id());
+					psmt.setString(1, odto.getClient_id());
+					psmt.setInt(2, odto.getProduct_num());
+					psmt.setString(3, odto.getProduct_type());
+					psmt.setString(4, odto.getProduct_name());
+					psmt.setInt(5, odto.getProduct_quantity());
+					psmt.setInt(6, odto.getProduct_price_one());
+					psmt.setInt(7, odto.getProduct_price_total());
 					int resultInt = psmt.executeUpdate();
 					
 
@@ -131,19 +131,19 @@ public class Order_DAO implements Order_DBdao {
 
 
 	@Override
-	public ArrayList<Order_DTO> listAll(String idtemp) {
+	public ArrayList<Order_DTO> listAll() { //관리자의 고객주문 검색
 		// TODO Auto-generated method stub
 		ArrayList<Order_DTO> odlist = new ArrayList<>();
 		if(con()) {
 			try {
-				String sql = "select * from client_order where adm_id = ?";
+				String sql = "select * from client_order";
 				PreparedStatement psmt = con.prepareStatement(sql);
-				psmt.setString(1, idtemp);
+				//psmt.setString(1, clientid);
 				ResultSet rs = psmt.executeQuery();
 				while(rs.next()) {
 					Order_DTO odto = new Order_DTO();
 					odto.setOrder_num(rs.getInt("order_num"));
-					odto.setAdm_id(rs.getString("adm_id"));
+					//odto.setAdm_id(rs.getString("adm_id"));
 					odto.setClient_id(rs.getString("client_id"));
 					odto.setProduct_num(rs.getInt("product_num"));
 					System.out.println("1");
@@ -180,23 +180,23 @@ public class Order_DAO implements Order_DBdao {
 
 
 	@Override
-	public ArrayList<Order_DTO> searchOne(String temp, String idTemps) {
+	public ArrayList<Order_DTO> searchOne(String temp) {
 		// TODO Auto-generated method stub
 				ArrayList<Order_DTO> odlist = new ArrayList<>();
 				if(con()) {
 					try {
-						String sql = "SELECT * FROM client_order WHERE " +
-					             "adm_id = '" + idTemps + "' AND " +
-					             "(client_id LIKE '%" + temp + "%' OR " +
-					             "product_name LIKE '%" + temp + "%' OR " +
-					             "product_type LIKE '%" + temp + "%')";
+						String sql = "select * from client_order where client_id like ? or " +
+					             "product_name like ? or product_type like ?";
 						
 						PreparedStatement psmt = con.prepareStatement(sql);
+						psmt.setString(1, "%" + temp + "%");
+			            psmt.setString(2, "%" + temp + "%");
+			            psmt.setString(3, "%" + temp + "%");
 						ResultSet rs = psmt.executeQuery();
 						while(rs.next()) {
 							Order_DTO odto = new Order_DTO();
 							odto.setOrder_num(rs.getInt("order_num"));
-							odto.setAdm_id(rs.getString("adm_id"));
+							//odto.setAdm_id(rs.getString("adm_id"));
 							odto.setClient_id(rs.getString("client_id"));
 							odto.setProduct_num(rs.getInt("product_num"));
 							System.out.println("1");
@@ -251,16 +251,16 @@ public class Order_DAO implements Order_DBdao {
 						
 						if(nowQuantityp >= odto.getProduct_quantity()) {
 							String sql = "insert into client_order values" 
-									+"(order_num.nextval, ?,?,?,?,?,?,?,?,default)";
+									+"(order_num.nextval, ?,?,?,?,?,?,?,default)";
 							PreparedStatement psmt = con.prepareStatement(sql);
-							psmt.setString(1, odto.getAdm_id());
-							psmt.setString(2, odto.getClient_id());
-							psmt.setInt(3, odto.getProduct_num());
-							psmt.setString(4, odto.getProduct_type());
-							psmt.setString(5, odto.getProduct_name());
-							psmt.setInt(6, odto.getProduct_quantity());
-							psmt.setInt(7, odto.getProduct_price_one());
-							psmt.setInt(8, odto.getProduct_price_total());
+							//psmt.setString(1, odto.getAdm_id());
+							psmt.setString(1, odto.getClient_id());
+							psmt.setInt(2, odto.getProduct_num());
+							psmt.setString(3, odto.getProduct_type());
+							psmt.setString(4, odto.getProduct_name());
+							psmt.setInt(5, odto.getProduct_quantity());
+							psmt.setInt(6, odto.getProduct_price_one());
+							psmt.setInt(7, odto.getProduct_price_total());
 							int resultInt = psmt.executeUpdate();
 							
 
@@ -312,6 +312,54 @@ public class Order_DAO implements Order_DBdao {
 				}
 				
 		return false;
+	}
+
+
+
+	@Override
+	public ArrayList<Order_DTO> listAllbyClient(String idtemp) { // 고객 주문정보 리스트
+		ArrayList<Order_DTO> odlist = new ArrayList<>();
+		if(con()) {
+			try {
+				String sql = "select * from client_order where client_id = ?";
+				PreparedStatement psmt = con.prepareStatement(sql);
+				psmt.setString(1, idtemp);
+				ResultSet rs = psmt.executeQuery();
+				while(rs.next()) {
+					Order_DTO odto = new Order_DTO();
+					odto.setOrder_num(rs.getInt("order_num"));
+					//odto.setAdm_id(rs.getString("adm_id"));
+					odto.setClient_id(rs.getString("client_id"));
+					odto.setProduct_num(rs.getInt("product_num"));
+					System.out.println("1디벅");
+					odto.setProduct_type(rs.getString("product_type"));
+					System.out.println("1+1디벅");
+					odto.setProduct_name(rs.getString("product_name"));
+					odto.setProduct_quantity(rs.getInt("product_quantity"));
+					odto.setProduct_price_one(rs.getInt("product_price_one"));
+					System.out.println("2디벅");
+					odto.setProduct_price_total(rs.getInt("product_price_total"));
+					odto.setIndate(rs.getTimestamp("indate"));
+					odlist.add(odto);
+				}
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(con != null) {
+						con.close();
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}else {
+			System.out.println("실패");
+		}
+		return odlist;
 	}
 	
 	

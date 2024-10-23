@@ -1,0 +1,129 @@
+마지막 쿼리 정리 ㅎㅎ
+
+CREATE TABLE c_client (
+    num NUMBER(9) UNIQUE,
+    id VARCHAR2(20) PRIMARY KEY,
+    password VARCHAR2(20) NOT NULL,
+    name VARCHAR2(20),
+    phoneNumber VARCHAR2(15),
+    address VARCHAR2(40),
+    indate TIMESTAMP(6) DEFAULT SYSDATE
+);
+| ID로 연결
+
+CREATE TABLE client_order (
+    order_num NUMBER(10) PRIMARY KEY,
+    client_id VARCHAR2(20) NOT NULL REFERENCES c_client(id), -- 외래 키로 고객 ID 참조
+    product_num NUMBER(10) NOT NULL REFERENCES products(num), -- 외래 키로 상품 번호 참조
+    product_type VARCHAR2(40) NOT NULL,
+    product_name VARCHAR2(40) NOT NULL,
+    product_quantity NUMBER(5) NOT NULL CHECK (product_quantity > 0),
+    product_price_one NUMBER(10) NOT NULL,
+    product_price_total NUMBER(10) NOT NULL,
+    indate TIMESTAMP DEFAULT SYSDATE
+);
+| 상품 NUM으로 연결
+
+//
+CREATE TABLE products (
+    num NUMBER(10) PRIMARY KEY,
+    delivery_company VARCHAR2(40),	  
+    type VARCHAR2(20) NOT NULL,                 
+    name VARCHAR2(40) NOT NULL,                
+    info VARCHAR2(255),                
+    quantity NUMBER(5) NOT NULL CHECK (quantity >= 0),               
+    price NUMBER(10) NOT NULL,                  
+    indate TIMESTAMP DEFAULT SYSDATE,
+    admin_id VARCHAR2(20) REFERENCES c_admin(id)  -- 관리자 ID 참조
+);
+//
+| 둘이 연결
+
+CREATE TABLE c_admin (
+    num NUMBER(9) UNIQUE,
+    id VARCHAR2(20) PRIMARY KEY,
+    password VARCHAR2(20),
+    name VARCHAR2(20),
+    phoneNumber VARCHAR2(15),
+    address VARCHAR2(40),
+    indate TIMESTAMP(6) DEFAULT SYSDATE
+);
+
+
+수정
+--varchar2 수정
+ALTER TABLE products
+MODIFY id VARCHAR2(20);
+-- 포린키 설정
+ALTER TABLE products
+ADD CONSTRAINT fk_admin_id FOREIGN KEY (id) REFERENCES c_admin(id);
+
+--시퀀스
+--프로덕츠 넘버 시퀀스
+CREATE SEQUENCE product_num
+    INCREMENT BY 1
+    START WITH 1
+    NOCYCLE;
+
+-- adimin 시퀀스
+CREATE SEQUENCE amdin_num
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 999999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+--클라이언트 시퀀스
+CREATE SEQUENCE clien_num
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 999999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+--고객주문 시퀸스 num
+CREATE SEQUENCE order_num
+    INCREMENT BY 1
+    START WITH 1
+    NOCYCLE;   
+
+
+--아침 해야될 코드
+/ "주문 관리" 탭 패널 생성 메소드
+    private JPanel createOrderManagementPanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        // 검색 패널 추가 (위쪽)
+        JPanel searchPanel = new JPanel(new BorderLayout());
+        JTextField searchField = new JTextField(15);
+        JButton searchButton = new JButton("검색");
+
+        searchPanel.add(new JLabel("상품 이름: "), BorderLayout.WEST);
+        searchPanel.add(searchField, BorderLayout.CENTER);
+        searchPanel.add(searchButton, BorderLayout.EAST);
+
+        // JTable 추가 (중앙)
+        String[] columnNames = { "상품 번호", "상품명", "타입", "수량", "가격" };
+        DefaultTableModel searchTableModel = new DefaultTableModel(columnNames, 0);
+        JTable searchTable = new JTable(searchTableModel);
+        JScrollPane searchScrollPane = new JScrollPane(searchTable);
+
+        // 주문 패널 추가 (아래쪽)
+        JPanel orderPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+        orderPanel.add(new JLabel("주문 수량:"));
+        JTextField quantityField = new JTextField();
+        orderPanel.add(quantityField);
+        JButton orderButton = new JButton("주문 등록");
+        orderPanel.add(orderButton);
+
+        panel.add(searchPanel, BorderLayout.NORTH);
+        panel.add(searchScrollPane, BorderLayout.CENTER);
+        panel.add(orderPanel, BorderLayout.SOUTH);
+
+        return panel;
+    }
+}

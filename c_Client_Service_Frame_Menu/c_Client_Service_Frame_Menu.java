@@ -151,15 +151,22 @@ public class c_Client_Service_Frame_Menu extends JFrame implements ActionListene
          
          
          
-         JPanel orderPanel = new JPanel(new GridLayout(4, 2, 5, 5));
+         JPanel orderPanel = new JPanel(new GridLayout(5, 2, 5, 5));
          orderPanel.add(new JLabel("상품 넘버:"));
          JTextField productNumberField = new JTextField();
          orderPanel.add(productNumberField);
          
+         orderPanel.add(new JLabel("상품 이름:"));
+         JTextField productNameField = new JTextField();
+         orderPanel.add(productNameField);
          
          orderPanel.add(new JLabel("주문 수량:"));
          JTextField quantityField = new JTextField();
          orderPanel.add(quantityField);
+         
+         orderPanel.add(new JLabel("가격"));
+         JTextField productPriceField = new JTextField();
+         orderPanel.add(productPriceField);
          
          
          JButton orderButton = new JButton("주문 등록");

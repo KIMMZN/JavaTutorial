@@ -7,6 +7,9 @@ import c_Products_DTO.Products_DTO;
 
 public interface Order_DBdao {
 	
+	
+	public boolean add1(Order_DTO odto);
+	
 	public void add(Order_DTO odto);
 	public ArrayList<Order_DTO> listAll(String idtemp);
 	public ArrayList<Order_DTO> searchOne(String temp, String idTemps);

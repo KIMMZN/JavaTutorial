@@ -143,6 +143,94 @@ public class Client_DAO implements Client_DBdao {
 
 
 	*/
+
+	@Override
+	public Client_DTO selectOne(String temp) {
+		Client_DTO cdto = null;
+		if(con()) {
+			try {
+				String sql = "select * from c_client where id=?";
+				PreparedStatement psmt = con.prepareStatement(sql);
+				psmt.setString(1, temp);
+				ResultSet rs = psmt.executeQuery();
+				while(rs.next()) {
+					cdto = new Client_DTO();
+					 cdto.setID(rs.getString("id"));
+		                cdto.setName(rs.getString("name"));
+		                cdto.setPhoneNumber(rs.getString("phonenumber"));
+		                cdto.setAddress(rs.getString("address"));
+		                cdto.setIndate(rs.getTimestamp("indate"));
+					System.out.println("debug id " + rs.getString("id"));
+					return cdto;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(con != null) {
+						con.close();
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}else {
+			System.out.println("실패");
+		}
+		
+		return cdto;
+	}
+
+	@Override
+	public boolean clientLogin(Client_DTO cdto) { //로그인 성공시 boolean타입 반환
+		// TODO Auto-generated method stub
+		if(con()) {
+			try {
+				String sql = "select * from c_client where id = ? and password  = ?";
+				PreparedStatement psmt = con.prepareStatement(sql);
+				psmt.setString(1, cdto.getID());
+				psmt.setString(2, cdto.getPassWord());
+				ResultSet rs = psmt.executeQuery();
+				if(rs.next()) {
+					return true;
+					
+				}else {
+					return false;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+			
+			
+		}else {
+			System.out.println("실패");
+			return false;
+		}
+		
+	}
+
+	@Override
+	public ArrayList<Client_DTO> listMyOrder(String userid) {
+		/* // TODO Auto-generated method 
+		  String sql = 
+		
+		
+		
+		   PreparedStatement pstmt = conn.prepareStatement(query);
+		   pstmt.setString(1, clientId); // 사용자의 ID 설정
+		   ResultSet rs = pstmt.executeQuery();
+		
+		
+		
+		*/
+		return null;
+	}
+
+
 	
 
 }

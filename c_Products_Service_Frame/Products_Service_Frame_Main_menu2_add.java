@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
@@ -21,6 +20,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import c_Client_DAO.Client_DAO;
+import c_Client_DAO.Client_DBdao;
+import c_Client_DTO.Client_DTO;
 import c_Order_DAO.Order_DBdao;
 import c_Order_DTO.Order_DTO;
 import c_Products_DAO.Products_DBdao;
@@ -28,6 +30,7 @@ import c_Products_DTO.Products_DTO;
 
 public class Products_Service_Frame_Main_menu2_add extends JFrame implements ActionListener,
 			MouseListener, WindowListener {
+	private Client_DBdao cltdbdao = null;
 	private Products_DBdao pdbdao = null;
 	private Order_DBdao odbdao = null;
 	private String idTemp;
@@ -69,11 +72,19 @@ public class Products_Service_Frame_Main_menu2_add extends JFrame implements Act
 	
 	Products_Service_Frame_Main_menu2_add(Products_DBdao pdbdao, Order_DBdao odbdao, String idTemp,
 			Products_Service_Frame_Main_menu2 psfmm2) {
+		System.out.println("cltdbdao: " + cltdbdao);
+		init();
 		this.pdbdao = pdbdao;
 		this.odbdao = odbdao;
 		this.idTemp = idTemp;
 		this.psfmm2 = psfmm2;
 		
+		 System.out.println("디버그: 생성자 호출됨");
+		    System.out.println("pdbdao: " + this.pdbdao);
+		    System.out.println("odbdao: " + this.odbdao);
+		    System.out.println("idTemp: " + this.idTemp);
+		    System.out.println("psfmm2: " + this.psfmm2);
+		    System.out.println("cltdbdao: " + cltdbdao);
 		
 		this.setTitle("조립 컴퓨터 재고관리 프로그램 v.1.0");
         this.setSize(400, 600);
@@ -139,31 +150,76 @@ public class Products_Service_Frame_Main_menu2_add extends JFrame implements Act
 		
 	}
 	
+	private void init() {
+		System.out.println("디벅3");
+		if(cltdbdao == null) {
+			cltdbdao = new Client_DAO();
+		}
+		
+	}
+	
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == registerButton) {
 			Order_DTO odto = new Order_DTO();
+			
 			String cid = clientIdField.getText();
+			System.out.println("cid:" + cid);
 			int pdnum = Integer.parseInt(numberField.getText());
+			Client_DTO cdto= new Client_DTO();
+			
+			System.out.println("cdto:"+ cdto);
 			odto.setAdm_id(idTemp);
-			odto.setClient_id(cid);
-			odto.setProduct_num(pdnum);
-			pdbdao.selectOne(pdnum);
-			Products_DTO pdto = pdbdao.selectOne(pdnum);
-			odto.setProduct_type(pdto.getType().toString());
-			odto.setProduct_name(pdto.getName());
-			odto.setProduct_quantity(Integer.parseInt(quantityField.getText()));
-			odto.setProduct_price_one(pdto.getPrice());
+			//여기서 등록된 고객인지 확인
+			//Client_DBdao cltdbdao = null;
+			cdto = cltdbdao.selectOne(cid);
+			if(cdto == null) {
+				System.out.println("등록된 고객이 없습니다");
+				JOptionPane.showMessageDialog(this, "등록된 회원이 아님", "확인", JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
 			
-			int oprice = pdto.getPrice();
-			int oquantity = Integer.parseInt(quantityField.getText());
-			int total = oprice * oquantity;
+			System.out.println("clientdto debug!!!! : "+cdto);
+			//Client_DTO cdto = cltdbdao.selectOne(cid);
+			//System.out.println("clientdto debug1" + cltdbdao.selectOne(cid));
 			
-			odto.setProduct_price_total(total);
+			String cidTemp= cdto.getID();
+			System.out.println("cidTemp" + cidTemp);
+			if(cidTemp.equals(cid)) {
+				odto.setClient_id(cid);
+				odto.setProduct_num(pdnum);
+				pdbdao.selectOne(pdnum);
+				Products_DTO pdto = pdbdao.selectOne(pdnum);
+				odto.setProduct_type(pdto.getType().toString());
+				odto.setProduct_name(pdto.getName());
+				odto.setProduct_quantity(Integer.parseInt(quantityField.getText()));
+				odto.setProduct_price_one(pdto.getPrice());
+				
+				int oprice = pdto.getPrice();
+				int oquantity = Integer.parseInt(quantityField.getText());
+				int total = oprice * oquantity;
+				
+				odto.setProduct_price_total(total);
+				
+				if(odbdao.add1(odto)) {
+					JOptionPane.showMessageDialog(this, "주문완료", "확인", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(this, "주문실패", "실패", JOptionPane.INFORMATION_MESSAGE);
+					
+				}
+				
+				//이자리 menu2 jtable 리로드
+				psfmm2.loadJdb();
+				
+			}else {
+				System.out.println("등록된 아이디가 아님");
+				//JOptionPane.showMessageDialog(this, "등록된 회원이 아님", "확인", JOptionPane.INFORMATION_MESSAGE);
+				//psfmm2.loadJdb();
+			}
 			
-			odbdao.add(odto);
-			JOptionPane.showMessageDialog(this, "등록 되었습니다", "확인", JOptionPane.INFORMATION_MESSAGE);
 			
 		}else if(e.getSource() == cancelButton) { // 취소버튼클릭시
 			this.dispose(); //창닫기
@@ -193,6 +249,8 @@ public class Products_Service_Frame_Main_menu2_add extends JFrame implements Act
 		}
 		
 	}
+	
+	
 	
 	private void loadJdb() { //jtable에 데이터 추가
 		model.setRowCount(0); // 기존행 초기화
@@ -287,9 +345,9 @@ public class Products_Service_Frame_Main_menu2_add extends JFrame implements Act
 	@Override
 	public void windowClosing(WindowEvent e) { // 창닫을시
 		// TODO Auto-generated method stub
-		loadJdb();
+		//loadJdb();
 		psfmm2.reset();
-		
+		psfmm2.loadJdb();
 		
 	}
 

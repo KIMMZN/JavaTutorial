@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import c_Order_DTO.Order_DTO;
-import c_Products_DTO.Products_DTO;
-import c_Products_DTO.Products_DTO.ProductType;
 
 public class Order_DAO implements Order_DBdao {
 	private String username= "system";
@@ -52,31 +52,67 @@ public class Order_DAO implements Order_DBdao {
 		// TODO Auto-generated method stub
 		if(con()) {
 			try {
-				String sql = "insert into client_order values" 
-						+"(order_num.nextval, ?,?,?,?,?,?,?,?,default)";
-				PreparedStatement psmt = con.prepareStatement(sql);
-				psmt.setString(1, odto.getAdm_id());
-				psmt.setString(2, odto.getClient_id());
-				psmt.setInt(3, odto.getProduct_num());
-				psmt.setString(4, odto.getProduct_type());
-				psmt.setString(5, odto.getProduct_name());
-				psmt.setInt(6, odto.getProduct_quantity());
-				psmt.setInt(7, odto.getProduct_price_one());
-				psmt.setInt(8, odto.getProduct_price_total());
-				int resultInt = psmt.executeUpdate();
-				//트랜잭션
-				if(resultInt > 0) {
-					con.commit();
-					System.out.println("등록완료");
+				
+				con.setAutoCommit(false);
+				//상품재고 불러오기
+				String sql2 = "select quantity from products where  num = ? ";
+				PreparedStatement psmt2 = con.prepareStatement(sql2);
+				psmt2.setInt(1, odto.getProduct_num());
+				ResultSet rs = psmt2.executeQuery();
+				int nowQuantityp = 0;
+				if(rs.next()) {
+					nowQuantityp = rs.getInt("quantity");
+				}
+				
+				if(nowQuantityp >= odto.getProduct_quantity()) {
+					String sql = "insert into client_order values" 
+							+"(order_num.nextval, ?,?,?,?,?,?,?,?,default)";
+					PreparedStatement psmt = con.prepareStatement(sql);
+					psmt.setString(1, odto.getAdm_id());
+					psmt.setString(2, odto.getClient_id());
+					psmt.setInt(3, odto.getProduct_num());
+					psmt.setString(4, odto.getProduct_type());
+					psmt.setString(5, odto.getProduct_name());
+					psmt.setInt(6, odto.getProduct_quantity());
+					psmt.setInt(7, odto.getProduct_price_one());
+					psmt.setInt(8, odto.getProduct_price_total());
+					int resultInt = psmt.executeUpdate();
+					
+
+					if(resultInt > 0) {
+						//프로덕트 테이블의 수량감소
+						String sql3 = "update products set quantity = ? where num = ? ";
+						PreparedStatement psmt3 = con.prepareStatement(sql3);
+						int updateQuantity = nowQuantityp - odto.getProduct_quantity();
+						psmt3.setInt(1, updateQuantity);
+						psmt3.setInt(2, odto.getProduct_num());
+						int resultInt2 = psmt3.executeUpdate();
+						
+						if(resultInt2 > 0) {
+							con.commit();
+							System.out.println("수량 업데이트 완료");
+						}else {
+							con.rollback();
+							System.out.println("수량 업데이트 실패");
+						}	
+						
+					}else {
+						con.rollback();
+						System.out.println("수량업데이트실패,롤백");
+					}	
 				}else {
-					con.rollback();
-					System.out.println("등록실패");
-				}		
+                    // 주문 등록 실패 시 롤백
+                    con.rollback();
+                    System.out.println("주문실패,롤백");
+                }
+			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally {
 				try {
+					con.setAutoCommit(true);
+					//rJOptionPane.showMessageDialog(null, "등록 되었습니다", "확인", JOptionPane.INFORMATION_MESSAGE);
 					if(con != null) {
 						con.close();
 					}
@@ -121,6 +157,7 @@ public class Order_DAO implements Order_DBdao {
 					odto.setIndate(rs.getTimestamp("indate"));
 					odlist.add(odto);
 				}
+			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -190,6 +227,91 @@ public class Order_DAO implements Order_DBdao {
 					System.out.println("실패");
 				}
 		return odlist;
+	}
+
+
+
+	@Override
+	public boolean add1(Order_DTO odto) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				if(con()) {
+					try {
+						
+						con.setAutoCommit(false);
+						//상품재고 불러오기
+						String sql2 = "select quantity from products where  num = ? ";
+						PreparedStatement psmt2 = con.prepareStatement(sql2);
+						psmt2.setInt(1, odto.getProduct_num());
+						ResultSet rs = psmt2.executeQuery();
+						int nowQuantityp = 0;
+						if(rs.next()) {
+							nowQuantityp = rs.getInt("quantity");
+						}
+						
+						if(nowQuantityp >= odto.getProduct_quantity()) {
+							String sql = "insert into client_order values" 
+									+"(order_num.nextval, ?,?,?,?,?,?,?,?,default)";
+							PreparedStatement psmt = con.prepareStatement(sql);
+							psmt.setString(1, odto.getAdm_id());
+							psmt.setString(2, odto.getClient_id());
+							psmt.setInt(3, odto.getProduct_num());
+							psmt.setString(4, odto.getProduct_type());
+							psmt.setString(5, odto.getProduct_name());
+							psmt.setInt(6, odto.getProduct_quantity());
+							psmt.setInt(7, odto.getProduct_price_one());
+							psmt.setInt(8, odto.getProduct_price_total());
+							int resultInt = psmt.executeUpdate();
+							
+
+							if(resultInt > 0) {
+								//프로덕트 테이블의 수량감소
+								String sql3 = "update products set quantity = ? where num = ? ";
+								PreparedStatement psmt3 = con.prepareStatement(sql3);
+								int updateQuantity = nowQuantityp - odto.getProduct_quantity();
+								psmt3.setInt(1, updateQuantity);
+								psmt3.setInt(2, odto.getProduct_num());
+								int resultInt2 = psmt3.executeUpdate();
+								
+								if(resultInt2 > 0) {
+									con.commit();
+									System.out.println("수량 업데이트 완료");
+									return true;
+								}else {
+									con.rollback();
+									System.out.println("수량 업데이트 실패");
+								}	
+								
+							}else {
+								con.rollback();
+								System.out.println("수량업데이트실패,롤백");
+							}	
+						}else {
+		                    // 주문 등록 실패 시 롤백
+		                    con.rollback();
+		                    System.out.println("주문실패,롤백");
+		                }
+					
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						try {
+							con.setAutoCommit(true);
+							//rJOptionPane.showMessageDialog(null, "등록 되었습니다", "확인", JOptionPane.INFORMATION_MESSAGE);
+							if(con != null) {
+								con.close();
+							}
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}else {
+					System.out.println("커넥션 실패");
+				}
+				
+		return false;
 	}
 	
 	

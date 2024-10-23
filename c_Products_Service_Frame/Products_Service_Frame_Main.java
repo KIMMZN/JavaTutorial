@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -258,9 +259,11 @@ ItemListener, MouseListener {
 		
 		//add north쪽 메뉴선택창
 		JPanel northPanel_C = new JPanel(new GridLayout(1, 3));
-		JPanel testpanel0 = new JPanel();
-		testpanel0.setBackground(Color.lightGray);
+		//JPanel testpanel0 = new JPanel();
+		//testpanel0.setBackground(Color.lightGray);
 		JLabel testjlabel0 = new JLabel("메뉴");
+		testjlabel0.setHorizontalAlignment(SwingConstants.CENTER); // 수평 중앙 정렬
+	    testjlabel0.setVerticalAlignment(SwingConstants.CENTER);   // 수직 중앙 정렬
 		//JPanel testpanel1 = new JPanel();
 		//JLabel testjlabel1 = new JLabel("테스트라벨1");
 		testjbutton1 = new JButton("재품등록");
@@ -270,12 +273,12 @@ ItemListener, MouseListener {
 		//JLabel testjlabel2 = new JLabel("테스트라벨2");
 		
 		
-		testpanel0.add(testjlabel0);
+		//testpanel0.add(testjlabel0);
 		//testpanel1.add(testjlabel1);
 		//testpanel2.add(testjlabel2);
 		//testpanel1.add(testjbutton1);
 		//testpanel2.add(testjbutton2);
-		northPanel_C.add(testpanel0);
+		northPanel_C.add(testjlabel0);
 		northPanel_C.add(testjbutton1);
 		northPanel_C.add(testjbutton2);
 		

@@ -91,11 +91,11 @@ public class Adm_DAO implements Adm_DBdao {
 		// TODO Auto-generated method stub
 		if(con()) {
 			try {
-				String sql = "SELECT * FROM c_admin WHERE id LIKE ? AND password LIKE ?";
+				String sql = "SELECT * FROM c_admin WHERE id = ? AND password  = ?";
 				PreparedStatement psmt = con.prepareStatement(sql);
 				
-				psmt.setString(1, "%"+admdto.getID()+"%");
-				psmt.setString(2, "%"+admdto.getPassWord()+"%");
+				psmt.setString(1, admdto.getID());
+				psmt.setString(2, admdto.getPassWord());
 				ResultSet rs = psmt.executeQuery();
 				if(rs.next()) {
 					return true;

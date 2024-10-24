@@ -6,11 +6,16 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -26,7 +31,8 @@ import c_Products_DAO.Products_DAO;
 import c_Products_DAO.Products_DBdao;
 import c_Products_DTO.Products_DTO;
 
-public class c_Client_Service_Frame_Menu extends JFrame implements ActionListener {
+public class c_Client_Service_Frame_Menu extends JFrame implements ActionListener,
+MouseListener, KeyListener {
 	private Toolkit toolkit = Toolkit.getDefaultToolkit();
 	private Dimension screenSize = toolkit.getScreenSize(); // 화면크기
 	private Order_DBdao odbdao = null;
@@ -34,6 +40,7 @@ public class c_Client_Service_Frame_Menu extends JFrame implements ActionListene
 	private String username= null;
 	private Products_DBdao pdbdao = null;
 	JPanel northPanel = new JPanel();
+	//탭
 	JTabbedPane tPane = new JTabbedPane();
 	
 	  //패널1
@@ -46,6 +53,22 @@ public class c_Client_Service_Frame_Menu extends JFrame implements ActionListene
      //중앙 jtable패널
      private DefaultTableModel Modelsearch;
      private JButton searchButton;
+     
+     //주문 패널
+     private JButton orderButton;
+     //상품주문패널 - jtable
+     private JTable searchTable;
+     private int row;
+	 private int col;
+     JTextField productNumberField;
+     JTextField productNameField;
+     JTextField quantityField;
+     JTextField productPriceField;
+     JTextField TotalPriceField;
+   
+     
+     
+     //
 	 
     public c_Client_Service_Frame_Menu(String username, Client_DBdao cdbdao) {
     	init();
@@ -68,7 +91,7 @@ public class c_Client_Service_Frame_Menu extends JFrame implements ActionListene
         
         // 다른 탭 추가
         tPane.addTab("주문 관리", orderPanel());
-        tPane.addTab("고객 지원", new JLabel("고객 지원 관련 내용을 여기에 표시합니다."));
+        tPane.addMouseListener(this);
         
         // JTabbedPane을 프레임에 추가
         this.add(tPane, "Center");
@@ -135,9 +158,11 @@ public class c_Client_Service_Frame_Menu extends JFrame implements ActionListene
          searchPanel.add(searchButton, "East");
          
          // JTable 추가 (중앙)
-         String[] col = { "상품번호", "상품명", "타입", "수량", "개당가격", "총가격","상품등록일"};
+         String[] col = { "상품번호", "타입", "상품명", "수량", "개당가격","상품등록일"};
          Modelsearch = new DefaultTableModel(col, 0);
-         JTable searchTable = new JTable(Modelsearch);
+         //
+         searchTable = new JTable(Modelsearch);
+         searchTable.addMouseListener(this);
          JScrollPane searchScrollP = new JScrollPane(searchTable);
          loadSearchDB();
          
@@ -148,30 +173,43 @@ public class c_Client_Service_Frame_Menu extends JFrame implements ActionListene
          
          JPanel orderMainPanel = new JPanel(new BorderLayout());
         
+         //
+        
          
-         
-         
-         JPanel orderPanel = new JPanel(new GridLayout(5, 2, 5, 5));
+         //
+         JPanel orderPanel = new JPanel(new GridLayout(6, 2, 5, 5));
          orderPanel.add(new JLabel("상품 넘버:"));
-         JTextField productNumberField = new JTextField();
+         productNumberField = new JTextField();
          orderPanel.add(productNumberField);
          
          orderPanel.add(new JLabel("상품 이름:"));
-         JTextField productNameField = new JTextField();
+         productNameField = new JTextField();
          orderPanel.add(productNameField);
          
          orderPanel.add(new JLabel("주문 수량:"));
-         JTextField quantityField = new JTextField();
+         quantityField = new JTextField();
          orderPanel.add(quantityField);
          
          orderPanel.add(new JLabel("가격"));
-         JTextField productPriceField = new JTextField();
+         productPriceField = new JTextField();
          orderPanel.add(productPriceField);
          
+         orderPanel.add(new JLabel("종합가격"));
+         TotalPriceField = new JTextField();
+         orderPanel.add(TotalPriceField);
          
-         JButton orderButton = new JButton("주문 등록");
+         // 가격관련 필드 박스에 키 리스너 추가
+      // quantityField.addKeyListener(this);
+         //productPriceField.addKeyListener(this);
+ 		//JTextField TotalPriceField;
+         quantityField.addKeyListener(this);
+         productPriceField.addKeyListener(this);
+         TotalPriceField.addKeyListener(this);
+         //주문 버튼
+         
+         orderButton = new JButton("주문 등록");
          orderPanel.add(orderButton);
-         
+         orderButton.addActionListener(this);
          //
          orderMainPanel.add(new JLabel("주문"), BorderLayout.NORTH);
          orderMainPanel.add(orderPanel, BorderLayout.CENTER);
@@ -194,10 +232,13 @@ public class c_Client_Service_Frame_Menu extends JFrame implements ActionListene
 		if(e.getSource() == searchButton) {
 			searchButtonjdb();
 		}
+		if(e.getSource() == orderButton ) {
+			orderButton();
+		}
 		
 	}
 	
-	private void loadSearchDB() {
+	private void loadSearchDB() { // 주문탭 jtable db 
 		Modelsearch.setRowCount(0); // 기존행 초기화
 			//private Products_DBdao pdbdao = null;
 		//String[] col = { "상품번호", "상품명", "타입", "수량", "개당가격", "총가격","상품등록일"};
@@ -213,7 +254,7 @@ public class c_Client_Service_Frame_Menu extends JFrame implements ActionListene
 					//plist.getInfo(),
 					String.valueOf(plist.getQuantity()),
 					String.valueOf(plist.getPrice()),
-					String.valueOf(plist.getPrice() * plist.getQuantity()), //총가격
+					//String.valueOf(plist.getPrice() * plist.getQuantity()), //총가격
 					plist.getIndate().toString()
 			};
 			Modelsearch.addRow(data);
@@ -243,6 +284,149 @@ public class c_Client_Service_Frame_Menu extends JFrame implements ActionListene
 			Modelsearch.addRow(data);
 		}
 	}
+	private void orderButton() { // 주문탭- 주문버튼클릭시메서드
+		Order_DTO odto = new Order_DTO();
+		/*
+		 JTextField productNumberField;
+         JTextField productNameField;
+         JTextField quantityField;
+         JTextField productPriceField;
+		
+		*/
+		String cid =  username;
+		int pdnum = Integer.parseInt(productNumberField.getText());
+		odto.setClient_id(cid);
+		odto.setProduct_num(pdnum);
+		pdbdao.selectOne(pdnum);
+		Products_DTO pdto = pdbdao.selectOne(pdnum);
+		odto.setProduct_type(pdto.getType().toString());
+		odto.setProduct_name(pdto.getName());
+		odto.setProduct_quantity(Integer.parseInt(quantityField.getText()));
+		odto.setProduct_price_one(pdto.getPrice());
+		int oprice = pdto.getPrice();
+		int oquantity = Integer.parseInt(quantityField.getText());
+		int total = oprice * oquantity;
+		
+		odto.setProduct_price_total(total);
+		
+		if(odbdao.add1(odto)) {
+			JOptionPane.showMessageDialog(this, "주문완료", "확인", JOptionPane.INFORMATION_MESSAGE);
+		}else {
+			JOptionPane.showMessageDialog(this, "주문실패", "실패", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		searchButtonjdb(); // 검색테이블 리로드
+		
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == searchTable) {
+			row = searchTable.getSelectedRow();
+			col = searchTable.getSelectedColumn();
+			
+			Object value = searchTable.getValueAt(row, col);
+			System.out.println("클릭된 행: " + row + ", 열: " + col + ", 값: "
+					+ value);
+			productNumberField.setText(searchTable.getValueAt(row, 0).toString());
+			productNameField.setText(searchTable.getValueAt(row, 2).toString());
+			productPriceField.setText(searchTable.getValueAt(row, 4).toString());
+		}
+        //TotalPriceField.setText(searchTable.getValueAt(row, col));
+        
+        int index = tPane.getSelectedIndex();
+        
+        if(index == tPane.indexOfTab("나의 주문정보")) {
+        	loadJDB();
+        }
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		// quantityField.addKeyListener(this);
+        //productPriceField.addKeyListener(this);
+		//JTextField TotalPriceField;
+		
+		if(e.getSource() == quantityField || e.getSource() == productPriceField ) {
+			calculateTotal();
+		}else if(e.getSource() == TotalPriceField) {
+			calculPriceOne();
+		}
+		
+	}
+	private void calculateTotal() { // 종합가격 계산
+		 try {
+		        int priceOne = Integer.parseInt(productPriceField.getText());
+		        int totalQuantity = Integer.parseInt(quantityField.getText());
+
+		        if (priceOne > 0 && totalQuantity > 0) {
+		            int totalPrice = priceOne * totalQuantity;
+		            TotalPriceField.setText(Integer.toString(totalPrice));
+		        } else {
+		        	TotalPriceField.setText("");
+		        }
+		    } catch (NumberFormatException e) {
+		    	TotalPriceField.setText("");
+		    }
+	}
+	private void calculPriceOne() { //개당가격 계산
+	    try {
+	        int totalPrice = Integer.parseInt(TotalPriceField.getText());
+	        int totalQuantity = Integer.parseInt(quantityField.getText());
+
+	        if (totalQuantity > 0 && totalPrice > 0) {
+	            int priceOne = totalPrice / totalQuantity;
+	            productPriceField.setText(Integer.toString(priceOne));
+	        } else {
+	        	productPriceField.setText("");
+	        }
+	    } catch (NumberFormatException e) {
+	        
+	    	productPriceField.setText("");
+	    }
+	}
+	
+	
+	
     
     
 }

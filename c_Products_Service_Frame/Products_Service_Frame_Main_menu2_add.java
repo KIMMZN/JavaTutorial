@@ -293,23 +293,7 @@ public class Products_Service_Frame_Main_menu2_add extends JFrame implements Act
 		        
 		        numberField.setText(jtable.getValueAt(row, 0).toString());
 		        
-		        /*
-		        westTextFieldid.setText(jtable.getValueAt(row, 0).toString());
-		        westTextField0.setText(jtable.getValueAt(row, 1).toString());
-		        westTextField1.setText(jtable.getValueAt(row, 2).toString());
-		        westTextField2.setText(jtable.getValueAt(row, 3).toString());
-		        westTextField3.setText(jtable.getValueAt(row, 4).toString());
-		        westTextField4.setText(jtable.getValueAt(row, 5).toString());
-		        westTextField5.setText(jtable.getValueAt(row, 6).toString());
-		        westTextField6.setText(jtable.getValueAt(row, 7).toString());
-		        westTextField7.setText(jtable.getValueAt(row, 8).toString());
-		        
-		         private JTextField quantityField;
-			    private JTextField clientIdField;
-			    private JTextField numberField;
-    
-		        
-		       */
+		      
 		        //테스트
 		        System.out.println("로우 + 컬럼밸류 : " + jtable.getValueAt(row, 0) +
 		        		"로우 + 컬럼밸류tostring : "+jtable.getValueAt(row, 0).toString());

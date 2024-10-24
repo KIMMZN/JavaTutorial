@@ -361,13 +361,6 @@ CREATE SEQUENCE order_num
 products num을 입력하면
 자동계산
 
-ALTER TABLE client_order
-ADD CONSTRAINT fk_client_id FOREIGN KEY (client_id) 
-REFERENCES c_client(id);
-
-포린키 추가로
-client table과 client order 테이블 연결
-
 
 
 

@@ -1,0 +1,128 @@
+CREATE TABLE c_client (
+    num NUMBER(9) UNIQUE,
+    id VARCHAR2(20) PRIMARY KEY,
+    password VARCHAR2(20),
+    name VARCHAR2(20),
+    phoneNumber VARCHAR2(15),
+    address VARCHAR2(40),
+    indate TIMESTAMP(6) DEFAULT SYSDATE
+);
+
+--클라이언트 시퀀스
+CREATE SEQUENCE clien_num
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 999999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+
+CREATE TABLE c_admin (
+    num NUMBER(9) UNIQUE,
+    id VARCHAR2(20) PRIMARY KEY,
+    password VARCHAR2(20),
+    name VARCHAR2(20),
+    phoneNumber VARCHAR2(15),
+    address VARCHAR2(40),
+    indate TIMESTAMP(6) DEFAULT SYSDATE
+);
+
+-- adimin 시퀀스
+CREATE SEQUENCE amdin_num
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 999999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+CREATE TABLE products (
+    num NUMBER(10) PRIMARY KEY,
+    Delivery_company varchar2(40),	  
+    type varchar2(20) not null,                 
+    name varchar2(40) not null,                
+    info VARCHAR2(255),                
+    quantity NUMBER(5) not null,                
+    price NUMBER(10) not null,                  
+    indate TIMESTAMP DEFAULT SYSDATE,
+    id VARCHAR2(50) not null REFERENCES c_admin(id)
+);
+
+--프로덕츠 넘버 시퀀스
+CREATE SEQUENCE product_num
+    INCREMENT BY 1
+    START WITH 1
+    NOCYCLE;
+
+
+CREATE TABLE client_order (
+    order_num NUMBER(10) PRIMARY KEY,
+    client_id VARCHAR2(20) NOT NULL REFERENCES c_client(id), -- 외래 키로 고객 ID 참조
+    product_num NUMBER(10) NOT NULL REFERENCES products(num), -- 외래 키로 상품 번호 참조
+    product_type VARCHAR2(40) NOT NULL,
+    product_name VARCHAR2(40) NOT NULL,
+    product_quantity NUMBER(5) NOT NULL CHECK (product_quantity > 0),
+    product_price_one NUMBER(10) NOT NULL,
+    product_price_total NUMBER(10) NOT NULL,
+    indate TIMESTAMP DEFAULT SYSDATE
+);
+
+--client_order 시퀸스
+CREATE SEQUENCE order_num
+    INCREMENT BY 1
+    START WITH 1
+    NOCYCLE;
+-----------
+
+final 
+
+
+dato dto 사용했는가?
+사용한 package
+build 라이브러리 : ojdbc ,java
+-디자인패턴(싱글톤)
+-상속
+
+-인터페이스 어떻게 활용
+콜렉션 프레임워크 * arraylist 사용했는가 ?
+   
+
+
+-
+
+후기 : java연구
+끈기 + 능동적으로 문제해결 경험 + 성취감 경험
+
+--
+드립북스에서 ~
+오라크  db~
+
+시작은 서비스 ㅡ 끝은 전문언어로.
+
+0.
+프로그램은 gui 기반의 인터페이스를 제공합니다.
+자바의 JFrame을 상속받고 actionlistener 등을 구현받아
+그래픽 기반으로 사용자가 편하게  
+
+1.
+프로그램에서 회원가입 서비스를 제공하는데
+처음 관리자 프로그램을 실행하면 로그인 창이 뜹니다.
+
+--
+
+사용 기능 dao&dto 패턴
+
+사용자가 입력한 내용을 dao와 dto 패턴을 사용해 
+      데이터베이스 접근하여 회원가입 기능을 구현
+
+ 
+사용자가 입력한이 정보를 바탕으로 DTO 객체를 생성
+DTO 객체를 DAO 클래스로 전달하여, DAO 클래스가 데이터베이스에 접근해 데이터를 저장
+이때 DAO는 인터페이스(DBdao)를 구현 받아 데이터베이스 작업을 처리하는데, 일관된 접근 방식을 제공하기 위해 사용
+
+
+
+

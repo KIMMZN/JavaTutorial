@@ -10,8 +10,8 @@ public class Main {
 		
 		//Login_Service logins = new Login_Service();
 		//Adm_Login_Frame admlogin = new Adm_Login_Frame();
-		//Adm_Login_Frame2 admlogin2 = new Adm_Login_Frame2(); // 관리자프로그램
-		c_Client_Service_Frame_Main csfm = new c_Client_Service_Frame_Main(); //고객프로그램
+		Adm_Login_Frame2 admlogin2 = new Adm_Login_Frame2(); // 관리자프로그램
+		//c_Client_Service_Frame_Main csfm = new c_Client_Service_Frame_Main(); //고객프로그램
 	}
 
 }

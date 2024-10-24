@@ -49,7 +49,7 @@ public class Client_DAO implements Client_DBdao {
 	}
 
 	@Override
-	public void add(Client_DTO ctdto) {
+	public void add(Client_DTO ctdto)  {
 		// TODO Auto-generated method stub
 		if(con()) {
 			try {

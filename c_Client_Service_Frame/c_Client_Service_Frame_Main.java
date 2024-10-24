@@ -91,7 +91,7 @@ public class c_Client_Service_Frame_Main extends JFrame implements ActionListene
             if(!username.isEmpty() && !password.isEmpty()) {
             	
             	Client_DTO cdto = new Client_DTO();
-            	cdto.setID(password);
+            	cdto.setID(username);
             	cdto.setPassWord(password);
             	
             	if(cdbdao.clientLogin(cdto)) {

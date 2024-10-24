@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +17,6 @@ import javax.swing.JTextField;
 
 import c_Client_DAO.Client_DBdao;
 import c_Client_DTO.Client_DTO;
-import c_Client_Service_Frame_Menu.c_Client_Service_Frame_Menu;
 
 public class c_Client_Service_Frame_Join extends JFrame implements ActionListener, ItemListener {
 	    private Client_DBdao cdbdao = null;
@@ -39,7 +39,7 @@ public class c_Client_Service_Frame_Join extends JFrame implements ActionListene
 		  // JFrame 기본 설정
         setTitle("고객 관리 프로그램 v.1.0");
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // 패널 설정
@@ -125,8 +125,11 @@ public class c_Client_Service_Frame_Join extends JFrame implements ActionListene
 				cdto.setName(nameTemp);
 				cdto.setPhoneNumber(pnumTemp);
 				cdto.setAddress(addressTemp);
+				
 				cdbdao.add(cdto);
-				JOptionPane.showMessageDialog(this, "회원가입에 성공했습니다 ","회원가입 ㄴ성공",JOptionPane.INFORMATION_MESSAGE);
+				// 예외 처리 블록으로 회원가입 수행
+				
+				JOptionPane.showMessageDialog(this, "회원가입에 성공했습니다 ","회원가입 성공",JOptionPane.INFORMATION_MESSAGE);
             	
             }else if(flag == false) {
     			JOptionPane.showMessageDialog(this, "비밀번호가 다릅니다", "비밀번호 재확인 실패", JOptionPane.ERROR_MESSAGE );
@@ -135,7 +138,7 @@ public class c_Client_Service_Frame_Join extends JFrame implements ActionListene
 		if(e.getSource() == registerButton) {
 			//JOptionPane.showMessageDialog(this, "비밀번호가 다릅니다", "비밀번호 재확인 실패", JOptionPane.ERROR_MESSAGE );
 			csfm.reset();
-			this.dispose();
+			
 		}
 		
 	}

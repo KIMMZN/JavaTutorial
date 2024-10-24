@@ -139,6 +139,8 @@ public class Adm_Join extends JFrame implements ActionListener {
 				admdto.setPhoneNumber(pnumTemp);
 				admdto.setAddress(addressTemp);
 				admdbdao.add(admdto);
+				JOptionPane.showMessageDialog(this, "회원가입 완료 되었습니다", "회원가입 완료", JOptionPane.INFORMATION_MESSAGE);
+				this.dispose();
 			}else {
 				JOptionPane.showMessageDialog(this, "비밀번호가 다릅니다", "비밀번호 재확인 실패", JOptionPane.ERROR_MESSAGE );
 				
